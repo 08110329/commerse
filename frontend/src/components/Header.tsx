@@ -1,10 +1,26 @@
+"use client";
+
+import { backend } from "@/axios";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { LuHeart, LuSearch } from "react-icons/lu";
 
 export const Header = () => {
+  const [res, setRes] = useState<string>("");
+  useEffect(() => {
+    const getData = async () => {
+      const res = await backend.get("/");
+
+      setRes(res.data.message);
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className="w-full h-[68px] py-4 px-6 bg-black">
+      <h1>{res}</h1>
       <div className="h-9 flex items-center justify-between">
         <div className="flex gap-4 items-center text-sm font-normal text-white">
           <div className="relative w-8 h-8 flex bg-black">
