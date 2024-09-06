@@ -10,7 +10,7 @@ import { LuPhone } from "react-icons/lu";
 
 export const Footers = () => {
   return (
-    <div className="w-full py-20 px-56 grid gap-12 bg-black">
+    <div className="w-full py-20 px-96 grid gap-12 bg-black">
       <div className="flex justify-between">
         <div className="relative w-[40px] h-[40px] bg-black">
           <Image src={`/Logo/PineconeStudio.png`} fill alt="logo" />

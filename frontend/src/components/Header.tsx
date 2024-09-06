@@ -19,8 +19,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <div className="w-full h-[68px] py-4 px-8 bg-black">
-      <h1>{res}</h1>
+    <div className="w-full h-[68px] py-4 px-56 bg-black">
       <div className="h-9 flex items-center justify-between">
         <div className="flex gap-4 items-center text-sm font-normal text-white">
           <div className="relative w-8 h-8 flex bg-black">

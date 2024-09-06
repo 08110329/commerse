@@ -1,3 +1,5 @@
+"use client";
+
 import { FacePage } from "@/components/FacePage";
 import { Footers } from "@/components/Footers";
 import { Header } from "@/components/Header";
