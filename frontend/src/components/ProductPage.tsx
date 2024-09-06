@@ -1,93 +1,71 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { CiHeart, CiStar } from "react-icons/ci";
+import { StarIcon } from "./StarIcon";
+import { AllSee } from "./AllSee";
 
 export const ProductPage = () => {
   const numberss = [
-    {
-      id: 1,
-      size: "S",
-    },
-    {
-      id: 2,
-      size: "M",
-    },
-    {
-      id: 3,
-      size: "L",
-    },
-    {
-      id: 4,
-      size: "XL",
-    },
-    {
-      id: 5,
-      size: "2XL",
-    },
+    { id: 1, size: "S" },
+    { id: 2, size: "M" },
+    { id: 3, size: "L" },
+    { id: 4, size: "XL" },
+    { id: 5, size: "2XL" },
   ];
-  const iconStars = [
-    {
-      id: 1,
-      icon: <CiStar />,
-    },
-    {
-      id: 2,
-      icon: <CiStar />,
-    },
-    {
-      id: 3,
-      icon: <CiStar />,
-    },
-    {
-      id: 4,
-      icon: <CiStar />,
-    },
-    {
-      id: 5,
-      icon: <CiStar />,
-    },
+
+  const productsImage: product[] = [
+    { id: 1, img: "/logo/hoodie.png" },
+    { id: 2, img: "/Logo/manhoodie.png" },
+    { id: 3, img: "/Logo/backhoodie.png" },
+    { id: 4, img: "/Logo/fronthoodie.png" },
   ];
-  const productsImage = [
-    {
-      id: 1,
-      img: "/tom.png",
-    },
-    {
-      id: 2,
-      img: "/Logo/2.png",
-    },
-    {
-      id: 3,
-      img: "/Logo/3.png",
-    },
-    {
-      id: 4,
-      img: "/Logo/4.png",
-    },
-  ];
+  interface product {
+    id: number;
+    img: string;
+  }
+
+  const [selectImage, setSelectImage] = useState(productsImage[0]); // jijig zurgn dree dathad tom bolgohiin tuld set ashiglaaad
+
+  const handleClick = (image: product) => {
+    setSelectImage(image);
+  }; /// handleclick deer image n productiinh gd setselecteeeparamtr dr n image shuu gj ogood
+
   return (
     <div>
-      <div className="flex gap-8">
+      <div className="flex gap-12">
         <div className="flex gap-6">
           <div className="flex flex-col gap-2 justify-center">
-            {productsImage.map((productImage) => {
-              return (
-                <div
-                  className=" w-[100px] justify-center "
-                  key={productImage.id}
-                >
-                  <div className="relative w-[100px] h-[100px] ">
-                    <Image src={productImage.img} fill alt="2" />
-                  </div>
+            {productsImage.map((productImage) => (
+              <div
+                className="w-[100px] cursor-pointer"
+                key={productImage.id}
+                onClick={() => handleClick(productImage)} // jijig zurg dr darh ued handleclick funchion ajilaad maplsn product img gj paramtr dr bichj ogno
+              >
+                <div className="relative w-[100px] h-[100px]">
+                  <Image
+                    src={productImage.img}
+                    fill
+                    alt={`hoodie ${productImage.id}`}
+                    className="rounded-md"
+                  />
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
-          <div className="relative w-[550px] h-[721px]">
-            <Image src={"/tom.png"} fill alt="tom" />
+          <div className="relative w-[550px] h-[721px] ">
+            <Image
+              src={selectImage.img} /// tgeed tom zueg dree oorchilsn selectimagiin img shuuu gd ogno
+              fill
+              alt="Selected Product"
+              className="rounded-2xl"
+            />
           </div>
         </div>
-        <div className="pt-28	flex flex-col gap-14">
+        <div></div>
+        <div className="pt-28 flex flex-col gap-14 border">
           <div className="pr-20 grid gap-9">
             <div className="grid gap-5">
               <div className="grid gap-4">
@@ -96,7 +74,7 @@ export const ProductPage = () => {
                 </div>
                 <div className="text-4xl font-bold flex items-center gap-4">
                   <p>Wildflower Hoodie</p>
-                  <CiHeart className="w-8 h-8 " />
+                  <CiHeart className="w-8 h-8" />
                 </div>
                 <p className="font-normal text-xl">
                   Зэрлэг цэцгийн зурагтай даавуун материалтай цамц
@@ -105,16 +83,14 @@ export const ProductPage = () => {
               <div className="font-normal text-lg grid gap-2">
                 <p className="underline">Хэмжээний заавар</p>
                 <div className="flex gap-2">
-                  {numberss.map((numbers) => {
-                    return (
-                      <div
-                        className="border rounded-full w-9 h-9 flex justify-center items-center text-sm font-normal border-black hover:bg-black hover:text-white"
-                        key={numbers.id}
-                      >
-                        <p>{numbers.size}</p>
-                      </div>
-                    );
-                  })}
+                  {numberss.map((number) => (
+                    <div
+                      className="border rounded-full w-9 h-9 flex justify-center items-center text-sm font-normal border-black hover:bg-black hover:text-white"
+                      key={number.id}
+                    >
+                      <p>{number.size}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="flex gap-3 items-center">
@@ -143,16 +119,7 @@ export const ProductPage = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
-                {iconStars.map((iconStar) => {
-                  return (
-                    <div
-                      className=" text-[yellow] text-2xl hover:bg-yellow-300 "
-                      key={iconStar.id}
-                    >
-                      {iconStar.icon}
-                    </div>
-                  );
-                })}
+                <StarIcon />
               </div>
               <div className="font-medium text-lg flex">
                 <p className="font-semibold text-lg">4.6</p>
@@ -160,6 +127,9 @@ export const ProductPage = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <AllSee />
         </div>
       </div>
     </div>
