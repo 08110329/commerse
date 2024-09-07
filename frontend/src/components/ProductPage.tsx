@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CiHeart, CiStar } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
 import { AllSee } from "./AllSee";
+import { Button } from "./ui/button";
 
 export const ProductPage = () => {
   const numberss = [
@@ -35,7 +36,7 @@ export const ProductPage = () => {
   return (
     <div>
       <div className="flex gap-12">
-        <div className="flex gap-6">
+        <div className="flex gap-6 sticky top-0">
           <div className="flex flex-col gap-2 justify-center">
             {productsImage.map((productImage) => (
               <div
@@ -64,8 +65,8 @@ export const ProductPage = () => {
             />
           </div>
         </div>
-        <div></div>
-        <div className="pt-28 flex flex-col gap-14 border">
+
+        <div className="pt-28 flex flex-col gap-14 relative">
           <div className="pr-20 grid gap-9">
             <div className="grid gap-5">
               <div className="grid gap-4">
@@ -111,11 +112,14 @@ export const ProductPage = () => {
             </div>
           </div>
           <div className="grid gap-2">
+            <div className="hidden">
+              <AllSee />
+            </div>
             <div className="flex gap-4 text-xl font-normal">
               <p>Үнэлгээ</p>
-              <p className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]">
+              <button className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]">
                 бүгдийг харах
-              </p>
+              </button>
             </div>
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
@@ -127,9 +131,6 @@ export const ProductPage = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <AllSee />
         </div>
       </div>
     </div>

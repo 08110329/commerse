@@ -1,6 +1,7 @@
 import { ListStartIcon } from "lucide-react";
 import { CiStar } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
+import { useState } from "react";
 
 export const AllSee = () => {
   const comments = [
@@ -31,8 +32,9 @@ export const AllSee = () => {
       description: "Ваав материал ёстой гоё байна 😍",
     },
   ];
+
   return (
-    <div className="h-72 grid gap-6 w-[511px]">
+    <div className="h-72 grid gap-6 w-[511px] border absolute">
       <div>
         <div className="flex gap-4 text-xl font-normal">
           <p>Үнэлгээ</p>
