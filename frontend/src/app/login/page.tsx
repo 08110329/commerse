@@ -8,7 +8,8 @@ export default function Home() {
   return (
     <div className="w-full m-auto h-[100vh]">
       <Header />
-      <div className="w-full grid gap-10 pt-28 justify-center ">
+      <div className="w-screen h-screen ">
+        <div className="w-full grid gap-10 pt-28 justify-center ">
         <div className="flex justify-end">
           <button className="font-medium text-sm">Бүртгүүлэх</button>
         </div>
@@ -31,7 +32,9 @@ export default function Home() {
             <button className="underline">Нууц үг мартсан</button>
           </div>
         </div>
+      </div> 
       </div>
+     
       <Footers />
     </div>
   );

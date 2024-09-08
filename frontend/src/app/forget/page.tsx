@@ -7,7 +7,8 @@ export default function Home() {
   return (
     <div className="w-full m-auto h-[100vh]">
       <Header />
-      <div className="w-full grid gap-10 pt-28 justify-center ">
+      <div className="w-screen h-screen">
+        <div className="w-full grid gap-10 pt-28 justify-center ">
         <div className="grid gap-6">
           <h1 className="font-semibold text-2xl flex justify-center">
             Нууц үг сэргээх
@@ -23,6 +24,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+      </div>
+      
       <Footers />
     </div>
   );

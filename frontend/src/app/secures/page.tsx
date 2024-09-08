@@ -26,7 +26,8 @@ export default function Home() {
   return (
     <div className="w-full m-auto h-[100vh]">
       <Header />
-      <div className="w-full grid gap-10 pt-28 justify-center ">
+      <div className="w-screen h-screen">
+<div className="w-full grid gap-10 pt-28 justify-center ">
         <div className="grid gap-6 ">
           <div className="relative w-20 h-20 left-[215px]">
             <Image src={"/Logo/Group 1 (2).png"} fill alt="message" />
@@ -54,6 +55,8 @@ export default function Home() {
         </div>
         <button className="underline text-[#71717A]">Дахин илгээх (30)</button>
       </div>
+      </div>
+      
       <Footers />
     </div>
   );

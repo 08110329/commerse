@@ -115,7 +115,8 @@ export const FacePage = () => {
     },
   ];
   return (
-    <div className="w-full py-24 px-96 grid gap-12">
+    <div className="w-screen h-screen">
+       <div className="w-full py-24 px-96 grid gap-12">
       <div className="relative w-full h-[750px]">
         <Image src={"/Slider.png"} fill alt="cover" />
       </div>
@@ -161,5 +162,7 @@ export const FacePage = () => {
         })}
       </div>
     </div>
+    </div>
+   
   );
 };

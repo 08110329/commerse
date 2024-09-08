@@ -156,7 +156,8 @@ export default function Home() {
   return (
     <div className="w-full m-auto h-[100vh]">
       <Header />
-      <div className="w-full py-24 px-96 flex gap-20 border">
+      <div className="w-screen h-screen">
+        <div className="w-full py-24 px-96 flex gap-20 border">
         <div className="grid w-60 h-fit gap-12">
           <div className="flex flex-col gap-4">
             <h1 className="text-lg font-bold">Ангилал</h1>
@@ -200,6 +201,8 @@ export default function Home() {
           ))}
         </div>
       </div>
+      </div>
+      
       <Footers />
     </div>
   );
