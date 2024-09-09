@@ -8,19 +8,16 @@ import { FaHeart } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="w-full m-auto h-[100vh]">
-      <Header />
-      <div className="w-screen h-screen">
+    <div className="w-full m-auto h-fit">
+      <div className="w-screen h-fit">
         <div className="w-full py-24 px-96 grid gap-20">
-        <ProductPage />
-        <div className="grid gap-7 ">
-          <h1 className="text-4xl font-bold">Холбоотой бараа</h1>
-          <ContactProduct />
+          <ProductPage />
+          <div className="grid gap-7 ">
+            <h1 className="text-4xl font-bold">Холбоотой бараа</h1>
+            <ContactProduct />
+          </div>
         </div>
       </div>
-      </div>
-      
-      <Footers />
     </div>
   );
 }
