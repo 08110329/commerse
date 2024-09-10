@@ -53,26 +53,30 @@ export const ContactProduct = () => {
     },
   ];
   return (
-    <div className="w-full grid grid-cols-4 grid-rows-2 gap-8">
-      {products.map((product) => {
-        return (
-          <div className=" w-[330px] flex flex-col gap-3" key={product.id}>
-            <div className="relative w-full h-[450px]">
-              <Image
-                src={product.img}
-                fill
-                alt="zurag"
-                className="rounded-2xl"
-              />
-              <CiHeart className="absolute right-4 top-4 w-10 h-10" />
-            </div>
-            <div className="text-3xl font-bold grid gap-2">
-              <p className="text-2xl font-normal">{product.title}</p>
-              <p className="flex gap-4 items-center">{product.price}</p>
-            </div>
-          </div>
-        );
-      })}
+    <div className="flex bg-[#F4F4F5] justify-center ">
+      <div className="container flex  justify-center ">
+        <div className="grid grid-cols-4 grid-rows-2 gap-8">
+          {products.map((product) => {
+            return (
+              <div className=" w-[330px] flex flex-col gap-3" key={product.id}>
+                <div className="relative w-full h-[450px]">
+                  <Image
+                    src={product.img}
+                    fill
+                    alt="zurag"
+                    className="rounded-2xl"
+                  />
+                  <CiHeart className="absolute right-4 top-4 w-10 h-10" />
+                </div>
+                <div className="text-3xl font-bold grid gap-2">
+                  <p className="text-2xl font-normal">{product.title}</p>
+                  <p className="flex gap-4 items-center">{product.price}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

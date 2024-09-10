@@ -7,7 +7,7 @@ type ProductCardProps = {
 };
 export const ProductCard = ({ img, title, price }: ProductCardProps) => {
   return (
-    <div className=" w-[330px] flex flex-col gap-3">
+    <div className=" w-full flex flex-col gap-3">
       <div className="relative w-full h-[450px]">
         <Image src={img} fill alt="zurag" className="rounded-2xl" />
         <CiHeart className="absolute right-4 top-4 w-10 h-10" />

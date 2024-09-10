@@ -83,9 +83,9 @@ export default function Home() {
     },
   ];
   return (
-    <div className="w-full m-auto h-[100vh]">
-      <div className="w-screen h-screen bg-[#F4F4F5]">
-        <div className="w-full h-[684] grid gap-16 justify-center">
+    <div className="flex bg-[#F4F4F5] justify-center ">
+      <div className="container flex  justify-center ">
+        <div className="h-screen flex flex-col gap-16">
           <div className="flex items-center mt-28 justify-center">
             <div className="border rounded-full w-8 h-8 flex justify-center items-center border-black  hover:bg-[#2563EB] hover:text-white hover:border-none">
               <p>1</p>
