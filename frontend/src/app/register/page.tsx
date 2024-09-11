@@ -1,9 +1,23 @@
 "use client";
 
-import { Footers } from "@/components/Footers";
-import { Header } from "@/components/Header";
+import { Formik, useFormik } from "formik";
 
 export default function Home() {
+  const formik = useFormik({
+    initialValues: {
+      нэр: " ",
+      имэйлХаяг: " ",
+      нууцҮг: " ",
+      нууцҮгДавтах: " ",
+    },
+    onSubmit: (values) => {
+      alert(
+        `hello ${formik.values.нэр} ${formik.values.имэйлХаяг} ${formik.values.нууцҮг} ${formik.values.нууцҮгДавтах}`
+      );
+      console.log("first message", formik.values);
+    },
+  });
+  console.log("firs", formik.values);
   return (
     <div className="flex py-24 px-96 bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center ">
@@ -14,22 +28,37 @@ export default function Home() {
                 Бүртгүүлэх
               </h1>
               <div className="grid gap-5">
-                <input
-                  placeholder=" Нэр"
-                  className="w-96 h-9 border rounded-2xl pl-2"
-                ></input>
-                <input
-                  placeholder=" Имэйл хаяг"
-                  className="w-96 h-9 border rounded-2xl pl-2"
-                ></input>
-                <input
-                  placeholder=" Нууц үг"
-                  className="w-96 h-9 border rounded-2xl pl-2"
-                ></input>
-                <input
-                  placeholder=" Нууц үг давтах "
-                  className="w-96 h-9 border rounded-2xl pl-2"
-                ></input>
+                <form onSubmit={formik.handleSubmit} className="grid gap-5">
+                  <input
+                    name="Нэр"
+                    value={formik.values.нэр}
+                    onChange={formik.handleChange}
+                    placeholder=" Нэр"
+                    className="w-96 h-9 border rounded-2xl pl-2"
+                  ></input>
+                  <input
+                    name="Имэйл хаяг"
+                    placeholder=" Имэйл хаяг"
+                    className="w-96 h-9 border rounded-2xl pl-2"
+                    value={formik.values.имэйлХаяг}
+                    onChange={formik.handleChange}
+                  ></input>
+                  <input
+                    name="Нууц үг"
+                    placeholder=" Нууц үг"
+                    className="w-96 h-9 border rounded-2xl pl-2"
+                    value={formik.values.нууцҮг}
+                    onChange={formik.handleChange}
+                  ></input>
+                  <input
+                    name="Нууц үг давтах"
+                    placeholder=" Нууц үг давтах "
+                    className="w-96 h-9 border rounded-2xl pl-2"
+                    value={formik.values.нууцҮгДавтах}
+                    onChange={formik.handleChange}
+                  ></input>
+                </form>
+
                 <div className="text-xs font-medium grid gap-1 pl-2">
                   <li>Том үсэг орсон байх</li>
                   <li>Жижиг үсэг орсон байх</li>

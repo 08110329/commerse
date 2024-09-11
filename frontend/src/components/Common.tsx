@@ -2,10 +2,9 @@ import { ListStartIcon } from "lucide-react";
 import { CiStar } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
 import { useState } from "react";
-import { Common } from "./Common";
 
-export const AllSee = () => {
-  const [butsah, setbutsah] = useState(false);
+export const Common = () => {
+  const [start, setStart] = useState(false);
   const comments = [
     {
       id: 1,
@@ -36,14 +35,18 @@ export const AllSee = () => {
   ];
 
   return (
-    <div className="h-fit grid gap-6 w-full pt-10">
-      <div className={`${butsah ? "hidden" : "visible"}`}>
+    <div>
+      <div
+        className={`h-fit grid gap-6 w-full pt-10 ${
+          start ? "hidden" : "visible"
+        }`}
+      >
         <div className="container ">
           <div className="flex gap-4 text-xl font-normal">
             <p>Үнэлгээ</p>
             <button
               className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]"
-              onClick={() => setbutsah(!butsah)}
+              onClick={() => setStart(!start)}
             >
               бүгдийг хураах
             </button>
@@ -76,25 +79,23 @@ export const AllSee = () => {
             );
           })}
         </div>
-        <div className=" p-6 border bg-[#E4E4E7] rounded-xl text-lg font-medium flex flex-col gap-6">
-          <div className="grid gap-2">
-            <p>Одоор үнэлэх:</p>
-            <StarIcon />
-          </div>
-          <div className="text-lg font-medium">
-            <p>Сэтгэгдэл үлдээх:</p>
-            <textarea
-              placeholder="  Энд бичнэ үү"
-              className="w-full h-24 text-lg rounded-lg"
-            ></textarea>
-          </div>
-          <button className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white">
-            Үнэлэх
+      </div>
+      <div className={`${start ? "visible" : "hidden"}`}>
+        <div className="flex gap-4 text-xl font-normal">
+          <p>Үнэлгээ</p>
+          <button className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]">
+            бүгдийг харах
           </button>
         </div>
-      </div>
-      <div className={`${butsah ? "visible" : "hidden"}`}>
-        <Common />
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1">
+            <StarIcon />
+          </div>
+          <div className="font-medium text-lg flex">
+            <p className="font-semibold text-lg">4.6</p>
+            <p className="text-[#71717A]">(24)</p>
+          </div>
+        </div>
       </div>
     </div>
   );

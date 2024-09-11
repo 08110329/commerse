@@ -10,18 +10,18 @@ export const FacePage = () => {
           <div className="relative w-full h-[600px]">
             <Image src={"/Slider.png"} fill alt="cover" />
           </div>
-          <div className="w-full h-full grid grid-cols-4 grid-rows-6 [&>div:nth-child(7)]:col-span-2  [&>div:nth-child(7)]:row-span-2 [&>div:nth-child(8)]:col-span-2  [&>div:nth-child(8)]:row-span-2 gap-4 ">
+          <div className="w-full h-full grid grid-cols-4 grid-rows-6 [&>div:nth-child(7)]:col-span-2  [&>div:nth-child(7)]:row-span-2 [&>div:nth-child(8)]:col-span-2  [&>div:nth-child(8)]:row-span-2 gap-6 ">
             {products.map((product, index) => {
               //ehnii diviin 7 child : column 2 cartiin zaig ogood row n bas ijil span 2 gj zurgiig tomsgono.
               const customHeight = // zurgiin ondoriig maplaj bg function deer constoor zarlaj ognoo indexeer 6dahi zurgiin orgon ondoriig ogood : indexiin 7 dahigg mon adil ogood: busad zurgiig engiin ogsn hemjeeg n dagna.tgeed zurgiig aguulj bui diviin class deer bichj ognoo
                 index === 6
                   ? "h-[1000px] w-full"
                   : index === 7
-                  ? "h-[1000px] w-full"
+                  ? "h-[1020px] w-full"
                   : "h-[450px] w-full";
               return (
                 <div
-                  className="w-full h-full grid gap-4  rounded-2xl"
+                  className="w-full h-full grid gap-6 rounded-2xl"
                   key={product.id}
                 >
                   <div

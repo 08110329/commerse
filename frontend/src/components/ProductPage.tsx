@@ -7,6 +7,7 @@ import { StarIcon } from "./StarIcon";
 import { AllSee } from "./AllSee";
 import { Button } from "./ui/button";
 import { numberss, product, productsImage } from "./mockdata";
+import { Common } from "./Common";
 
 export const ProductPage = () => {
   const [selectImage, setSelectImage] = useState(productsImage[0]); // jijig zurgn dree dathad tom bolgohiin tuld set ashiglaaad
