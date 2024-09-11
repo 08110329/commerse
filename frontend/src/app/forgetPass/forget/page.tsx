@@ -15,10 +15,10 @@ export default function Home() {
               </h1>
               <div className="grid gap-5">
                 <input
-                  placeholder="Имэйл хаяг оруулах"
-                  className="w-96 h-9 border rounded-md pl-2"
+                  placeholder=" Имэйл хаяг оруулах"
+                  className="w-96 h-9 border rounded-2xl pl-2"
                 ></input>
-                <button className="bg-black text-white h-9 rounded-md">
+                <button className="border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white h-9">
                   Илгээх
                 </button>
               </div>

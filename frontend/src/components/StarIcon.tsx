@@ -12,10 +12,7 @@ export const StarIcon = () => {
     <div className="flex">
       <div className="flex gap-1">
         {iconStars.map((iconStar) => (
-          <div
-            className="text-[yellow] text-2xl hover:bg-yellow-300"
-            key={iconStar.id}
-          >
+          <div className="text-[yellow] text-2xl" key={iconStar.id}>
             {iconStar.icon}
           </div>
         ))}

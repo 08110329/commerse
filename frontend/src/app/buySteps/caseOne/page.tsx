@@ -1,11 +1,7 @@
 "use client";
 
-import { Footers } from "@/components/Footers";
-import { Header } from "@/components/Header";
 import Image from "next/image";
-import { title } from "process";
 import { GoTrash } from "react-icons/go";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { pLists } from "./mockData";
 
 export default function Home() {
@@ -27,7 +23,7 @@ export default function Home() {
                 <p>3</p>
               </div>
             </div>
-            <div className="px-8 bg-[#F4F4F5] rounded-xl">
+            <div className=" bg-white rounded-xl">
               <div className="px-6 py-8 grid gap-6">
                 <div className="grid rounded-2xl gap-6">
                   <div className="flex justify-between items-center">
@@ -37,19 +33,20 @@ export default function Home() {
                       <p className="text-base font-bold text-[#71717A]">(4)</p>
                     </div>
                   </div>
-                  <div className="border-b-2 border-dashed pb-6 grid gap-6">
+                  <div className=" grid gap-6 ">
                     {pLists.map((pList) => {
                       return (
-                        <div className="flex gap-6 h-32 " key={pList.id}>
-                          <div className="relative w-32 ">
-                            <Image
-                              src={pList.image}
-                              fill
-                              alt="t-shirt"
-                              className="rounded-md object-cover"
-                            />
+                        <div
+                          className="flex gap-6  border rounded-2xl px-4 py-4"
+                          key={pList.id}
+                        >
+                          <div className="w-24 h-24 border overflow-hidden rounded-xl">
+                            <div className="relative w-32 h-40">
+                              <Image src={pList.image} fill alt="t-shirt" />
+                            </div>
                           </div>
-                          <div className="flex flex-col justify-between ">
+
+                          <div className="flex flex-col gap-2 ">
                             <div className="w-[414px]">
                               <p className="font-normal text-base">
                                 {pList.title}
@@ -66,16 +63,16 @@ export default function Home() {
                             </div>
                             <p className="text-base font-bold">{pList.price}</p>
                           </div>
-                          <button className=" w-6 h-6">
-                            <GoTrash />
+                          <button className="flex justify-start">
+                            <GoTrash className=" w-5 h-5" />
                           </button>
                         </div>
                       );
                     })}
                   </div>
 
-                  <div className="flex justify-between border-b-2 border-dashed pb-6">
-                    <p className="text-base font-normal">Үнийн дүн:</p>
+                  <div className="flex justify-between pb-6">
+                    <p className="text-base font-normal">Нийт төлөх дүн:</p>
                     <span className="text-lg font-bold">360’000₮</span>
                   </div>
                 </div>

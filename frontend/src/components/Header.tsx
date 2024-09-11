@@ -7,6 +7,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { LuHeart, LuSearch } from "react-icons/lu";
 import { Button } from "./ui/button";
 import { Search } from "./Search";
+import { IoPersonOutline } from "react-icons/io5";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
@@ -52,6 +53,7 @@ export const Header = () => {
             <div className="flex gap-6 text-white items-center">
               <LuHeart className="w-6 h-6" />
               <HiOutlineShoppingCart className="w-6 h-6" />
+              <IoPersonOutline className="w-6 h-6 hidden" />
             </div>
             <div className="flex gap-2 ">
               <button className="w-[101px] h-9 text-white border border-[#2563EB] hover:bg-[#2563EB] text-sm font-medium rounded-md">

@@ -10,6 +10,7 @@ import { numberss, product, productsImage } from "./mockdata";
 
 export const ProductPage = () => {
   const [selectImage, setSelectImage] = useState(productsImage[0]); // jijig zurgn dree dathad tom bolgohiin tuld set ashiglaaad
+  const [click, setClick] = useState(false);
 
   const handleClick = (image: product) => {
     setSelectImage(image);
@@ -17,10 +18,10 @@ export const ProductPage = () => {
 
   return (
     <div className="flex bg-[#F4F4F5] justify-center ">
-      <div className="container flex  justify-center ">
+      <div className="container flex ">
         <div className="flex gap-12">
-          <div className="flex gap-6 sticky top-0">
-            <div className="flex flex-col gap-2 justify-center">
+          <div className="flex gap-6 sticky top-0 h-fit items-center">
+            <div className="flex flex-col gap-2">
               {productsImage.map((productImage) => (
                 <div
                   className="w-[100px] cursor-pointer"
@@ -39,7 +40,7 @@ export const ProductPage = () => {
               ))}
             </div>
 
-            <div className="relative w-[550px] h-[721px] ">
+            <div className="relative w-[550px] h-[700px] ">
               <Image
                 src={selectImage.img} /// tgeed tom zueg dree oorchilsn selectimagiin img shuuu gd ogno
                 fill
@@ -49,11 +50,11 @@ export const ProductPage = () => {
             </div>
           </div>
 
-          <div className="pt-28 flex flex-col gap-14 relative">
+          <div className="pt-28 flex flex-col gap-20 relative justify-between">
             <div className="pr-20 grid gap-9">
-              <div className="grid gap-5">
-                <div className="grid gap-4">
-                  <div className="border rounded-2xl w-fit px-3 text-md font-semibold border-[#2563EB]">
+              <div className="grid gap-6">
+                <div className="grid gap-5">
+                  <div className="border rounded-2xl w-fit px-3 py-1 text-md font-semibold border-[#2563EB]">
                     <p>шинэ</p>
                   </div>
                   <div className="text-4xl font-bold flex items-center gap-4">
@@ -65,7 +66,7 @@ export const ProductPage = () => {
                   </p>
                 </div>
                 <div className="font-normal text-lg grid gap-2">
-                  <p className="underline">Хэмжээний заавар</p>
+                  <p>Хэмжээний заавар</p>
                   <div className="flex gap-2">
                     {numberss.map((number) => (
                       <div
@@ -94,24 +95,29 @@ export const ProductPage = () => {
                 </button>
               </div>
             </div>
-            <div className="grid gap-2">
-              <div className="hidden">
+            <div className="grid gap-3">
+              <div className={`${click ? "hidden" : "visible"}`}>
+                <div className="flex gap-4 text-xl font-normal">
+                  <p>Үнэлгээ</p>
+                  <button
+                    className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]"
+                    onClick={() => setClick(!click)}
+                  >
+                    бүгдийг харах
+                  </button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <StarIcon />
+                  </div>
+                  <div className="font-medium text-lg flex">
+                    <p className="font-semibold text-lg">4.6</p>
+                    <p className="text-[#71717A]">(24)</p>
+                  </div>
+                </div>
+              </div>
+              <div className={`grid gap-3 ${click ? "visible" : "hidden"}`}>
                 <AllSee />
-              </div>
-              <div className="flex gap-4 text-xl font-normal">
-                <p>Үнэлгээ</p>
-                <button className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]">
-                  бүгдийг харах
-                </button>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex gap-1">
-                  <StarIcon />
-                </div>
-                <div className="font-medium text-lg flex">
-                  <p className="font-semibold text-lg">4.6</p>
-                  <p className="text-[#71717A]">(24)</p>
-                </div>
               </div>
             </div>
           </div>

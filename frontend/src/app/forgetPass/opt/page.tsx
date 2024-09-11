@@ -15,20 +15,20 @@ export default function Home() {
               </h1>
               <div className="grid gap-5">
                 <input
-                  placeholder="Шинэ нууц үг"
-                  className="w-96 h-9 border rounded-md pl-2"
+                  placeholder=" Шинэ нууц үг"
+                  className="w-96 h-9 border rounded-2xl pl-2"
                 ></input>
                 <input
-                  placeholder="Шинэ нууц үг давтах"
-                  className="w-96 h-9 border rounded-md pl-2"
+                  placeholder=" Шинэ нууц үг давтах"
+                  className="w-96 h-9 border rounded-2xl pl-2"
                 ></input>
-                <ul className="text-xs font-medium grid gap-1">
+                <div className="text-xs font-medium grid gap-1 pl-2">
                   <li>Том үсэг орсон байх</li>
                   <li>Жижиг үсэг орсон байх</li>
                   <li>Тоо орсон байх</li>
                   <li>Тэмдэгт орсон байх</li>
-                </ul>
-                <button className="bg-black text-white h-9 rounded-md">
+                </div>
+                <button className="border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white h-9">
                   Үүсгэх
                 </button>
               </div>

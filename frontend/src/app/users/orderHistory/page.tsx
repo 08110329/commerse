@@ -16,10 +16,10 @@ export default function Home() {
         <div className="w-screen h-screen">
           <div className="w-full h-fit flex gap-5 pb-24 pt-28 justify-center">
             <div className="flex flex-col gap-1 ">
-              <button className="w-[244px] h-9 hover:bg-[#F4F4F5] rounded-2xl grid justify-start items-center pl-2">
+              <button className="w-[244px] h-9 hover:bg-white rounded-2xl grid justify-start items-center pl-2">
                 Хэрэглэгчийн хэсэг
               </button>
-              <button className="w-[244px] h-9 hover:bg-[#F4F4F5] rounded-2xl grid justify-start items-center pl-2">
+              <button className="w-[244px] h-9 hover:bg-white rounded-2xl grid justify-start items-center pl-2">
                 Захиалгын түүх
               </button>
             </div>
@@ -29,7 +29,7 @@ export default function Home() {
                 Захиалгын түүх
               </h4>
               <div className="grid gap-5">
-                <div className="grid bg-[#F4F4F5] rounded-2xl px-6 py-8 gap-4">
+                <div className="grid bg-white rounded-2xl px-6 py-8 gap-4">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2 items-center">
                       <p className="text-base font-bold">2024-09-03 15:34</p>
@@ -74,7 +74,7 @@ export default function Home() {
                     <span className="text-lg font-bold">480’000₮</span>
                   </div>
                 </div>
-                <div className="grid bg-[#F4F4F5] rounded-2xl px-6 py-8 gap-4">
+                <div className="grid bg-white rounded-2xl px-6 py-8 gap-4">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2 items-center">
                       <p className="text-base font-bold">2024-08-23 15:34</p>
@@ -92,7 +92,7 @@ export default function Home() {
                     <span className="text-lg font-bold">120’000₮</span>
                   </div>
                 </div>
-                <div className="grid bg-[#F4F4F5] rounded-2xl px-6 py-8 gap-4">
+                <div className="grid bg-white rounded-2xl px-6 py-8 gap-4">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2 items-center">
                       <p className="text-base font-bold">2024-08-23 15:34</p>
