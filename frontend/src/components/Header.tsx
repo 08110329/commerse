@@ -1,16 +1,32 @@
 "use client";
 
-import { backend } from "@/axios";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { LuHeart, LuSearch } from "react-icons/lu";
-import { Button } from "./ui/button";
 import { Search } from "./Search";
 import { IoPersonOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
+
+  const pathname: string = usePathname();
+  interface Path {
+    name: string;
+    path: string;
+  }
+  const paths: Path[] = [
+    {
+      name: "Ecommerce",
+      path: "/",
+    },
+    {
+      name: "Ангилал",
+      path: "/category/ProductCategory",
+    },
+  ];
   return (
     <div className=" bg-black px-6 py-4">
       <div className="w-full justify-between">
@@ -18,12 +34,21 @@ export const Header = () => {
           <div className="flex w-full">
             <div className="flex gap-8 items-center text-sm font-normal text-white">
               <div className="flex gap-4 items-center">
-                <div className="relative w-8 h-8 flex bg-black">
+                <Link className="relative w-8 h-8 flex bg-black" href={`/`}>
                   <Image src={"/Logo/PineconeStudio.png"} fill alt="logo" />
-                </div>
-                <p>Бүтээгдэхүүн</p>
+                </Link>
               </div>
-              <p>Ангилал</p>
+              {paths.map((path, index) => (
+                <Link key={index} href={path.path}>
+                  <div
+                    style={{
+                      opacity: pathname === path.path ? "1" : "0.5",
+                    }}
+                  >
+                    <p>{path.name}</p>
+                  </div>
+                </Link>
+              ))}
             </div>
             <div className=" w-full flex justify-center relative">
               <div className=" w-[300px] h-10 flex justify-center items-center bg-gray-800 gap-2 rounded-md">
@@ -51,8 +76,12 @@ export const Header = () => {
           </div>
           <div className="flex gap-6">
             <div className="flex gap-6 text-white items-center">
-              <LuHeart className="w-6 h-6" />
-              <HiOutlineShoppingCart className="w-6 h-6" />
+              <Link href={`/save`}>
+                <LuHeart className="w-6 h-6" />
+              </Link>
+              <Link href={`/buySteps/caseOne`}>
+                <HiOutlineShoppingCart className="w-6 h-6" />
+              </Link>
               <IoPersonOutline className="w-6 h-6 hidden" />
             </div>
             <div className="flex gap-2 ">

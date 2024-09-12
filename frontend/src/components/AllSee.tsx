@@ -36,7 +36,7 @@ export const AllSee = () => {
   ];
 
   return (
-    <div className="h-fit grid gap-6 w-full pt-10">
+    <div className="h-fit grid gap-6 w-full pt-11 border">
       <div className={`${butsah ? "hidden" : "visible"}`}>
         <div className="container ">
           <div className="flex gap-4 text-xl font-normal">
@@ -75,22 +75,6 @@ export const AllSee = () => {
               </div>
             );
           })}
-        </div>
-        <div className=" p-6 border bg-[#E4E4E7] rounded-xl text-lg font-medium flex flex-col gap-6">
-          <div className="grid gap-2">
-            <p>Одоор үнэлэх:</p>
-            <StarIcon />
-          </div>
-          <div className="text-lg font-medium">
-            <p>Сэтгэгдэл үлдээх:</p>
-            <textarea
-              placeholder="  Энд бичнэ үү"
-              className="w-full h-24 text-lg rounded-lg"
-            ></textarea>
-          </div>
-          <button className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white">
-            Үнэлэх
-          </button>
         </div>
       </div>
       <div className={`${butsah ? "visible" : "hidden"}`}>

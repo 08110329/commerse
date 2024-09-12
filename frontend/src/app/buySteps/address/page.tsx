@@ -5,8 +5,23 @@ import { Header } from "@/components/Header";
 import Image from "next/image";
 import { GoTrash } from "react-icons/go";
 import { pLists, registerss } from "./mockData";
+import Link from "next/link";
 
 export default function Home() {
+  interface Path {
+    name: string;
+    path: string;
+  }
+  const paths: Path[] = [
+    {
+      name: "Буцах",
+      path: "/buySteps/caseOne",
+    },
+    {
+      name: "Төлбөр төлөх",
+      path: "/buySteps/pay",
+    },
+  ];
   return (
     <div className="flex bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center ">
@@ -88,12 +103,13 @@ export default function Home() {
                 </div>
 
                 <div className="flex justify-between ">
-                  <button className="border px-9 py-2 rounded-3xl hover:bg-[#2563EB] hover:text-white text-base font-medium">
-                    Буцах
-                  </button>
-                  <button className="hover:bg-[#2563EB] px-9 py-2 rounded-3xl hover:text-white border text-base font-medium">
-                    Төлбөр төлөх
-                  </button>
+                  {paths.map((path, index) => (
+                    <Link key={index} href={path.path}>
+                      <button className="border px-9 py-2 rounded-3xl hover:bg-[#2563EB] hover:text-white text-base font-medium">
+                        {path.name}
+                      </button>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

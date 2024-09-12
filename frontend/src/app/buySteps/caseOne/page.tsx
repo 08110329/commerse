@@ -3,8 +3,22 @@
 import Image from "next/image";
 import { GoTrash } from "react-icons/go";
 import { pLists } from "./mockData";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [too, setToo] = useState(false);
+  interface Path {
+    name: string;
+    path: string;
+  }
+  const paths: Path[] = [
+    {
+      name: "Худалдан авах",
+      path: "/buySteps/address",
+    },
+  ];
   return (
     <div className="flex bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center ">
@@ -77,9 +91,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex justify-end">
-                  <button className="bg-[#2563EB] px-9 py-2 rounded-3xl text-white text-base font-semibold">
-                    Худалдан авах
-                  </button>
+                  {paths.map((path, index) => (
+                    <Link key={index} href={path.path}>
+                      <button className="bg-[#2563EB] px-9 py-2 rounded-3xl text-white text-base font-semibold">
+                        {path.name}
+                      </button>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

@@ -3,83 +3,18 @@
 import { Footers } from "@/components/Footers";
 import { Header } from "@/components/Header";
 import Image from "next/image";
+import { banks } from "./mockData";
+import Link from "next/link";
 
 export default function Home() {
-  const banks = [
+  interface Path {
+    name: string;
+    path: string;
+  }
+  const paths: Path[] = [
     {
-      id: 1,
-      src: "/Logo/2.1.png",
-      alt: "hi",
-    },
-    {
-      id: 2,
-      src: "/Logo/2.2.png",
-      alt: "hi",
-    },
-    {
-      id: 3,
-      src: "/Logo/2.3.png",
-      alt: "hi",
-    },
-    {
-      id: 4,
-
-      src: "/Logo/2.4.png",
-      alt: "hi",
-    },
-    {
-      id: 5,
-
-      src: "/Logo/2.5.png",
-      alt: "hi",
-    },
-    {
-      id: 6,
-
-      src: "/Logo/2.6.png",
-      alt: "hi",
-    },
-    {
-      id: 7,
-
-      src: "/Logo/2.7.png",
-      alt: "hi",
-    },
-    {
-      id: 8,
-
-      src: "/Logo/2.8.png",
-      alt: "hi",
-    },
-    {
-      id: 9,
-
-      src: "/Logo/2.9.png",
-      alt: "hi",
-    },
-    {
-      id: 10,
-
-      src: "/Logo/2.10.png",
-      alt: "hi",
-    },
-    {
-      id: 11,
-
-      src: "/Logo/2.11.png",
-      alt: "hi",
-    },
-    {
-      id: 12,
-
-      src: "/Logo/2.12.png",
-      alt: "hi",
-    },
-    {
-      id: 13,
-
-      src: "/Logo/2.13.png",
-      alt: "hi",
+      name: "Буцах",
+      path: "/buySteps/address",
     },
   ];
   return (
@@ -130,9 +65,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <button className="border w-fit h-fit px-8 py-1 rounded-3xl hover:bg-[#2563EB] hover:text-white border-[#2563EB] text-[#2563EB] text-base font-medium">
-                Буцах
-              </button>
+              {paths.map((path, index) => (
+                <Link key={index} href={path.path}>
+                  <button className="border w-fit h-fit px-8 py-1 rounded-3xl hover:bg-[#2563EB] hover:text-white border-[#2563EB] text-[#2563EB] text-base font-medium">
+                    {path.name}
+                  </button>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

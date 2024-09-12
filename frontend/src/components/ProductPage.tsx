@@ -52,7 +52,7 @@ export const ProductPage = () => {
           </div>
 
           <div className="pt-28 flex flex-col gap-20 relative justify-between">
-            <div className="pr-20 grid gap-9">
+            <div className="pr-20 grid gap-6">
               <div className="grid gap-6">
                 <div className="grid gap-5">
                   <div className="border rounded-2xl w-fit px-3 py-1 text-md font-semibold border-[#2563EB]">

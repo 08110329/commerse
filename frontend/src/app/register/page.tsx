@@ -1,7 +1,12 @@
 "use client";
 
 import { Formik, useFormik } from "formik";
-
+// interface formValues = {
+//   нэр: string;
+//   имэйлХаяг: string;
+//   нууцҮг: string;
+//   нууцҮгДавтах: string;
+// }
 export default function Home() {
   const formik = useFormik({
     initialValues: {

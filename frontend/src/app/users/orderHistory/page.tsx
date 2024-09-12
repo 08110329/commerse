@@ -8,22 +8,37 @@ import Image from "next/image";
 import { title } from "process";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { pLists } from "./mockData";
+import Link from "next/link";
 
 export default function Home() {
+  interface Path {
+    name: string;
+    path: string;
+  }
+  const paths: Path[] = [
+    {
+      name: "Хэрэглэгчийн хэсэг",
+      path: "/users/UserInfo",
+    },
+    {
+      name: "Захиалгын түүх",
+      path: "/users/orderHistory",
+    },
+  ];
   return (
-    <div className="flex bg-[#F4F4F5] justify-center ">
-      <div className="container flex  justify-center ">
-        <div className="w-screen h-screen">
+    <div className="flex bg-[#F4F4F5] py-24 px-96 justify-center">
+      <div className="container flex justify-center">
+        <div className="h-screen">
           <div className="w-full h-fit flex gap-5 pb-24 pt-28 justify-center">
             <div className="flex flex-col gap-1 ">
-              <button className="w-[244px] h-9 hover:bg-white rounded-2xl grid justify-start items-center pl-2">
-                Хэрэглэгчийн хэсэг
-              </button>
-              <button className="w-[244px] h-9 hover:bg-white rounded-2xl grid justify-start items-center pl-2">
-                Захиалгын түүх
-              </button>
+              {paths.map((path, index) => (
+                <Link key={index} href={path.path}>
+                  <button className="w-[244px] h-9 hover:bg-white rounded-2xl grid justify-start items-center pl-4">
+                    {path.name}
+                  </button>
+                </Link>
+              ))}
             </div>
-
             <div className=" w-[820px] flex flex-col gap-6 justify-end">
               <h4 className="border-b-2 pb-6 text-xl font-medium">
                 Захиалгын түүх
