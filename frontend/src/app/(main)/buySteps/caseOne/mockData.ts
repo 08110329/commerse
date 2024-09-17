@@ -1,3 +1,9 @@
+export  interface pList {
+  id: string;
+  image: string;
+  title: string;
+  price: string;
+}
 export  const pLists = [
     {
       id: 1,

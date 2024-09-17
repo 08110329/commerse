@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/buySteps/caseOne"
+    "src/app/(main)/buySteps/caseOne"
   ],
   "exclude": ["node_modules"]
 }
