@@ -7,7 +7,7 @@ import { TfiLayoutGrid2Alt } from "react-icons/tfi";
 export const HynaltinSambar = () => {
   return (
     <div className="w-fit h-screen bg-white">
-      <div className="flex flex-col pt-6 gap-4">
+      <div className="flex flex-col pt-6 gap-4 text-black">
         <div className="flex hover:bg-gray-100 gap-4 py-2 px-4">
           <TfiLayoutGrid2Alt className="w-6 h-6" />
           <p className="text-base font-semibold">Хяналтын самбар</p>
