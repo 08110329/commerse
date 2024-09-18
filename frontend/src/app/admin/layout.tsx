@@ -8,7 +8,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ minHeight: "calc(100vh - 320.5px - 74px)" }}>
         <Headers />
         {children}
       </body>
