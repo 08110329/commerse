@@ -16,33 +16,30 @@ import {
 import { IoAdd } from "react-icons/io5";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { TbCategory } from "react-icons/tb";
-import { title } from "process";
 import Image from "next/image";
 import { HiOutlineTrash } from "react-icons/hi";
 import { LuPencilLine } from "react-icons/lu";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="h-screen flex justify-center ">
-      <div className="w-full h-screen container flex bg-gray-50">
-        <div className="">
-          <HynaltinSambar />
-        </div>
-        <div className="flex flex-col w-full gap-8">
-          <div className="flex hover:text-black text-[#3F4145] h-fit border-b-2 gap-3 ">
-            <button className=" px-4 py-2 hover:border-b-2 hover:border-black">
+    <div className="h-screen bg-gray-50  border w-full">
+      <div className=" h-screen container ">
+        <div className="flex flex-col gap-8">
+          <div className="flex hover:text-black text-[#3F4145] h-fit border-b-2 gap-3 w-screen">
+            <button className=" px-4 py-6 hover:border-b-2 hover:border-black">
               Бүтээгдэхүүн
             </button>
-            <button className=" px-4 py-2 hover:border-b-2 hover:border-black">
+            <button className=" px-4 py-6 hover:border-b-2 hover:border-black">
               Ангилал
             </button>
           </div>
-          <div className="pl-6">
+          <Link href={`/admin/product/addProduct`} className="pl-6">
             <button className="flex items-center gap-2 px-6 py-2 bg-black text-white rounded-xl">
               <IoAdd className="w-6 h-6" />
               Бүтээгдэхүүн нэмэх
             </button>
-          </div>
+          </Link>
           <div className="h-fit mx-6 flex justify-between">
             <div className="text-black flex gap-2 ">
               <button className="border px-3 py-2 bg-white rounded-lg  hover:text-white flex items-center gap-2">

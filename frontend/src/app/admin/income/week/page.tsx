@@ -16,11 +16,8 @@ import { todayy } from "@/app/admin/income/mockData";
 
 export default function Home() {
   return (
-    <div className="h-screen flex justify-center ">
-      <div className="w-full h-screen container flex bg-gray-50">
-        <div className="">
-          <HynaltinSambar />
-        </div>
+    <div className="w-full h-screen flex justify-center bg-gray-50">
+      <div className="w-full h-screen container flex ">
         <div className="flex flex-col w-full gap-8 mt-5">
           <div className="bg-white mx-6 grid gap-6 rounded-2xl border">
             <div className="flex justify-between px-6 pt-5">

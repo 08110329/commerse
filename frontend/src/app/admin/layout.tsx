@@ -1,4 +1,5 @@
 import { Headers } from "./components/Headers";
+import { HynaltinSambar } from "./components/HynaltinSambar";
 import "./globals.css";
 
 export default function RootLayout({
@@ -10,7 +11,10 @@ export default function RootLayout({
     <html lang="en">
       <body style={{ minHeight: "calc(100vh - 320.5px - 74px)" }}>
         <Headers />
-        {children}
+        <div className="flex">
+          <HynaltinSambar />
+          {children}
+        </div>
       </body>
     </html>
   );

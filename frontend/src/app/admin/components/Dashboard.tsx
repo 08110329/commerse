@@ -73,17 +73,14 @@ export const Dashboard = () => {
     },
   ];
   return (
-    <div className="h-screen flex justify-center ">
-      <div className="w-full h-screen container flex bg-gray-50">
-        <div className="">
-          <HynaltinSambar />
-        </div>
-        <div>
-          <div className="flex w-[1270px] h-[136px]  mt-9 mx-6 gap-6">
-            <div className=" px-6 py-4 flex-1 bg-white grid gap-3 rounded-xl">
+    <div className="h-screen bg-gray-50 flex justify-center">
+      <div className="h-screen container ">
+        <div className="w-full pt-8">
+          <div className="flex w-[1270px] h-[136px]  mx-6 gap-6">
+            <div className="px-6 py-4 flex-1 bg-white grid gap-3 rounded-xl">
               <div className="flex gap-2 text-base font-semibold items-center">
                 <BsCurrencyDollar className="w-5 h-5" />
-                <p>Захиалга</p>
+                <p>Орлого</p>
               </div>
               <span className="text-3xl font-bold">235,000₮</span>
               <p className="text-sm font-normal text-[#5E6166]">Өнөөдөр</p>
@@ -91,7 +88,7 @@ export const Dashboard = () => {
             <div className="px-6 py-4 flex-1  bg-white grid gap-3 rounded-xl">
               <div className="flex gap-2 text-base font-semibold items-center">
                 <BiSolidNotepad className="w-5 h-5" />
-                <p>Орлого</p>
+                <p>Захиалга</p>
               </div>
               <span className="text-3xl font-bold">58</span>
               <p className="text-sm font-normal text-[#5E6166]">Өнөөдөр</p>

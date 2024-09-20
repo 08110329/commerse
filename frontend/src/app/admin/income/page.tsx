@@ -13,14 +13,12 @@ import {
 import { HiOutlineArrowDownTray } from "react-icons/hi2";
 import { MdDateRange } from "react-icons/md";
 import { todayy } from "./mockData";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="h-screen flex justify-center ">
-      <div className="w-full h-screen container flex bg-gray-50">
-        <div className="">
-          <HynaltinSambar />
-        </div>
+    <div className="h-screen w-full bg-gray-50 flex justify-center">
+      <div className="w-full h-screen container flex ">
         <div className="flex flex-col w-full gap-8 mt-5">
           <div className="bg-white mx-6 grid gap-6 rounded-2xl border">
             <div className="flex justify-between px-6 pt-5">
@@ -36,9 +34,12 @@ export default function Home() {
                 <button className="border px-3 py-2 bg-white rounded-lg hover:bg-[#18BA51] hover:text-white">
                   Өнөөдөр
                 </button>
-                <button className="border px-3 py-2 bg-white rounded-lg hover:bg-[#18BA51] hover:text-white">
-                  7 хоног
-                </button>
+                <Link href={`/admin/income/week`}>
+                  <button className="border px-3 py-2 bg-white rounded-lg hover:bg-[#18BA51] hover:text-white">
+                    7 хоног
+                  </button>
+                </Link>
+
                 <button className="border flex items-center px-3 py-2 gap-2 bg-white rounded-lg hover:bg-[#18BA51] hover:text-white">
                   <MdDateRange />
                   Сараар
