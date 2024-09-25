@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { userRouter } from "./routes/user.router";
-import { connect } from "mongoose";
 import { connectToDatabase } from "./database";
 
 connectToDatabase();
