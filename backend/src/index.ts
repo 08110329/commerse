@@ -1,18 +1,21 @@
 import express from "express";
 import cors from "cors";
-import { adminRouter } from "./routes.ts/admin.router";
+import { userRouter } from "./routes/user.router";
+import { connect } from "mongoose";
+import { connectToDatabase } from "./database";
+
+connectToDatabase();
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/",(_req, res) => {
-    res.json({message: "Hello"});
+app.get("/", (_req, res) => {
+  res.json({ message: "Hello" });
 });
 
-app.use("/admin", adminRouter)
-app.use("/users", )
+app.use("/users", userRouter);
 
 app.listen(3001, () => {
-    console.log("Server is running on http://localhost:3001")
-})
+  console.log("Server is running on http://localhost:3001");
+});
