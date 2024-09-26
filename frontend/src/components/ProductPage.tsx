@@ -43,7 +43,7 @@ export const ProductPage = () => {
 
             <div className="relative w-[550px] h-[700px] ">
               <Image
-                src={selectImage.img} /// tgeed tom zueg dree oorchilsn selectimagiin img shuuu gd ogno
+                src={selectImage.img} /// tgeed tom zurg dree oorchilsn selectimagiin img shuuu gd ogno
                 fill
                 alt="Selected Product"
                 className="rounded-2xl"

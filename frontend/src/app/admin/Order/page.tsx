@@ -1,7 +1,6 @@
 "use client";
 
 import { MdDateRange } from "react-icons/md";
-import { HynaltinSambar } from "../components/HynaltinSambar";
 import { Lists, Orders } from "./mockData";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";

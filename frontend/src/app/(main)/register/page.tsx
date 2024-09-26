@@ -11,10 +11,10 @@ interface MyFormValues {
 export default function Home() {
   const formik = useFormik<MyFormValues>({
     initialValues: {
-      нэр: " ",
-      имэйлХаяг: " ",
-      нууцҮг: " ",
-      нууцҮгДавтах: " ",
+      нэр: "",
+      имэйлХаяг: "",
+      нууцҮг: "",
+      нууцҮгДавтах: "",
     },
     validationSchema: yup.object<MyFormValues>({
       нэр: yup.string().required("Нэрээ олуулна уу"),
@@ -27,7 +27,7 @@ export default function Home() {
         .min(8, "Нууц үг 8 тэмдэгтээс дээш байх")
         .matches(/[A-Z]/, "Том үсэг орсон байх")
         .matches(/[a-z]/, "Жижиг үсэг орсон байх")
-        .matches(/0-9/, "Тоо орсон байх")
+        // .matches(/0-9/, "Тоо орсон байх")
         .matches(/^\w/, "Тэмдэгт орсон байх")
         .required("Нууц үгээ оруулна уу"),
       нууцҮгДавтах: yup

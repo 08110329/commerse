@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { products } from "./mockdata";
+import Link from "next/link";
 
 export const FacePage = () => {
   return (
@@ -24,7 +25,8 @@ export const FacePage = () => {
                   className="w-full h-full grid gap-6 rounded-2xl"
                   key={product.id}
                 >
-                  <div
+                  <Link
+                    href={"/productDetail/newProduct"}
                     className={`relative w-[244px] ${customHeight} overflow-hidden hover:border rounded-2xl`}
                   >
                     <Image
@@ -34,7 +36,7 @@ export const FacePage = () => {
                       className="rounded-2xl hover:scale-110 duration-700"
                     />
                     <CiHeart className="absolute right-4 top-4 w-10 h-10" />
-                  </div>
+                  </Link>
                   <div className="text-3xl font-bold grid gap-1">
                     <p className="text-2xl font-normal">{product.title}</p>
                     <div className="flex gap-4 items-center">

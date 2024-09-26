@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const backend = axios.create({
-baseURL: process.env.BACKEND,
-headers: {
+  baseURL: "http://localhost:3001",
+  headers: {
     "Content-Type": "application/json",
-},
-}); 
+  },
+});

@@ -2,7 +2,7 @@
 
 import { backend } from "@/axios";
 import { useParams, usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   createContext,
   PropsWithChildren,
@@ -65,7 +65,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   const register = async (newUser: User) => {
     try {
-      const response = await backend.post("/users/register", newUser);
+      const response = await backend.post("/user/register", newUser);
       const { token, user } = response.data;
 
       setUser({
@@ -87,7 +87,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await backend.post("/users/login", { email, password });
+      const response = await backend.post("/user/login", { email, password });
       const { token, user } = response.data;
 
       setUser({
@@ -95,14 +95,20 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         isAuthenticated: true,
         role: user.role,
       });
-      toast.success("Бүртгэл амжилттай!"); // Adjusted for consistency
+
+      toast.success("Бүртгэл амжилттай!");
 
       const redirectPath = user.role === "admin" ? "/admin" : "/";
       router.push(redirectPath);
 
       localStorage.setItem("token", token);
-    } catch (error) {
-      toast.error("Бүртгэлтэй холбоотой алдаа гарлаа!"); // Adjusted for consistency
+      console.log(token);
+    } catch (error: any) {
+      // Алдааны төрөл, статус код зэргийг шалгаж, илүү тодорхой мессеж харуулж болно
+      const errorMessage =
+        error.response?.data?.message || "Бүртгэлтэй холбоотой алдаа гарлаа!";
+
+      toast.error(errorMessage);
       console.log("Бүртгэлийн алдаа:", error);
     }
   };
@@ -120,9 +126,9 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       try {
         setIsReady(false);
         const token = localStorage.getItem("token");
-        if (!token) return;
+        if (!token) return; //omno n if (!token) return bsn
 
-        const res = await backend.get("/users/me", {
+        const res = await backend.get("/user/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

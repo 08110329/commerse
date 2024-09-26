@@ -1,8 +1,6 @@
 "use client";
 
 import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
-import { HynaltinSambar } from "@/app/admin/components/HynaltinSambar";
-import { LiaCarSideSolid } from "react-icons/lia";
 import { AiOutlinePicture } from "react-icons/ai";
 import { GrAddCircle } from "react-icons/gr";
 import {

@@ -8,9 +8,12 @@ import { IoPersonOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useUser } from "./providers/AuthProvider";
+import { toast } from "react-toastify";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
+  const { user } = useUser();
 
   const pathname: string = usePathname();
   interface Path {
@@ -27,6 +30,27 @@ export const Header = () => {
       path: "/category/ProductCategory",
     },
   ];
+  const Upaths: Path[] = [
+    {
+      name: "Бүртгүүлэх",
+      path: "/register",
+    },
+    {
+      name: " Нэвтрэх",
+      path: "/login",
+    },
+  ];
+
+  const HandleSaveClick = () => {
+    if (!user.isAuthenticated) {
+      toast.info("Hadgalsan baraagaa harhiin tuld nevterne uu!");
+    }
+  };
+  const HandleSagsClick = () => {
+    if (!user.isAuthenticated) {
+      toast.info("Sagsalsan baraagaa harhiin tuld nevterne uu!");
+    }
+  };
   return (
     <div className=" bg-black px-6 py-4">
       <div className="w-full justify-between">
@@ -76,21 +100,50 @@ export const Header = () => {
           </div>
           <div className="flex gap-6">
             <div className="flex gap-6 text-white items-center">
-              <Link href={`/save`}>
-                <LuHeart className="w-6 h-6" />
-              </Link>
-              <Link href={`/buySteps/caseOne`}>
-                <HiOutlineShoppingCart className="w-6 h-6" />
-              </Link>
-              <IoPersonOutline className="w-6 h-6 hidden" />
+              {user && (
+                <Link
+                  href={`${user.isAuthenticated ? "/save" : "/login"}`}
+                  onClick={HandleSaveClick}
+                >
+                  <LuHeart className="w-6 h-6" />
+                </Link>
+              )}
+              {user && (
+                <Link
+                  href={`${
+                    user.isAuthenticated ? "/buySteps/caseOne" : "/login"
+                  }`}
+                  onClick={HandleSagsClick}
+                >
+                  <HiOutlineShoppingCart className="w-6 h-6" />
+                </Link>
+              )}
             </div>
             <div className="flex gap-2 ">
-              <button className="w-[101px] h-9 text-white border border-[#2563EB] hover:bg-[#2563EB] text-sm font-medium rounded-md">
-                Бүртгүүлэх
-              </button>
-              <button className="w-[82px] h-9 text-white hover:bg-[#2563EB] border border-[#2563EB] text-sm font-medium rounded-md">
-                Нэвтрэх
-              </button>
+              {!user.isAuthenticated && (
+                <div className="flex gap-2">
+                  {Upaths.map((Upath, i) => {
+                    return (
+                      <Link href={Upath.path} key={i}>
+                        <button
+                          className="w-[101px] h-9 text-white border border-[#2563EB] hover:bg-[#2563EB] text-sm font-medium rounded-md"
+                          style={{
+                            background:
+                              pathname === Upath.path ? "#2563EB" : "",
+                          }}
+                        >
+                          {Upath.name}
+                        </button>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+              {user.isAuthenticated && (
+                <Link href={`/users/UserInfo`}>
+                  <IoPersonOutline className="w-6 h-6" />
+                </Link>
+              )}
             </div>
           </div>
         </div>

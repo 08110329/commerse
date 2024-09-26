@@ -1,9 +1,5 @@
-import { ContactProduct } from "@/components/ContactProduct";
-import { Footers } from "@/components/Footers";
-import { Header } from "@/components/Header";
 import { products } from "@/components/mockdata";
 import { ProductCard } from "@/components/ProductCard";
-import { ProductPage } from "@/components/ProductPage";
 import { categories, numberss } from "./mockData";
 
 export default function Home() {

@@ -14,18 +14,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  //   phone: {
-  //     type: String,
-  //     required: true,
-  //   },
   role: {
     type: String,
+    emun: ["user", "admin"],
     default: "user",
   },
-  //   avatar: {
-  //     type: String,
-  //     required: true,
-  //   },
   createdAt: {
     type: Date,
     required: true,

@@ -1,9 +1,5 @@
 "use client";
 
-import { HynaltinSambar } from "@/app/admin/components/HynaltinSambar";
-
-import { GrAddCircle } from "react-icons/gr";
-
 export default function Home() {
   return (
     <div className="h-screen flex justify-center ">

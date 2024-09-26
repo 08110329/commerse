@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
+
 type UserType = {
   userId: string;
   email: string;
@@ -12,11 +13,11 @@ type UserType = {
 // JWT нууц түлхүүр
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-export const authMiddleware = (
+export const authMiddleware: (
   req: Request,
   res: Response,
   next: NextFunction
-): void => {
+) => void = (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {

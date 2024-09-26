@@ -1,5 +1,13 @@
 import { RequestHandler } from "express";
 import { userModel } from "../models/user.schema";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET as string; // Ensure JWT secret is set in environment variables
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || "10", 10); // Use environment variable for salt rounds
 
 // Хэрэглэгчийн Контроллер үүсгэх
 export const createUserController: RequestHandler = async (req, res) => {
@@ -12,17 +20,40 @@ export const createUserController: RequestHandler = async (req, res) => {
         message: "Нэр, имэйл, болон нууц үг шаардагдана.",
       });
     }
+    // Хэрэглэгч аль хэдийн бүртгэлтэй эсэхийг шалгах
+    const hereglegchMonuu = await userModel.findOne({ email });
+    if (hereglegchMonuu) {
+      return res
+        .status(400)
+        .json({ message: "Ижил email-тэй хэрэглэгч бүртгэлтэй байна." });
+    }
+
+    // Нууц үгийг hash хийх
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
     // Шинэ хэрэглэгчийг үүсгэх
     const newUser = await userModel.create({
       username,
       email,
-      password,
+      password: hashedPassword,
+      role: "user",
     });
+
+    // JWT токен үүсгэх (Шинэ хэрэглэгчийг нэвтрүүлэх)
+    const token = jwt.sign(
+      {
+        userId: newUser._id,
+        email: newUser.email,
+        role: newUser.role,
+      },
+      JWT_SECRET,
+      { expiresIn: "24h" }
+    );
 
     // Шинээр үүсгэсэн хэрэглэгчийн мэдээллийг буцаах
     return res.status(201).json({
       message: "Хэрэглэгч амжилттай үүсгэгдлээ.",
+      token,
       user: {
         id: newUser._id,
         username: newUser.username,
@@ -58,15 +89,30 @@ export const getUserController: RequestHandler = async (req, res) => {
     }
 
     // Нууц үгийг шалгах (bcrypt гэх мэт ашиглан)
-    if (password !== user.password) {
+    if (password! == user.password) {
       return res.status(401).json({
         message: "Мэдээлэл буруу байна.",
       });
     }
+    // Нууц үг тохирч байгаа эсэхийг шалгах
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ message: "Email эсвэл нууц үг буруу байна." });
+    }
+
+    // JWT токен үүсгэх
+    const token = jwt.sign(
+      { userId: user._id, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: "24h" }
+    );
 
     // Хэрэглэгчийн мэдээллийг буцаах
     return res.status(200).json({
       message: "Хэрэглэгч амжилттай нэвтэрлээ.",
+      token,
       user: {
         id: user._id,
         username: user.username,
@@ -78,5 +124,15 @@ export const getUserController: RequestHandler = async (req, res) => {
     return res.status(500).json({
       message: "Нэвтрэх үед алдаа гарлаа.",
     });
+  }
+};
+// Хэрэглэгч гарах
+export const logout: RequestHandler = (req, res) => {
+  try {
+    // Ideally, you would use token blacklisting here
+    return res.status(200).json({ message: "Амжилттай гарлаа." });
+  } catch (error) {
+    console.error("Гарах алдаа:", error);
+    return res.status(500).json({ message: "Серверт алдаа гарлаа." });
   }
 };
