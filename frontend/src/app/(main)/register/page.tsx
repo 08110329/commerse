@@ -1,6 +1,9 @@
 "use client";
 
+import { useUser } from "@/components/providers/AuthProvider";
 import { Formik, useFormik } from "formik";
+import Link from "next/link";
+import { useState } from "react";
 import * as yup from "yup";
 interface MyFormValues {
   нэр: string;
@@ -9,6 +12,7 @@ interface MyFormValues {
   нууцҮгДавтах: string;
 }
 export default function Home() {
+  const { register } = useUser();
   const formik = useFormik<MyFormValues>({
     initialValues: {
       нэр: "",
@@ -16,6 +20,7 @@ export default function Home() {
       нууцҮг: "",
       нууцҮгДавтах: "",
     },
+
     validationSchema: yup.object<MyFormValues>({
       нэр: yup.string().required("Нэрээ олуулна уу"),
       имэйлХаяг: yup
@@ -36,7 +41,17 @@ export default function Home() {
         .required("Нууц үгээ дахин оруулна уу"),
     }),
 
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      try {
+        await register({
+          id: "",
+          username: values.нэр,
+          email: values.имэйлХаяг,
+          password: values.нууцҮг,
+        });
+      } catch (error) {
+        console.log("burtgeliin aldaa", error);
+      }
       console.log("first message", values);
       alert(
         `hello ${values.нэр} ${values.имэйлХаяг} ${values.нууцҮг} ${values.нууцҮгДавтах}`
@@ -159,9 +174,12 @@ export default function Home() {
                 </form>
               </div>
             </div>
-            <div className="flex justify-center border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white">
+            <Link
+              className="flex justify-center border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white"
+              href={"/login"}
+            >
               <button className="font-medium text-sm">Нэвтрэх</button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

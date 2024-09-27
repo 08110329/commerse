@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/components/Header";
 import "./globals.css";
 import { Footers } from "@/components/Footers";
@@ -13,10 +15,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <UserProvider>{children}</UserProvider>
-        <Footers />
-        <ToastContainer />
+        <>
+          <Header />
+          <UserProvider>{children}</UserProvider>
+          <Footers />
+          <ToastContainer />
+        </>
       </body>
     </html>
   );

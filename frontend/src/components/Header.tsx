@@ -8,12 +8,13 @@ import { IoPersonOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser } from "./providers/AuthProvider";
 import { toast } from "react-toastify";
+import { useUser } from "./providers/AuthProvider";
 
 export const Header = () => {
   const [side, setSide] = useState(false);
   const { user } = useUser();
+  console.log(user, "========");
 
   const pathname: string = usePathname();
   interface Path {

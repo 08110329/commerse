@@ -1,6 +1,7 @@
 "use client";
 
 import { useUser } from "@/components/providers/AuthProvider";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -44,9 +45,12 @@ export default function Home() {
                 <button className="underline">Нууц үг мартсан</button>
               </div>
             </div>
-            <div className="flex justify-center border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white">
+            <Link
+              className="flex justify-center border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white"
+              href={"/register"}
+            >
               <button className="font-medium text-sm">Бүртгүүлэх</button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
