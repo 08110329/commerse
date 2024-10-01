@@ -1,6 +1,7 @@
 "use client";
 
 import { backend } from "@/axios";
+import { log } from "console";
 import { useParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import {
@@ -25,6 +26,7 @@ interface AuthUser {
   user: User | null;
   isAuthenticated: boolean;
   role?: string;
+  ben?: string;
 }
 
 interface UserContextType {
@@ -34,18 +36,14 @@ interface UserContextType {
   logout: () => void;
 }
 
-const UserContext = createContext<UserContextType>({
-  user: { user: null, isAuthenticated: false, role: undefined },
-  register: () => {},
-  login: () => {},
-  logout: () => {},
-});
+const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<AuthUser>({
     user: null,
     isAuthenticated: false,
     role: undefined,
+    ben: "hello",
   });
 
   const router = useRouter();
@@ -160,6 +158,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   if (!isReady) return null;
 
+  console.log("ben", user);
   return (
     <UserContext.Provider value={{ user, register, login, logout }}>
       {children}

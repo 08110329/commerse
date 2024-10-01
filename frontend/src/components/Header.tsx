@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { LuHeart, LuSearch } from "react-icons/lu";
 import { Search } from "./Search";
@@ -14,7 +14,6 @@ import { useUser } from "./providers/AuthProvider";
 export const Header = () => {
   const [side, setSide] = useState(false);
   const { user } = useUser();
-  console.log(user, "========");
 
   const pathname: string = usePathname();
   interface Path {

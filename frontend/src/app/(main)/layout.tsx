@@ -16,9 +16,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <>
-          <Header />
-          <UserProvider>{children}</UserProvider>
-          <Footers />
+          <UserProvider>
+            <Header />
+            {children}
+            <Footers />
+          </UserProvider>
           <ToastContainer />
         </>
       </body>
