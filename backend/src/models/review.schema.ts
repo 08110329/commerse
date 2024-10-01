@@ -1,24 +1,26 @@
 import { model, Schema } from "mongoose";
 
 const reviewSchema = new Schema({
-  users: {
+  userId: {
     type: [Schema.Types.ObjectId],
     ref: "user",
-    required: false,
+    required: true,
   },
-  products: {
+  productId: {
     type: [Schema.Types.ObjectId],
     ref: "Product",
-    required: false,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: String,
+    required: true,
   },
   createAt: {
     type: Date,
-    required: true,
-    default: Date.now,
-  },
-  updateAt: {
-    type: Date,
-    required: true,
     default: Date.now,
   },
 });
