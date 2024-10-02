@@ -1,11 +1,11 @@
 "use client";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/app/(main)/components/Header";
 import "./globals.css";
-import { Footers } from "@/components/Footers";
-import { UserProvider } from "@/components/providers/AuthProvider";
+import { Footers } from "@/app/(main)/components/Footers";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserProvider } from "./components/providers/AuthProvider";
 
 export default function RootLayout({
   children,
@@ -20,8 +20,8 @@ export default function RootLayout({
             <Header />
             {children}
             <Footers />
+            <ToastContainer />
           </UserProvider>
-          <ToastContainer />
         </>
       </body>
     </html>

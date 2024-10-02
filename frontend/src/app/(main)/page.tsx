@@ -1,6 +1,6 @@
 "use client";
 
-import { FacePage } from "@/components/FacePage";
+import { FacePage } from "@/app/(main)/components/FacePage";
 
 export default function Home() {
   return (

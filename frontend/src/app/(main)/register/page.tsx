@@ -1,10 +1,10 @@
 "use client";
 
-import { useUser } from "@/components/providers/AuthProvider";
 import { Formik, useFormik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
 import * as yup from "yup";
+import { useUser } from "../components/providers/AuthProvider";
 interface MyFormValues {
   нэр: string;
   имэйлХаяг: string;
@@ -53,9 +53,6 @@ export default function Home() {
         console.log("burtgeliin aldaa", error);
       }
       console.log("first message", values);
-      alert(
-        `hello ${values.нэр} ${values.имэйлХаяг} ${values.нууцҮг} ${values.нууцҮгДавтах}`
-      );
     },
   });
   const isValidUpperCase = /[A-Z]/.test(formik.values.нууцҮг);
@@ -89,7 +86,7 @@ export default function Home() {
                   <input
                     placeholder=" Имэйл хаяг"
                     name="имэйлХаяг"
-                    type="text"
+                    type="email"
                     className="w-96 h-9 border rounded-2xl pl-2"
                     value={formik.values.имэйлХаяг}
                     onChange={formik.handleChange}
@@ -100,7 +97,7 @@ export default function Home() {
                   <input
                     placeholder=" Нууц үг"
                     name="нууцҮг"
-                    type="text"
+                    type="password"
                     className="w-96 h-9 border rounded-2xl pl-2"
                     value={formik.values.нууцҮг}
                     onChange={formik.handleChange}
@@ -111,7 +108,7 @@ export default function Home() {
                   <input
                     placeholder=" Нууц үг давтах "
                     name="нууцҮгДавтах"
-                    type="text"
+                    type="password"
                     className="w-96 h-9 border rounded-2xl pl-2"
                     value={formik.values.нууцҮгДавтах}
                     onChange={formik.handleChange}
@@ -166,7 +163,7 @@ export default function Home() {
                     </li>
                   </div>
                   <button
-                    className="border text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white h-9"
+                    className="border justify-center flex text-[#2563EB] py-2 rounded-2xl bg-white border-[#2563EB] hover:bg-[#2563EB] hover:text-white h-9"
                     type="submit"
                   >
                     Үүсгэх

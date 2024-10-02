@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/app/(main)/components/ui/table";
 import { HiOutlineArrowDownTray } from "react-icons/hi2";
 import { MdDateRange } from "react-icons/md";
 import { todayy } from "@/app/admin/income/mockData";

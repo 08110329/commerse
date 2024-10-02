@@ -11,13 +11,18 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/app/(main)/components/ui/select";
 import { ChangeEvent, useState } from "react";
 import axios from "axios";
+
+interface ZuragGargah {
+  gargah?: (zuragURL: string[]) => void;
+}
 
 export default function Home() {
   const [loading, setloading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
+  const [zuragURL, setZuragURL] = useState<string[]>([]);
 
   const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.currentTarget.files;
@@ -28,12 +33,19 @@ export default function Home() {
     if (!image) return;
 
     setloading(true);
+
     const formData = new FormData();
     formData.append("image", image);
     const res = await axios.post("http://localhost:3001/upload", formData);
     console.log(res.data);
     setloading(false);
   };
+  // const handleZooh = (index: number) => {
+  //   const uploadZurag = zuragURL.filter((_, i) => i != index);
+  //   setZuragURL(uploadZurag);
+  //   if()
+  // };
+
   return (
     <div className="w-full h-screen bg-gray-50">
       <div className="w-full h-fit container flex ">
@@ -75,22 +87,6 @@ export default function Home() {
                       type="file"
                       onChange={handleChangeFile}
                       className="  absolute left-10 top-12 z-10 opacity-0"
-                    />
-                    <AiOutlinePicture className="w-6 h-6 absolute left-16 top-12 " />
-                  </div>
-                  <div className="relative border border-dashed rounded-xl">
-                    <input
-                      type="file"
-                      onChange={handleChangeFile}
-                      className="  absolute left-10 top-12 z-10 opacity-0"
-                    />
-                    <AiOutlinePicture className="w-6 h-6 absolute left-16 top-12 " />
-                  </div>
-                  <div className="relative border border-dashed rounded-xl">
-                    <input
-                      type="file"
-                      onChange={handleChangeFile}
-                      className="w-9 absolute left-10 top-12 z-10 opacity-0"
                     />
                     <AiOutlinePicture className="w-6 h-6 absolute left-16 top-12 " />
                   </div>

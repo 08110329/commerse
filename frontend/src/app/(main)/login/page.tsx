@@ -1,8 +1,8 @@
 "use client";
 
-import { useUser } from "@/components/providers/AuthProvider";
 import Link from "next/link";
 import { useState } from "react";
+import { useUser } from "../components/providers/AuthProvider";
 
 export default function Home() {
   const { login } = useUser();
@@ -25,6 +25,7 @@ export default function Home() {
                 <form onSubmit={handleLogin} className="grid gap-5">
                   <input
                     placeholder=" Имэйл хаяг"
+                    type="email"
                     className="w-96 h-9 border rounded-2xl pl-2"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -32,6 +33,7 @@ export default function Home() {
                   ></input>
                   <input
                     placeholder=" Нууц үг"
+                    type="password"
                     className="w-96 h-9 border rounded-2xl pl-2"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

@@ -35,7 +35,7 @@ cloudinary.config({
 });
 
 const storage = memoryStorage();
-
+//ram dree zurgaa hadlagah function ene2
 const upload = Multer({
   storage,
 });
@@ -52,7 +52,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
   try {
     const b64 = Buffer.from(req.file.buffer).toString("base64");
-    let dataURL = "data:" + req.file.mimetype + ";base64," + b64;
+    let dataURL = "data:" + req.file.mimetype + ";base64," + b64; // zurgiig string bolgoj huwirgadg function
     const cldRes = await handleUpload(dataURL);
     res.json(cldRes);
   } catch (error) {

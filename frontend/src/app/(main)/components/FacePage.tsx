@@ -2,12 +2,17 @@ import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { products } from "./mockdata";
 import Link from "next/link";
+import { useUser } from "./providers/AuthProvider";
 
 export const FacePage = () => {
+  const { logout } = useUser();
   return (
     <div className="flex justify-center h-fit py-12 border-4">
       <div className="container flex justify-center  ">
         <div className="w-full grid gap-12">
+          <button className="bg-black  text-white w-fit p-4" onClick={logout}>
+            garah
+          </button>
           <div className="relative w-full h-[600px]">
             <Image src={"/Slider.png"} fill alt="cover" />
           </div>

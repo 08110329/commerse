@@ -1,7 +1,7 @@
 "use client";
 
 import { HynaltinSambar } from "@/app/admin/components/HynaltinSambar";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/(main)/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,9 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/app/(main)/components/ui/dialog";
+import { Input } from "@/app/(main)/components/ui/input";
+import { Label } from "@/app/(main)/components/ui/label";
 import { FiSearch } from "react-icons/fi";
 
 import { GrAddCircle } from "react-icons/gr";

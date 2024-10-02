@@ -58,6 +58,7 @@ export const createUserController: RequestHandler = async (req, res) => {
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
+        role: newUser.role,
       },
     });
   } catch (error) {
@@ -117,6 +118,7 @@ export const getUserController: RequestHandler = async (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        role: user.role,
       },
     });
   } catch (error) {

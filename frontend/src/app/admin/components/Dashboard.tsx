@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/app/(main)/components/ui/table";
 
 export const Dashboard = () => {
   const baraaMaps = [

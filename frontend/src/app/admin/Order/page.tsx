@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/app/(main)/components/ui/table";
 import Link from "next/link";
 
 export default function Home() {

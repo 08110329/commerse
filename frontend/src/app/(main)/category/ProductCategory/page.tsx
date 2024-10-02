@@ -1,5 +1,5 @@
-import { products } from "@/components/mockdata";
-import { ProductCard } from "@/components/ProductCard";
+import { products } from "@/app/(main)/components/mockdata";
+import { ProductCard } from "@/app/(main)/components/ProductCard";
 import { categories, numberss } from "./mockData";
 
 export default function Home() {

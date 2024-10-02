@@ -26,7 +26,6 @@ interface AuthUser {
   user: User | null;
   isAuthenticated: boolean;
   role?: string;
-  ben?: string;
 }
 
 interface UserContextType {
@@ -43,7 +42,6 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     user: null,
     isAuthenticated: false,
     role: undefined,
-    ben: "hello",
   });
 
   const router = useRouter();
@@ -71,10 +69,11 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         isAuthenticated: true,
         role: user.role,
       });
-      toast.success("Бүртгэл амжилттай!"); // Adjusted for consistency
+      const roleZam = user.role === "admin" ? "/admin" : "/";
+      console.log(roleZam);
 
-      const redirectPath = user.role === "admin" ? "/admin" : "/";
-      router.push(redirectPath);
+      router.push(roleZam);
+      toast.success("Бүртгэл амжилттай!"); // Adjusted for consistency
 
       localStorage.setItem("token", token);
     } catch (error) {
@@ -94,10 +93,9 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         role: user.role,
       });
 
+      const roleZam = user.role === "admin" ? "/admin" : "/";
+      router.push(roleZam);
       toast.success("Бүртгэл амжилттай!");
-
-      const redirectPath = user.role === "admin" ? "/admin" : "/";
-      router.push(redirectPath);
 
       localStorage.setItem("token", token);
       console.log(token);
@@ -113,10 +111,10 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   const logout = () => {
     setUser({ user: null, isAuthenticated: false, role: undefined });
-    toast.success("Системээс гарлаа!");
 
     localStorage.removeItem("token"); // Clear the token on logout
     router.push("/");
+    toast.success("Системээс гарлаа!");
   };
 
   useEffect(() => {
@@ -158,7 +156,6 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   if (!isReady) return null;
 
-  console.log("ben", user);
   return (
     <UserContext.Provider value={{ user, register, login, logout }}>
       {children}

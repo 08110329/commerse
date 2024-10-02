@@ -1,7 +1,7 @@
 "use client";
 
-import { Footers } from "@/components/Footers";
-import { Header } from "@/components/Header";
+import { Footers } from "@/app/(main)/components/Footers";
+import { Header } from "@/app/(main)/components/Header";
 import Image from "next/image";
 import { GoTrash } from "react-icons/go";
 import { pLists, registerss } from "./mockData";

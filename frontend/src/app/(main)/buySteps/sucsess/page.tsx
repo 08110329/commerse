@@ -1,8 +1,8 @@
 "use client";
 
-import { FacePage } from "@/components/FacePage";
-import { Footers } from "@/components/Footers";
-import { Header } from "@/components/Header";
+import { FacePage } from "@/app/(main)/components/FacePage";
+import { Footers } from "@/app/(main)/components/Footers";
+import { Header } from "@/app/(main)/components/Header";
 import { FiCheckCircle } from "react-icons/fi";
 
 export default function Home() {

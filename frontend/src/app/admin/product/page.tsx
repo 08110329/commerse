@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/app/(main)/components/ui/table";
 import { IoAdd } from "react-icons/io5";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { TbCategory } from "react-icons/tb";
