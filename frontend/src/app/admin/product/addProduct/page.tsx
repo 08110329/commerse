@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/(main)/components/ui/select";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 
 interface ZuragGargah {
@@ -40,11 +40,11 @@ export default function Home() {
     console.log(res.data);
     setloading(false);
   };
-  // const handleZooh = (index: number) => {
-  //   const uploadZurag = zuragURL.filter((_, i) => i != index);
-  //   setZuragURL(uploadZurag);
-  //   if()
-  // };
+  useEffect(() => {
+    if (image) {
+      handleUpload();
+    }
+  }, []);
 
   return (
     <div className="w-full h-screen bg-gray-50">
@@ -83,10 +83,13 @@ export default function Home() {
                 <h1>Бүтээгдэхүүний зураг</h1>
                 <div className="grid grid-cols-4 grid-rows-1 w-full h-[125px] gap-2">
                   <div className="relative border border-dashed rounded-xl">
+                    {image && (
+                      <img src={URL.createObjectURL(image)} alt="upload" />
+                    )}
                     <input
                       type="file"
                       onChange={handleChangeFile}
-                      className="  absolute left-10 top-12 z-10 opacity-0"
+                      className="  absolute left-10 top-12 z-10 opacity-0 w-9"
                     />
                     <AiOutlinePicture className="w-6 h-6 absolute left-16 top-12 " />
                   </div>
