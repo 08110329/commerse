@@ -2,8 +2,50 @@ import { ListStartIcon } from "lucide-react";
 import { CiStar } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
 import { useState } from "react";
-
+import { backend } from "@/axios";
+import { useUser } from "./providers/AuthProvider";
+const totalStars = 5;
 export const Common = () => {
+  const { user } = useUser();
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  console.log(comment);
+  console.log(rating);
+  // console.log(user.user?.id);
+
+  const createReview = async (
+    productId: string,
+    userId: string,
+    comment: string,
+    rating: number
+    // userName: string
+  ) => {
+    try {
+      const response = await backend?.post(
+        "/review/createReview",
+        {
+          productId,
+          userId,
+          comment,
+          rating,
+          // userName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      setComment("");
+      setRating(0);
+      // await getReview(productId);
+      // getProduct(productId);
+      console.log(response.data);
+    } catch (error) {
+      console.log("Review error");
+      console.log(error);
+    }
+  };
   const [start, setStart] = useState(false);
   const comments = [
     {
@@ -79,16 +121,36 @@ export const Common = () => {
       <div className=" p-6 border bg-[#E4E4E7] rounded-xl text-lg font-medium flex flex-col gap-6">
         <div className="grid gap-2">
           <p>Одоор үнэлэх:</p>
-          <StarIcon />
+
+          <div className="flex">
+            {Array.from({ length: totalStars }, (_, index) => (
+              <CiStar
+                size={24}
+                key={index}
+                onClick={() => setRating(index + 1)}
+                className={`cursor-pointer ${
+                  index < rating ? "text-yellow-500 border " : "text-black"
+                }`}
+              />
+            ))}
+          </div>
         </div>
         <div className="text-lg font-medium">
           <p>Сэтгэгдэл үлдээх:</p>
-          <textarea
-            placeholder="  Энд бичнэ үү"
-            className="w-full h-24 text-lg rounded-lg"
-          ></textarea>
+          <input
+            className="border w-full h-[94px] rounded-lg"
+            placeholder="Энд бичнэ үү"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setComment(event.target.value)
+            }
+          />
         </div>
-        <button className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white">
+        <button
+          onClick={() =>
+            createReview(user.user?.id, productId, rating, comment)
+          }
+          className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white"
+        >
           Үнэлэх
         </button>
       </div>

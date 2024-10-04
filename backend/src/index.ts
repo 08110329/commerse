@@ -25,7 +25,7 @@ app.get("/", (_req, res) => {
 app.use("/user", userRouter);
 app.use("/category", categoryRouter);
 app.use(productRouter);
-app.use(reviewRouter);
+app.use("/review", reviewRouter);
 app.use(saveRouter);
 
 cloudinary.config({

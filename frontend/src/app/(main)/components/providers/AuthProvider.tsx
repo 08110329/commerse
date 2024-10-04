@@ -124,15 +124,16 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         const token = localStorage.getItem("token");
         if (!token) return; //omno n if (!token) return bsn
 
-        const res = await backend.get("/user/me", {
+        const { data } = await backend.get("/user/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+
         setUser({
-          user: res.data,
+          user: data.user,
           isAuthenticated: true,
-          role: res.data.role,
+          role: data.user.role,
         });
       } catch (error) {
         console.log(error);
@@ -155,6 +156,8 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   }, [pathname, user, isReady, authPaths, router]);
 
   if (!isReady) return null;
+
+  // console.log(user.user.id);
 
   return (
     <UserContext.Provider value={{ user, register, login, logout }}>

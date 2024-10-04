@@ -20,42 +20,34 @@ type CartProduct = {
 };
 
 type ContextType = {
-  products: CartProduct[]; // Corrected to 'products'
+  productCart: CartProduct[];
   createProduct: (product: Products) => void;
-  getProduct: (id: string) => CartProduct | undefined; // Adjusted for better usage
-  deleteProduct: (id: string) => void; // Using id for deletion
-  updateProduct: (product: Products) => void;
+  getProduct: (product: Products) => CartProduct;
+  deleteProduct: (product: Products) => void;
 };
 
 const CartContext = createContext<ContextType>({} as ContextType);
 
 export const ProductProvider = ({ children }: PropsWithChildren) => {
-  const [products, setProducts] = useState<CartProduct[]>([]); // Initialize state
+  const [productCart, setProductCart] = useState<CartProduct[]>([]);
 
-  const createProduct = (product: Products) => {
-    setProducts((prev) => [...prev, { product }]);
-  };
+  const createProduct = (product: Products) => {};
 
-  const getProduct = (id: string) => {
-    return products.find((p) => p.product.id === id);
-  };
+  const getProduct = (product: Products) => {};
 
-  const deleteProduct = () => {};
-
-  const updateProduct = () => {};
+  const deleteProduct = (product: Products) => {};
 
   return (
-    <CartContext.Provider
-      value={{
-        products, // Correctly reference products state
-        createProduct,
-        getProduct,
-        deleteProduct,
-        updateProduct,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+    // <CartContext.Provider
+    //   // value={{
+    //   //   productCart,
+    //   //   createProduct,
+        
+    //   //   deleteProduct,
+    //   // }}
+    // >
+    //   {children}
+    // </CartContext.Provider>
   );
 };
 

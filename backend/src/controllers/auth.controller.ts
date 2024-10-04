@@ -23,7 +23,7 @@ export const getMe: RequestHandler = async (req, res) => {
     }
     return res.status(200).json({
       user: {
-        ide: user._id,
+        id: user._id,
         username: user.username,
         email: user.email,
       },

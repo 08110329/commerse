@@ -13,17 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <>
-          <UserProvider>
-            <Header />
-            {children}
-            <Footers />
-            <ToastContainer />
-          </UserProvider>
-        </>
-      </body>
-    </html>
+    <UserProvider>
+      <Header />
+      {children}
+      <Footers />
+      <ToastContainer />
+    </UserProvider>
   );
 }

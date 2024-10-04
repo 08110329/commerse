@@ -4,6 +4,7 @@ import { reviewModel } from "../models/review.schema";
 export const createReview: RequestHandler = async (req, res) => {
   try {
     const { userId, productId, comment, rating } = req.body;
+    console.log(req.body);
 
     if (!userId || !productId || !comment || !rating) {
       return res.status(400).json({

@@ -3,9 +3,24 @@ import { CiHeart } from "react-icons/ci";
 import { products } from "./mockdata";
 import Link from "next/link";
 import { useUser } from "./providers/AuthProvider";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const FacePage = () => {
   const { logout } = useUser();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get("http://localhost:3001/getProduct");
+
+      setProducts(data.products);
+      // console.log(data.products);
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className="flex justify-center h-fit py-12 border-4">
       <div className="container flex justify-center  ">
@@ -28,14 +43,14 @@ export const FacePage = () => {
               return (
                 <div
                   className="w-full h-full grid gap-6 rounded-2xl"
-                  key={product.id}
+                  key={product._id}
                 >
                   <Link
                     href={"/productDetail/newProduct"}
                     className={`relative w-[244px] ${customHeight} overflow-hidden hover:border rounded-2xl`}
                   >
                     <Image
-                      src={product.img}
+                      src={product.image[0]}
                       fill
                       alt="prompt"
                       className="rounded-2xl hover:scale-110 duration-700"
@@ -46,12 +61,12 @@ export const FacePage = () => {
                     <p className="text-2xl font-normal">{product.title}</p>
                     <div className="flex gap-4 items-center">
                       <span>{product.price}</span>
-                      <span className="text-2xl font-normal line-through ">
+                      {/* <span className="text-2xl font-normal line-through ">
                         {product.sale}
                       </span>
                       <span className="text-3xl font-bold text-[#EF4444]">
                         {product.rates}
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                 </div>

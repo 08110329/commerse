@@ -37,9 +37,25 @@ export const createProduct: RequestHandler = async (req, res) => {
   }
 };
 
-export const getProduct: RequestHandler = async (req, res) => {
+export const getProducts: RequestHandler = async (req, res) => {
   try {
     const products = await productModel.find();
+
+    return res.status(200).json({
+      products,
+      message: "amjilttai bolloo",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "serveriin aldaa",
+    });
+  }
+};
+
+export const getProduct: RequestHandler = async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const products = await productModel.findById(req.params.id);
 
     return res.status(200).json({
       products,
