@@ -1,10 +1,5 @@
 import { ContactProduct } from "@/app/(main)/components/ContactProduct";
-import { Footers } from "@/app/(main)/components/Footers";
-import { Header } from "@/app/(main)/components/Header";
 import { ProductPage } from "@/app/(main)/components/ProductPage";
-import Image from "next/image";
-import { CiHeart, CiStar } from "react-icons/ci";
-import { FaHeart } from "react-icons/fa";
 
 export default function Home() {
   return (

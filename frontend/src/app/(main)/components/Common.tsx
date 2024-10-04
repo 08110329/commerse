@@ -146,9 +146,7 @@ export const Common = () => {
           />
         </div>
         <button
-          onClick={() =>
-            createReview(user.user?.id, productId, rating, comment)
-          }
+          onClick={() => createReview(user.user?.id, rating, comment)}
           className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white"
         >
           Үнэлэх

@@ -1,4 +1,4 @@
-export const productNemeh = [
+export const productNemehn = [
   {
     id: 1,
     title: "Бүтээгдэхүүний нэр",

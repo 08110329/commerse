@@ -9,6 +9,7 @@ import reviewRouter from "./routes/review.route";
 import saveRouter from "./routes/save.route";
 import { v2 as cloudinary } from "cloudinary";
 import Multer, { memoryStorage } from "multer";
+import { authMiddleware } from "./middlewares/auth.middleware";
 
 dotenv.config();
 

@@ -5,21 +5,23 @@ export const createProduct: RequestHandler = async (req, res) => {
   try {
     const {
       title,
+      description,
+      productCode,
       price,
       image,
-      description,
       size,
       color,
       tshirheg,
-      productCode,
       torolId,
     } = req.body;
+    console.log(title);
 
     await productModel.create({
       title,
+
+      description,
       price,
       image,
-      description,
       size,
       color,
       tshirheg,
@@ -39,7 +41,7 @@ export const createProduct: RequestHandler = async (req, res) => {
 
 export const getProducts: RequestHandler = async (req, res) => {
   try {
-    const products = await productModel.find();
+    const products = await productModel.find({});
 
     return res.status(200).json({
       products,

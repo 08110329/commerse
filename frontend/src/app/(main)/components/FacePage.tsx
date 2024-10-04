@@ -1,14 +1,30 @@
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
-import { products } from "./mockdata";
 import Link from "next/link";
 import { useUser } from "./providers/AuthProvider";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+interface Products {
+  _id: string;
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+  size: string;
+  color: string;
+  productCode: string;
+  torolId: string;
+  quantity: number;
+}
 export const FacePage = () => {
   const { logout } = useUser();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Products[]>([]);
+  // interface productType {
+  //   id: Number;
+  //   title: String;
+  //   price: String;
+  //   image: String;
+  // }
 
   useEffect(() => {
     const getData = async () => {

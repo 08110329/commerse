@@ -1,7 +1,7 @@
 "use client";
 
 import { backend } from "@/axios";
-import { log } from "console";
+import axios from "axios";
 import { useParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import {
@@ -35,6 +35,19 @@ interface UserContextType {
   logout: () => void;
 }
 
+interface Products {
+  id: string;
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+  size: string;
+  color: string;
+  productCode: string;
+  torolId: string;
+  quantity: number;
+}
+
 const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
@@ -47,6 +60,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const { id } = useParams();
   const [isReady, setIsReady] = useState(false);
+  const [products, setProducts] = useState<Products[]>([]);
   const pathname = usePathname();
   const authPaths = useMemo(
     () => [
@@ -58,6 +72,18 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     ],
     [id]
   );
+  const getProducts = async () => {
+    try {
+      const response = await backend.get("/getProduct");
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   const register = async (newUser: User) => {
     try {
