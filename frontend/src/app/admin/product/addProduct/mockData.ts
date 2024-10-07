@@ -1,7 +1,7 @@
 export const productNemehn = [
   {
     id: 1,
-    title: "Бүтээгдэхүүний нэр",
+    title: "",
   },
   {
     id: 2,
