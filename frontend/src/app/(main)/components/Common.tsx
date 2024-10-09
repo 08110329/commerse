@@ -1,10 +1,17 @@
 import { ListStartIcon } from "lucide-react";
 import { CiStar } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { backend } from "@/axios";
 import { useUser } from "./providers/AuthProvider";
 const totalStars = 5;
+interface reviews {
+  _id: string;
+  userId: string;
+  productId: string;
+  comment: string;
+  rating: string;
+}
 export const Common = () => {
   const { user } = useUser();
   const [rating, setRating] = useState(0);
@@ -13,39 +20,40 @@ export const Common = () => {
   console.log(rating);
   // console.log(user.user?.id);
 
-  const createReview = async (
-    productId: string,
-    userId: string,
-    comment: string,
-    rating: number
-    // userName: string
-  ) => {
-    try {
-      const response = await backend?.post(
-        "/review/createReview",
-        {
-          productId,
-          userId,
-          comment,
-          rating,
-          // userName,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      setComment("");
-      setRating(0);
-      // await getReview(productId);
-      // getProduct(productId);
-      console.log(response.data);
-    } catch (error) {
-      console.log("Review error");
-      console.log(error);
-    }
-  };
+  // const createReview = async (
+  //   productId: string,
+  //   userId: string,
+  //   comment: string,
+  //   rating: number
+  //   // userName: string
+  // ) => {
+  //   try {
+  //     const response = await backend?.post(
+  //       "/review/createReview",
+  //       {
+  //         productId,
+  //         userId,
+  //         comment,
+  //         rating,
+  //         // userName,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     );
+  //     setComment("");
+  //     setRating(0);
+  //     // await getReview(productId);
+  //     // getProduct(productId);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.log("Review error");
+  //     console.log(error);
+  //   }
+  // };
+
   const [start, setStart] = useState(false);
   const comments = [
     {
@@ -75,6 +83,12 @@ export const Common = () => {
       description: "Ваав материал ёстой гоё байна 😍",
     },
   ];
+  useEffect(() => {
+    const getReview = async () => {
+      const res = await backend.get("/getReview");
+      console.log(res.data);
+    };
+  });
 
   return (
     <div className={`grid gap-4 ${start ? "hidden" : "visible"}`}>
@@ -146,7 +160,7 @@ export const Common = () => {
           />
         </div>
         <button
-          // onClick={() => createReview(user.user?.id, rating, comment)}
+          onClick={() => createReview(user.user?.id, rating, comment)}
           className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white"
         >
           Үнэлэх

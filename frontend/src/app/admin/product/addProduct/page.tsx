@@ -15,21 +15,11 @@ import {
   SelectValue,
 } from "@/app/(main)/components/ui/select";
 import Image from "next/image";
-import { number } from "yup";
 import { numberss } from "@/mockData";
-import { SquarePlus } from "lucide-react";
-import { Category } from "../../components/Category";
-
-import { DialogFooter, DialogHeader } from "@/app/(main)/components/ui/dialog";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "@radix-ui/react-dialog";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "postcss";
+interface torols {
+  _id: string;
+  torol: string;
+}
 
 export default function Home() {
   const [productName, setProductName] = useState<string>("");
@@ -41,6 +31,8 @@ export default function Home() {
   const [hemjee, setHemjee] = useState<string>("");
   const [loading, setloading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
+  const [category, setCategory] = useState<string>("");
+  const [torols, setTorols] = useState<torols[]>([]);
 
   useEffect(() => {
     const handleUpload = async () => {
@@ -75,16 +67,40 @@ export default function Home() {
         image: zurag,
         tshirheg: tshirheg,
         size: hemjee,
+        torolId: category,
       });
       setProductName("");
       setProductDesc("");
       setProductCode("");
       setZurag("");
+
       console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const createCategory = async () => {
+    try {
+      const res = await backend.post("/category", {
+        torol: category,
+      });
+      setCategory("");
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const getCategory = async () => {
+      const res = await backend.get("/category");
+      console.log(res.data.torols);
+      setTorols(res.data.torols);
+    };
+    getCategory();
+  }, []);
+  console.log(category);
 
   return (
     <div className="w-full h-screen bg-gray-50">
@@ -185,15 +201,39 @@ export default function Home() {
               <div className="flex flex-col w-full h-fit bg-white gap-5 text-black rounded-3xl border px-6 py-6">
                 <div className="w-full h-fit flex flex-col gap-3">
                   <p>Ерөнхий ангилал</p>
-                  <input className="border w-full" />
-                  <Select>
+                  <input
+                    className="border w-full px-2 py-2"
+                    placeholder="  text"
+                    value={category}
+                    onChange={(event) => setCategory(event.target.value)}
+                  />
+                  <div className="flex justify-center">
+                    <button
+                      className="border hover:bg-black hover:text-white rounded-lg px-2 py-2 bg-white"
+                      onClick={() => createCategory()}
+                    >
+                      add category
+                    </button>
+                  </div>
+
+                  <Select onValueChange={(value) => setCategory(value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Сонгох" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="apple">Apple</SelectItem>
-                      </SelectGroup>
+                      <div className="flex flex-col gap-2">
+                        {torols?.map((torol, index) => {
+                          return (
+                            <SelectItem
+                              value={torol._id}
+                              className="text-md font-medium hover:font-bold"
+                              key={index}
+                            >
+                              {torol.torol}
+                            </SelectItem>
+                          );
+                        })}
+                      </div>
                     </SelectContent>
                   </Select>
                 </div>

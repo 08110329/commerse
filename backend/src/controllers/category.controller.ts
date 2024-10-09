@@ -4,13 +4,15 @@ import { CategoryModel } from "../models/category.schema";
 export const createCategory: RequestHandler = async (req, res) => {
   try {
     const { torol } = req.body;
+    console.log(torol);
 
-    await CategoryModel.create({
+    const category = await CategoryModel.create({
       torol,
     });
 
     return res.status(201).json({
       message: "amjilttai uuslee",
+      category,
     });
   } catch (error) {
     return res.status(500).json({
@@ -21,7 +23,7 @@ export const createCategory: RequestHandler = async (req, res) => {
 
 export const getCategory: RequestHandler = async (req, res) => {
   try {
-    const torols = await CategoryModel.find(); //  categoryModelooos bugdiig n awya
+    const torols = await CategoryModel.find({}); //  categoryModelooos bugdiig n awya
 
     return res.status(200).json({
       torols,

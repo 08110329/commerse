@@ -1,16 +1,15 @@
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 type ProductCardProps = {
-  img: string;
+  image: string;
   title: string;
   price: string;
 };
-export const ProductCard = ({ img, title, price }: ProductCardProps) => {
-  console.log(img);
+export const ProductCard = ({ image, title, price }: ProductCardProps) => {
   return (
     <div className=" w-full flex flex-col gap-3">
       <div className="relative w-full h-[450px]">
-        <Image src={img} fill alt="zurag" className="rounded-2xl" />
+        <Image src={image} fill alt="zurag" className="rounded-2xl" />
         <CiHeart className="absolute right-4 top-4 w-10 h-10" />
       </div>
       <div className="text-3xl font-bold grid gap-2">
