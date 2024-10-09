@@ -1,5 +1,3 @@
-import { ContactProduct } from "@/app/(main)/components/ContactProduct";
-
 import { ProductPage } from "@/app/(main)/components/ProductPage";
 
 export default function Home() {

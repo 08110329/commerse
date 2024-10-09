@@ -8,7 +8,7 @@ import {
 } from "@/app/(main)/components/ui/table";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { Orders } from "./mockData";
+import { Orders } from "@/mockData";
 
 export const OrderTab = () => {
   return (

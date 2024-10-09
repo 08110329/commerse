@@ -22,7 +22,7 @@ export const ProductPage = () => {
         <div className="flex gap-12">
           <div className="flex gap-6 sticky top-0 h-fit items-center">
             <div className="flex flex-col gap-2">
-              {productsImage.map((productImage) => (
+              {productsImage?.map((productImage) => (
                 <div
                   className="w-[100px] cursor-pointer"
                   key={productImage.id}

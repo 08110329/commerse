@@ -1,8 +1,4 @@
 "use client";
-
-import { Footers } from "@/app/(main)/components/Footers";
-import { Header } from "@/app/(main)/components/Header";
-
 export default function Home() {
   return (
     <div className="flex bg-[#F4F4F5] justify-center ">

@@ -26,9 +26,9 @@ const productSchema = new Schema({
     type: String,
   },
   torolId: {
-    type: [String],
+    type: String,
+    ref: "category",
   },
-
   createdAt: {
     type: Date,
 

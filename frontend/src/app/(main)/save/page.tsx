@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
-import { pLists } from "../buySteps/caseOne/mockData";
+import { pLists } from "@/mockData";
 
 export default function Home() {
   return (

@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { HiOutlineArrowDownTray } from "react-icons/hi2";
 import { MdDateRange } from "react-icons/md";
 import Link from "next/link";
-import { TodayOrder } from "./TodayOrder";
+import { TodayOrder } from "../components/TodayOrder";
 
 export default function Home() {
   return (

@@ -1,10 +1,7 @@
 "use client";
 
-import { Footers } from "@/app/(main)/components/Footers";
-import { Header } from "@/app/(main)/components/Header";
 import Image from "next/image";
-import { GoTrash } from "react-icons/go";
-import { pLists, registerss } from "./mockData";
+import { pLists, registerss } from "@/mockData";
 import Link from "next/link";
 
 export default function Home() {

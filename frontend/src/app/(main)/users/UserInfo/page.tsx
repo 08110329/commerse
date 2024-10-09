@@ -1,9 +1,5 @@
 "use client";
-
-import { Footers } from "@/app/(main)/components/Footers";
-import { Header } from "@/app/(main)/components/Header";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function Home() {
   const registerss = [

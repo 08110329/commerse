@@ -1,6 +1,6 @@
 "use client";
 
-import { pLists } from "@/app/(main)/buySteps/caseOne/mockData";
+import { pLists } from "@/mockData";
 import Image from "next/image";
 
 export const Search = () => {

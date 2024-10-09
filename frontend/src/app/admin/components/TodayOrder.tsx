@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/(main)/components/ui/table";
-import { todayy } from "./mockData";
+import { todayy } from "@/mockData";
 
 export const TodayOrder = () => {
   return (

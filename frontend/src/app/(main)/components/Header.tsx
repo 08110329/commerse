@@ -14,6 +14,8 @@ import { useUser } from "./providers/AuthProvider";
 export const Header = () => {
   const [side, setSide] = useState(false);
   const { user } = useUser();
+  const { logout } = useUser();
+  const [garah, setGarah] = useState(false);
 
   const pathname: string = usePathname();
   interface Path {
@@ -59,7 +61,13 @@ export const Header = () => {
             <div className="flex gap-8 items-center text-sm font-normal text-white">
               <div className="flex gap-4 items-center">
                 <Link className="relative w-8 h-8 flex bg-black" href={`/`}>
-                  <Image src={"/Logo/PineconeStudio.png"} fill alt="logo" />
+                  <Image
+                    src="/Logo/PineconeStudio.png"
+                    fill
+                    alt="Pinecone Studio Logo"
+                    style={{ objectFit: "contain" }}
+                    sizes="(max-width: 32px) 32px, 40px" // Adjust sizes as needed
+                  />
                 </Link>
               </div>
               {paths.map((path, index) => (
@@ -90,7 +98,6 @@ export const Header = () => {
                 >
                   <Search />
                 </div>
-
                 <input
                   className="w-60 h-6 bg-gray-800 outline-none"
                   placeholder="Бүтээгдэхүүн хайх"
@@ -117,6 +124,14 @@ export const Header = () => {
                 >
                   <HiOutlineShoppingCart className="w-6 h-6" />
                 </Link>
+              )}
+              {user && (
+                <button
+                  className="w-[101px] h-9 text-white border border-[#2563EB] hover:bg-[#2563EB] text-sm font-medium rounded-md"
+                  onClick={logout}
+                >
+                  Гарах
+                </button>
               )}
             </div>
             <div className="flex gap-2 ">

@@ -14,11 +14,10 @@ export const createProduct: RequestHandler = async (req, res) => {
       tshirheg,
       torolId,
     } = req.body;
-    console.log(title);
+    console.log();
 
-    await productModel.create({
+    const newProduct = await productModel.create({
       title,
-
       description,
       price,
       image,
@@ -30,6 +29,7 @@ export const createProduct: RequestHandler = async (req, res) => {
     });
     return res.status(201).json({
       message: "product uuslee",
+      newProduct,
     });
   } catch (error) {
     console.error(error);
@@ -44,8 +44,8 @@ export const getProducts: RequestHandler = async (req, res) => {
     const products = await productModel.find({});
 
     return res.status(200).json({
-      products,
       message: "amjilttai bolloo",
+      products,
     });
   } catch (error) {
     return res.status(500).json({
@@ -57,7 +57,7 @@ export const getProducts: RequestHandler = async (req, res) => {
 export const getProduct: RequestHandler = async (req, res) => {
   console.log(req.params.id);
   try {
-    const products = await productModel.findById(req.params.id);
+    const products = await productModel.find({});
 
     return res.status(200).json({
       products,

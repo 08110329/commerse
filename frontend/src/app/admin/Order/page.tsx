@@ -1,10 +1,10 @@
 "use client";
 
 import { MdDateRange } from "react-icons/md";
-import { Lists } from "./mockData";
+import { Lists } from "@/mockData";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
-import { OrderTab } from "./OrderTab";
+import { OrderTab } from "../components/OrderTab";
 
 export default function Home() {
   return (

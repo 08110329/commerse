@@ -14,6 +14,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/(main)/components/ui/select";
+import Image from "next/image";
+import { number } from "yup";
+import { numberss } from "@/mockData";
+import { SquarePlus } from "lucide-react";
+import { Category } from "../../components/Category";
+
+import { DialogFooter, DialogHeader } from "@/app/(main)/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
+import { Label } from "@radix-ui/react-label";
+import { Input } from "postcss";
 
 export default function Home() {
   const [productName, setProductName] = useState<string>("");
@@ -21,36 +37,34 @@ export default function Home() {
   const [productCode, setProductCode] = useState<string>("");
   const [pprice, setPprice] = useState<number>();
   const [tshirheg, setTshirheg] = useState<number>();
-  console.log(productName);
-  console.log(productDesc);
-  console.log(productCode);
-  console.log(pprice);
-  console.log(tshirheg);
+  const [zurag, setZurag] = useState<string>("");
+  const [hemjee, setHemjee] = useState<string>("");
   const [loading, setloading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
 
-  const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.currentTarget.files;
-    if (file) setImage(file[0]);
-  };
-
-  const handleUpload = async () => {
-    if (!image) return;
-
-    setloading(true);
-
-    const formData = new FormData();
-    formData.append("image", image);
-    const res = await axios.post("http://localhost:3001/upload", formData);
-    console.log(res.data);
-    setloading(false);
-  };
   useEffect(() => {
+    const handleUpload = async () => {
+      if (!image) return;
+
+      setloading(true);
+
+      const formData = new FormData();
+      formData.append("image", image);
+      const res = await axios.post("http://localhost:3001/upload", formData);
+      console.log(res.data);
+      setZurag(res.data.secure_url);
+      setloading(false);
+    };
     if (image) {
       handleUpload();
     }
-  }, []);
+  }, [image]);
 
+  const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.currentTarget.files;
+
+    if (file) setImage(file[0]);
+  };
   const createProduct = async () => {
     try {
       const res = await backend.post("/createProduct", {
@@ -58,16 +72,20 @@ export default function Home() {
         description: productDesc,
         productCode: productCode,
         price: pprice,
+        image: zurag,
         tshirheg: tshirheg,
+        size: hemjee,
       });
       setProductName("");
       setProductDesc("");
       setProductCode("");
-      console.log(res.data.message);
+      setZurag("");
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div className="w-full h-screen bg-gray-50">
       <div className="w-full h-fit container flex ">
@@ -87,7 +105,6 @@ export default function Home() {
                     value={productName}
                     onChange={(event) => setProductName(event.target.value)}
                   ></input>
-                  <button onClick={() => createProduct()}>Add product</button>
                 </div>
                 <div className="grid gap-2">
                   <label>Нэмэлт мэдээлэл</label>
@@ -97,7 +114,6 @@ export default function Home() {
                     value={productDesc}
                     onChange={(event) => setProductDesc(event.target.value)}
                   ></input>
-                  <button onClick={() => createProduct()}>Add product</button>
                 </div>
                 <div className="grid gap-2">
                   <label>Барааны код</label>
@@ -112,27 +128,30 @@ export default function Home() {
               <div className="flex flex-col flex-1 h-full bg-white px-6 py-6 rounded-3xl gap-4 text-black">
                 <h1>Бүтээгдэхүүний зураг</h1>
                 <div className="grid grid-cols-4 grid-rows-1 w-full h-[125px] gap-2">
-                  <div className="relative border border-dashed rounded-xl">
+                  <div className="border border-dashed rounded-xl">
                     {image && (
-                      <img src={URL.createObjectURL(image)} alt="upload" />
+                      <Image
+                        src={URL.createObjectURL(image)}
+                        alt="upload"
+                        width={125}
+                        height={125}
+                      />
                     )}
+                  </div>
+                  <div className="relative border border-dashed rounded-xl">
                     <input
                       type="file"
                       onChange={handleChangeFile}
-                      className="  absolute left-10 top-12 z-10 opacity-0 w-9"
-                    />
-                    <GrAddCircle className="w-6 h-6 absolute left-16 top-12 opacity-0" />
+                      className="  absolute left-10 top-12 z-10  w-20 opacity-0"
+                    />{" "}
+                    <button className="absolute left-16 top-12">
+                      {loading ? (
+                        "Uploading ..."
+                      ) : (
+                        <GrAddCircle className="w-6 h-6" />
+                      )}
+                    </button>
                   </div>
-                  <button
-                    className=" flex justify-center items-center"
-                    onClick={handleUpload}
-                  >
-                    {loading ? (
-                      "Uploading ..."
-                    ) : (
-                      <GrAddCircle className="w-6 h-6" />
-                    )}
-                  </button>
                 </div>
               </div>
               <div className="flex flex-1 h-full bg-white px-6 py-6 rounded-3xl gap-4 text-black">
@@ -164,29 +183,15 @@ export default function Home() {
             </div>
             <div className="flex-1 grid gap-5">
               <div className="flex flex-col w-full h-fit bg-white gap-5 text-black rounded-3xl border px-6 py-6">
-                <div className="w-full h-fit">
+                <div className="w-full h-fit flex flex-col gap-3">
                   <p>Ерөнхий ангилал</p>
+                  <input className="border w-full" />
                   <Select>
                     <SelectTrigger>
                       <SelectValue placeholder="Сонгох" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectLabel>Fruits</SelectLabel>
-                        <SelectItem value="apple">Apple</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="w-full h-fit">
-                  <p>Дэд ангилал</p>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Сонгох" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Fruits</SelectLabel>
                         <SelectItem value="apple">Apple</SelectItem>
                       </SelectGroup>
                     </SelectContent>
@@ -200,9 +205,23 @@ export default function Home() {
                     <p>Өнгө</p>
                     <GrAddCircle className="w-4 h-4" />
                   </div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex flex-col gap-2 ">
                     <p>Хэмжээ</p>
-                    <GrAddCircle className="w-4 h-4" />
+                    <div className="flex gap-2">
+                      {numberss.map((number) => (
+                        <div
+                          onClick={() => setHemjee(number.size)}
+                          className={`border rounded-full w-9 h-9 flex justify-center items-center text-sm font-normal border-black hover:bg-black hover:text-white ${
+                            hemjee === number.size
+                              ? "bg-black text-white"
+                              : null
+                          }`}
+                          key={number.id}
+                        >
+                          <p>{number.size}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div>
@@ -227,7 +246,10 @@ export default function Home() {
             <button className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white">
               Ноорог
             </button>
-            <button className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white">
+            <button
+              className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white"
+              onClick={() => createProduct()}
+            >
               Нийтлэх
             </button>
           </div>

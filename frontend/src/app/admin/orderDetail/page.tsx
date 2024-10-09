@@ -2,9 +2,8 @@
 
 import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";
-import { Details } from "./mockData";
-import { LiaCarSideSolid } from "react-icons/lia";
-import { HurgeltiinNews } from "./HurgeltiinNews";
+import { Details } from "@/mockData";
+import { HurgeltiinNews } from "../components/HurgeltiinNews";
 
 export default function Home() {
   return (

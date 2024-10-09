@@ -6,6 +6,7 @@ type ProductCardProps = {
   price: string;
 };
 export const ProductCard = ({ img, title, price }: ProductCardProps) => {
+  console.log(img);
   return (
     <div className=" w-full flex flex-col gap-3">
       <div className="relative w-full h-[450px]">

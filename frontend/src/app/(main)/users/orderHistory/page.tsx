@@ -1,13 +1,8 @@
 "use client";
 
-import { FacePage } from "@/app/(main)/components/FacePage";
-import { Footers } from "@/app/(main)/components/Footers";
-import { Header } from "@/app/(main)/components/Header";
-import { register } from "module";
 import Image from "next/image";
-import { title } from "process";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { pLists } from "./mockData";
+import { pLists } from "@/mockData";
 import Link from "next/link";
 
 export default function Home() {

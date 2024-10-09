@@ -2,13 +2,10 @@
 
 import Image from "next/image";
 import { GoTrash } from "react-icons/go";
-import { pLists } from "./mockData";
-import { usePathname } from "next/navigation";
+import { pLists } from "@/mockData";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Home() {
-  const [too, setToo] = useState(false);
   interface Path {
     name: string;
     path: string;

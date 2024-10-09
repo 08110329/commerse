@@ -6,12 +6,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/(main)/components/ui/table";
-import { productLists } from "./mockData";
+import { productLists } from "@/mockData";
 import Image from "next/image";
 import { HiOutlineTrash } from "react-icons/hi";
 import { LuPencilLine } from "react-icons/lu";
 
-export const ButeegdhuunAngilal = () => {
+export const ProductCategory = () => {
   return (
     <div className="mx-6 bg-white rounded-2xl border">
       <Table>

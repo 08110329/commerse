@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { GoBell } from "react-icons/go";
 import { IoPersonOutline } from "react-icons/io5";
 
@@ -26,8 +27,16 @@ export const Headers = () => {
         <div className="flex w-full">
           <div className="flex gap-8 items-center text-sm font-normal text-white">
             <div className="flex gap-4 items-center">
-              <div className="relative w-8 h-8 flex bg-black">
-                <Image src={"/Logo/PineconeStudio.png"} fill alt="logo" />
+              <div className="flex gap-4 items-center">
+                <Link className="relative w-8 h-8 flex bg-black" href={`/`}>
+                  <Image
+                    src="/Logo/PineconeStudio.png"
+                    fill
+                    alt="Pinecone Studio Logo"
+                    style={{ objectFit: "contain" }}
+                    sizes="(max-width: 32px) 32px, 40px" // Adjust sizes as needed
+                  />
+                </Link>
               </div>
             </div>
           </div>
