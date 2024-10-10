@@ -73,7 +73,7 @@ export const ContactProduct = () => {
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
                   />
-                  <CiHeart className="absolute right-4 top-4 w-10 h-10" />
+                  <CiHeart className="absolute right-4 top-4 w-10 h-10 text-black" />
                 </div>
                 <div className="text-3xl font-bold grid gap-2">
                   <p className="text-2xl font-normal">{product.title}</p>

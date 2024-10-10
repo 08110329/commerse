@@ -31,7 +31,7 @@ export default function Home() {
         <div className="h-fit">
           <div className="grid gap-20 pt-14 pb-24">
             <ProductPage />
-            <div className="grid gap-7 ">
+            <div className="grid gap-7 text-black">
               <h1 className="text-4xl font-bold">Холбоотой бараа</h1>
               <ContactProduct />
             </div>
