@@ -128,6 +128,7 @@ export const getUserController: RequestHandler = async (req, res) => {
     });
   }
 };
+
 // Хэрэглэгч гарах
 export const logout: RequestHandler = (req, res) => {
   try {

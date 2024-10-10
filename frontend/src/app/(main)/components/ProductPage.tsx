@@ -1,17 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
-import { AllSee } from "./AllSee";
 import { numberss, product, productsImage } from "./mockdata";
+import { Common } from "./Common";
+import { useParams } from "next/navigation";
 import { backend } from "@/axios";
 
 export const ProductPage = () => {
   const [selectImage, setSelectImage] = useState(productsImage[0]); // jijig zurgn dree dathad tom bolgohiin tuld set ashiglaaad
   const [click, setClick] = useState(false);
+  const [products, setProducts] = useState();
+  const { id } = useParams();
+  console.log(id);
 
+  const getOneProduct = async () => {
+    try {
+      const response = await backend.get(`/getProduct/${id}`);
+      console.log(response.data.message);
+      setProducts(response.data.products);
+      console.log(response.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getOneProduct();
+  }, []);
   const handleClick = (image: product) => {
     setSelectImage(image);
   }; /// handleclick deer image n productiinh gd setselecteeeparamtr dr n image shuu gj ogood
@@ -96,14 +114,14 @@ export const ProductPage = () => {
               </div>
             </div>
             <div className="grid gap-3">
-              <div className={`${click ? "hidden" : "visible"}`}>
+              <div>
                 <div className="flex gap-4 text-xl font-normal">
                   <p>Үнэлгээ</p>
                   <button
                     className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]"
-                    onClick={() => setClick(!click)}
+                    onClick={() => setClick(() => !click)}
                   >
-                    бүгдийг харах
+                    <p>{click ? "bugdiig huraah" : " бүгдийг харах"}</p>
                   </button>
                 </div>
                 <div className="flex items-center gap-2">
@@ -117,7 +135,7 @@ export const ProductPage = () => {
                 </div>
               </div>
               <div className={`grid gap-3 ${click ? "visible" : "hidden"}`}>
-                <AllSee />
+                <Common />
               </div>
             </div>
           </div>

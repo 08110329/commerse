@@ -17,7 +17,7 @@ const reviewSchema = new Schema({
   },
   rating: {
     type: Number,
-    required: true,
+    required: false,
   },
   createAt: {
     type: Date,

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { backend } from "@/axios";
 interface Products {
   _id: string;
@@ -59,11 +58,14 @@ export const FacePage = () => {
                   key={product._id}
                 >
                   <Link
-                    href={"/productDetail/newProduct"}
+                    href={`${product._id}`}
                     className={`relative w-[244px] ${customHeight} overflow-hidden hover:border rounded-2xl`}
                   >
                     <Image
-                      src={product.image[0]}
+                      src={
+                        product.image[0] ||
+                        "https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg"
+                      }
                       fill
                       alt="prompt"
                       className="rounded-2xl hover:scale-110 duration-700"

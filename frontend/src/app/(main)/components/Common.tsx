@@ -1,4 +1,4 @@
-import { ListStartIcon } from "lucide-react";
+"use client";
 import { CiStar } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
 import { useEffect, useState } from "react";
@@ -16,8 +16,14 @@ export const Common = () => {
   const { user } = useUser();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [reviews, setReviews] = useState<reviews[]>([]);
+  const [userId, setUserId] = useState("");
+  const [productId, setproductId] = useState("");
   console.log(comment);
-  console.log(rating);
+  console.log(reviews);
+  console.log(userId);
+  // console.log("====", productId);
+
   // console.log(user.user?.id);
 
   // const createReview = async (
@@ -85,48 +91,43 @@ export const Common = () => {
   ];
   useEffect(() => {
     const getReview = async () => {
-      const res = await backend.get("/getReview");
-      console.log(res.data);
+      const res = await backend.get("/review/getReview");
+      console.log(res.data.reviews);
+      setReviews(res.data.reviews);
     };
-  });
+    getReview();
+  }, []);
+
+  const createReview = async () => {
+    try {
+      const res = await backend.post("/review/createReview", {
+        comment: comment,
+        userId: userId,
+        productId: productId,
+      });
+      setComment("");
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={`grid gap-4 ${start ? "hidden" : "visible"}`}>
       <div className="h-fit grid gap-6 w-full pt-1">
-        <div className="container ">
-          <div className="flex gap-4 text-xl font-normal">
-            <p>Үнэлгээ</p>
-            <button
-              className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]"
-              onClick={() => setStart(!start)}
-            >
-              {start ? " бүгдийг хураах" : "бүгдийг харах"}
-            </button>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex gap-1">
-              <StarIcon />
-            </div>
-            <div className="font-medium text-lg flex">
-              <p className="font-semibold text-lg">4.6</p>
-              <p className="text-[#71717A]">(24)</p>
-            </div>
-          </div>
-        </div>
-
         <div className="grid gap-6 pt-4">
-          {comments.map((comment) => {
+          {reviews.map((review) => {
             return (
               <div
                 className="flex flex-col pb-4 border-b-2 border-dashed"
-                key={comment.id}
+                key={review._id}
               >
                 <div className="flex ">
-                  <p>{comment.title}</p>
+                  <p>{review.userId}</p>
                   <StarIcon />
                 </div>
-                <p>{comment.image}</p>
-                <p>{comment.description}</p>
+                {/* <p>{comment.image}</p> */}
+                <p>{review.comment}</p>
               </div>
             );
           })}
@@ -154,13 +155,12 @@ export const Common = () => {
           <input
             className="border w-full h-[94px] rounded-lg"
             placeholder="Энд бичнэ үү"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setComment(event.target.value)
-            }
+            value={comment}
+            onChange={(event) => setComment(event.target.value)}
           />
         </div>
         <button
-          onClick={() => createReview(user.user?.id, rating, comment)}
+          onClick={() => createReview()}
           className="text-base font-medium bg-[#2563EB] h-9 w-28 rounded-3xl text-white"
         >
           Үнэлэх

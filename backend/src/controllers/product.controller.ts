@@ -55,12 +55,13 @@ export const getProducts: RequestHandler = async (req, res) => {
 };
 
 export const getProduct: RequestHandler = async (req, res) => {
+  const { id } = req.params;
   console.log(req.params.id);
   try {
-    const products = await productModel.find({});
+    const product = await productModel.findById(id);
 
     return res.status(200).json({
-      products,
+      product,
       message: "amjilttai bolloo",
     });
   } catch (error) {
