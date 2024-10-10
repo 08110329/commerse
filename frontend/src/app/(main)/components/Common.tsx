@@ -1,9 +1,10 @@
 "use client";
-import { CiStar } from "react-icons/ci";
+
 import { StarIcon } from "./StarIcon";
 import { useEffect, useState } from "react";
 import { backend } from "@/axios";
 import { useUser } from "./providers/AuthProvider";
+import { FaStar } from "react-icons/fa";
 const totalStars = 5;
 interface reviews {
   _id: string;
@@ -19,9 +20,10 @@ export const Common = () => {
   const [reviews, setReviews] = useState<reviews[]>([]);
   const [userId, setUserId] = useState("");
   const [productId, setproductId] = useState("");
-  console.log(comment);
-  console.log(reviews);
-  console.log(userId);
+  const [username, setUsername] = useState("")
+  // console.log(comment);
+  // console.log(reviews);
+  console.log(username);
   // console.log("====", productId);
 
   // console.log(user.user?.id);
@@ -61,34 +63,7 @@ export const Common = () => {
   // };
 
   const [start, setStart] = useState(false);
-  const comments = [
-    {
-      id: 1,
-      title: "Saraa",
-      description: "Ваав материал ёстой гоё байна 😍",
-    },
-    {
-      id: 2,
-      title: "Saraa",
-      image: "🔥🔥🔥",
-      description: "Ваав материал ёстой гоё байна 😍",
-    },
-    {
-      id: 3,
-      title: "Saraa",
-      description: "Ваав материал ёстой гоё байна 😍",
-    },
-    {
-      id: 4,
-      title: "Saraa",
-      description: "Ваав материал ёстой гоё байна 😍",
-    },
-    {
-      id: 5,
-      title: "Saraa",
-      description: "Ваав материал ёстой гоё байна 😍",
-    },
-  ];
+
   useEffect(() => {
     const getReview = async () => {
       const res = await backend.get("/review/getReview");
@@ -112,9 +87,17 @@ export const Common = () => {
     }
   };
 
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await backend.get("/user");
+      console.log(res.data.username);
+      setUsername(res.data.username);
+    };
+    getUser();
+  }, []);
   return (
     <div className={`grid gap-4 ${start ? "hidden" : "visible"}`}>
-      <div className="h-fit grid gap-6 w-full pt-1">
+      <div className="h-fit grid gap-6 w-full pt-1 text-black">
         <div className="grid gap-6 pt-4">
           {reviews.map((review) => {
             return (
@@ -133,13 +116,13 @@ export const Common = () => {
           })}
         </div>
       </div>
-      <div className=" p-6 border bg-[#E4E4E7] rounded-xl text-lg font-medium flex flex-col gap-6">
+      <div className=" p-6 border bg-[#E4E4E7] rounded-xl text-lg font-medium flex flex-col gap-6 text-black">
         <div className="grid gap-2">
           <p>Одоор үнэлэх:</p>
 
           <div className="flex">
             {Array.from({ length: totalStars }, (_, index) => (
-              <CiStar
+              <FaStar 
                 size={24}
                 key={index}
                 onClick={() => setRating(index + 1)}

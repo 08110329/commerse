@@ -6,7 +6,7 @@ import { pLists } from "@/mockData";
 export default function Home() {
   return (
     <div className="flex py-24 h-screen px-96 bg-[#F4F4F5] justify-center ">
-      <div className="container w-[590px] h-fit flex flex-col justify-center gap-4">
+      <div className="container w-[590px] h-screen flex flex-col justify-center gap-4 text-black">
         <div className="flex text-xl font-bold gap-1">
           <p>Хадгалсан бараа </p>
           <p className="text-[#5E6166]">(3)</p>

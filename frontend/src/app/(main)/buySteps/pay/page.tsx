@@ -19,7 +19,7 @@ export default function Home() {
     <div className="flex bg-[#F4F4F5] justify-center ">
       <div className="container flex justify-center ">
         <div className="h-screen flex flex-col gap-16">
-          <div className="flex items-center mt-28 justify-center">
+          <div className="flex items-center mt-28 justify-center text-black">
             <div className="border rounded-full w-8 h-8 flex justify-center items-center border-black  hover:bg-[#2563EB] hover:text-white hover:border-none">
               <p>1</p>
             </div>
@@ -33,7 +33,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-[687px] h-[656px] p-8 grid bg-white rounded-xl">
+          <div className="w-[687px] h-[656px] p-8 grid bg-white rounded-xl text-black">
             <p className="font-semibold text-lg h-fit">3. Төлбөр төлөлт</p>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col py-9 w-full items-center gap-6">

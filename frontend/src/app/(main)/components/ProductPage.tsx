@@ -14,7 +14,7 @@ export const ProductPage = () => {
   const [click, setClick] = useState(false);
   const [products, setProducts] = useState();
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const getOneProduct = async () => {
     try {
@@ -71,7 +71,7 @@ export const ProductPage = () => {
           <div className="pt-28 flex flex-col gap-20 relative justify-between">
             <div className="pr-20 grid gap-6">
               <div className="grid gap-6">
-                <div className="grid gap-5">
+                <div className="grid gap-5 text-black">
                   <div className="border rounded-2xl w-fit px-3 py-1 text-md font-semibold border-[#2563EB]">
                     <p>шинэ</p>
                   </div>
@@ -83,7 +83,7 @@ export const ProductPage = () => {
                     Зэрлэг цэцгийн зурагтай даавуун материалтай цамц
                   </p>
                 </div>
-                <div className="font-normal text-lg grid gap-2">
+                <div className="font-normal text-lg grid gap-2 text-black">
                   <p>Хэмжээний заавар</p>
                   <div className="flex gap-2">
                     {numberss.map((number) => (
@@ -96,7 +96,7 @@ export const ProductPage = () => {
                     ))}
                   </div>
                 </div>
-                <div className="flex gap-3 items-center">
+                <div className="flex gap-3 items-center text-black">
                   <div className="border rounded-full w-9 h-9 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400">
                     <p>-</p>
                   </div>
@@ -106,7 +106,7 @@ export const ProductPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 w-48">
+              <div className="flex flex-col gap-3 w-48 text-black">
                 <p className="text-2xl font-bold">120’000₮</p>
                 <button className="text-base font-medium bg-[#2563EB] h-9 rounded-3xl text-white">
                   Сагсанд нэмэх
@@ -115,7 +115,7 @@ export const ProductPage = () => {
             </div>
             <div className="grid gap-3">
               <div>
-                <div className="flex gap-4 text-xl font-normal">
+                <div className="flex gap-4 text-xl font-normal text-black">
                   <p>Үнэлгээ</p>
                   <button
                     className="text-[#2563EB] border-b-[1.5px] border-[#2563EB]"

@@ -1,7 +1,8 @@
-import { CiStar } from "react-icons/ci";
+
+import { FaStar } from "react-icons/fa";
 
 export const StarIcon = () => {
-  const iconStars = [{ id: 1, icon: <CiStar /> }];
+  const iconStars = [{ id: 1, icon: <FaStar /> }];
   return (
     <div className="flex">
       <div className="flex gap-1">

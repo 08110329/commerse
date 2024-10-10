@@ -42,7 +42,7 @@ export default function Home() {
                 <div className="grid gap-6 px-6 pt-8">
                   <div className="grid rounded-2xl gap-6">
                     <div className="flex justify-between items-center">
-                      <div className="flex gap-2 items-center font-bold text-xl">
+                      <div className="flex gap-2 items-center font-bold text-xl text-black">
                         <p className="text-base font-bold">1.</p>
                         <p className="text-base font-bold">Сагс</p>
                         <p className="text-base font-bold text-[#71717A]">
@@ -59,7 +59,7 @@ export default function Home() {
                                 <Image src={pList.image} fill alt="t-shirt" />
                               </div>
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col text-black">
                               <p className="font-normal text-base">
                                 {pList.title}
                               </p>
@@ -74,14 +74,14 @@ export default function Home() {
                         );
                       })}
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-black">
                       <p className="text-base font-normal">Нийт төлөх дүн:</p>
                       <span className="text-lg font-bold">360’000₮</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="w-[623px] h-[614] p-8 grid gap-9 bg-white rounded-xl">
+              <div className="w-[623px] h-[614] p-8 grid gap-9 bg-white rounded-xl text-black">
                 <p className="font-semibold text-lg">
                   2. Хүргэлтийн мэдээлэл оруулах
                 </p>
@@ -99,7 +99,7 @@ export default function Home() {
                   })}
                 </div>
 
-                <div className="flex justify-between ">
+                <div className="flex justify-between text-black">
                   {paths.map((path, index) => (
                     <Link key={index} href={path.path}>
                       <button className="border px-9 py-2 rounded-3xl hover:bg-[#2563EB] hover:text-white text-base font-medium">

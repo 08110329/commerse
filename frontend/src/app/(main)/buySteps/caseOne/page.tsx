@@ -19,9 +19,9 @@ export default function Home() {
   return (
     <div className="flex bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center ">
-        <div className="h-screen flex flex-col items-center">
-          <div className="w-[686px] h-[684] grid gap-16">
-            <div className="flex items-center justify-center mt-28">
+        <div className="flex flex-col items-center text-black">
+          <div className="w-[686px] h-fit grid gap-16">
+            <div className="flex items-center justify-center mt-28 text-black">
               <div className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-black hover:text-white">
                 <p>1</p>
               </div>
@@ -35,10 +35,10 @@ export default function Home() {
               </div>
             </div>
             <div className=" bg-white rounded-xl">
-              <div className="px-6 py-8 grid gap-6">
+              <div className=" px-6 py-8 grid gap-6">
                 <div className="grid rounded-2xl gap-6">
                   <div className="flex justify-between items-center">
-                    <div className="flex gap-2 items-center font-bold text-xl">
+                    <div className="flex gap-2 items-center font-bold text-xl text-black">
                       <p className="text-base font-bold">1.</p>
                       <p className="text-base font-bold">Сагс</p>
                       <p className="text-base font-bold text-[#71717A]">(4)</p>
@@ -57,7 +57,7 @@ export default function Home() {
                             </div>
                           </div>
 
-                          <div className="flex flex-col gap-2 ">
+                          <div className="flex flex-col gap-2 text-black">
                             <div className="w-[414px]">
                               <p className="font-normal text-base">
                                 {pList.title}
@@ -82,7 +82,7 @@ export default function Home() {
                     })}
                   </div>
 
-                  <div className="flex justify-between pb-6">
+                  <div className="flex justify-between pb-6 text-black">
                     <p className="text-base font-normal">Нийт төлөх дүн:</p>
                     <span className="text-lg font-bold">360’000₮</span>
                   </div>
