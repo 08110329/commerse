@@ -2,18 +2,22 @@ import { RequestHandler } from "express";
 import { reviewModel } from "../models/review.schema";
 
 export const createReview: RequestHandler = async (req, res) => {
+  console.log(req.body);
+
   try {
     const { userId, productId, comment, rating } = req.body;
-    console.log(req.body);
 
-    // if (!userId || !productId || !comment || !rating) {
-    //   return res.status(400).json({
-    //     message: "bugdiig shaardana",
-    //   });
-    // }
+    if (!userId || !productId || !comment || !rating) {
+      return res.status(400).json({
+        message: "bugdiig shaardana",
+      });
+    }
 
     const newReview = await reviewModel.create({
-      ...req.body,
+      userId,
+      productId,
+      comment,
+      rating,
     });
 
     return res.status(200).json({

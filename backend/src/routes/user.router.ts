@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createUserController,
+  getUser,
   getUserController,
   logout,
 } from "../controllers/create-user.controller";
@@ -12,5 +13,6 @@ userRouter
   .post("/register", createUserController)
   .post("/login", getUserController)
   .post("/logout", logout)
-  .get("/me", authMiddleware, getMe);
+  .get("/me", authMiddleware, getMe)
+  .get("/getUser/:userId", getUser);
 export { userRouter };
