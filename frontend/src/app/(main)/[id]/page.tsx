@@ -4,18 +4,30 @@ import { ProductPage } from "@/app/(main)/components/ProductPage";
 import { backend } from "@/axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+interface Products {
+  _id: string;
+  title: string;
+  price: string;
+  image: string[];
+  description: string;
+  size: string;
+  color: string;
+  productCode: string;
+  torolId: string;
+  quantity: number;
+}
 
 export default function Home() {
-  const [product, setProduct] = useState();
+  const [products, setProducts] = useState<Products[]>([]);
   const { id } = useParams();
   console.log(id);
 
   const getOneProduct = async () => {
     try {
-      const response = await backend.get(`/getProduct/${id}`);
-      console.log(response.data.message);
-      setProduct(response.data.product);
-      console.log(response.data.product);
+      const { data } = await backend.get(`/getProduct/${id}`);
+
+      setProducts(data.products);
+      console.log(data.products);
     } catch (error) {
       console.log(error);
     }

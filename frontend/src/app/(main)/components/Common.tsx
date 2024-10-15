@@ -18,7 +18,7 @@ export const Common = ({ productId }: { productId: string }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [reviews, setReviews] = useState<reviews[]>([]);
-  const [userId, setUserId] = useState("");
+
   // const [productId, setproductId] = useState("");
 
   const [start, setStart] = useState(false);

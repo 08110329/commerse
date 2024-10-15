@@ -60,7 +60,7 @@ export default function Home() {
               <div className="flex flex-col gap-4">
                 <h1 className="text-lg font-bold">Ангилал</h1>
                 <div className="flex flex-col gap-2">
-                  {torols?.map((torol, index) => {
+                  {torols?.map((torol) => {
                     return (
                       <p
                         onClick={() => setTorolId(torol._id)}
