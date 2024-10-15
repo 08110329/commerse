@@ -40,7 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await backend.get("/getProduct");
+      const { data } = await backend.get("/getProduct/getProduct");
       console.log(data.products);
 
       setProducts(data.products);
@@ -50,7 +50,7 @@ export default function Home() {
     getData();
   }, []);
 
-  const showProduct = products.filter((product) => product.torolId === torolId);
+  const showProduct = products.filter((product) => product.torolId === torolId); // productiig idgaar ylgah
   return (
     <div className="flex py-24 w-full px-96 bg-[#F4F4F5] justify-center ">
       <div className="container w-full">

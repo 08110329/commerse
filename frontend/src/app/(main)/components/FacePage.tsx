@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import Link from "next/link";
@@ -20,7 +21,7 @@ export const FacePage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await backend.get("/getProduct");
+      const { data } = await backend.get("/getProduct/getProduct");
       console.log(data.products);
 
       setProducts(data.products);
@@ -62,10 +63,7 @@ export const FacePage = () => {
                     className={`relative w-[244px] ${customHeight} overflow-hidden hover:border rounded-2xl`}
                   >
                     <Image
-                      src={
-                        product.image[0] ||
-                        "https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg"
-                      }
+                      src={product.image[0]}
                       fill
                       alt="prompt"
                       className="rounded-2xl hover:scale-110 duration-700"

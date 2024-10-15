@@ -74,7 +74,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   );
   const getProducts = async () => {
     try {
-      const response = await backend.get("/getProduct");
+      const response = await backend.get("/getProduct/getProduct");
       setProducts(response.data);
       console.log(response.data);
     } catch (error) {

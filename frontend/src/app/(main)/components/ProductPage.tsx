@@ -18,7 +18,7 @@ export const ProductPage = () => {
 
   const getOneProduct = async () => {
     try {
-      const response = await backend.get(`/getProduct/${id}`);
+      const response = await backend.get(`/getProduct/getProduct/${id}`);
       console.log(response.data.message);
       setProducts(response.data.products);
       console.log(response.data.products);
@@ -135,7 +135,7 @@ export const ProductPage = () => {
                 </div>
               </div>
               <div className={`grid gap-3 ${click ? "visible" : "hidden"}`}>
-                <Common />
+                <Common productId={id as string} />
               </div>
             </div>
           </div>
