@@ -73,19 +73,19 @@ export const Dashboard = () => {
     },
   ];
   return (
-    <div className="h-screen bg-gray-50 flex justify-center">
-      <div className="h-screen container ">
+  
+      <div className=" container bg-gray-50 flex justify-center">
         <div className="w-full pt-8">
           <div className="flex w-[1270px] h-[136px]  mx-6 gap-6">
-            <div className="px-6 py-4 flex-1 bg-white grid gap-3 rounded-xl">
-              <div className="flex gap-2 text-base font-semibold items-center">
+            <div className="px-6 py-4 flex-1 bg-white grid gap-3 rounded-xl text-black">
+              <div className="flex gap-2 text-base font-semibold items-center text-black">
                 <BsCurrencyDollar className="w-5 h-5" />
                 <p>Орлого</p>
               </div>
               <span className="text-3xl font-bold">235,000₮</span>
               <p className="text-sm font-normal text-[#5E6166]">Өнөөдөр</p>
             </div>
-            <div className="px-6 py-4 flex-1  bg-white grid gap-3 rounded-xl">
+            <div className="px-6 py-4 flex-1  bg-white grid gap-3 rounded-xl text-black">
               <div className="flex gap-2 text-base font-semibold items-center">
                 <BiSolidNotepad className="w-5 h-5" />
                 <p>Захиалга</p>
@@ -94,7 +94,7 @@ export const Dashboard = () => {
               <p className="text-sm font-normal text-[#5E6166]">Өнөөдөр</p>
             </div>
           </div>
-          <div className="w-[1270px] mt-9 mx-6 gap-6 flex ">
+          <div className="w-[1270px] mt-9 mx-6 gap-6 flex text-black">
             <div className="grid bg-white flex-1 px-6 py-4 gap-5 rounded-xl">
               <div className="text-lg font-semibold flex items-center justify-between">
                 <p>Шилдэг бүтээгдэхүүн</p>
@@ -139,6 +139,6 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+
   );
 };

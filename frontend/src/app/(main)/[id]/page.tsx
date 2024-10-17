@@ -20,7 +20,6 @@ interface Products {
 export default function Home() {
   const [products, setProducts] = useState<Products[]>([]);
   const { id } = useParams();
-  console.log(id);
 
   const getOneProduct = async () => {
     try {
@@ -38,10 +37,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex bg-[#F4F4F5] justify-center ">
-      <div className="container flex  justify-center ">
+    <div className="flex bg-[#F4F4F5] justify-center border-2 border-red-600 ">
+      <div className="container flex  justify-center  ">
         <div className="h-fit">
-          <div className="grid gap-20 pt-14 pb-24">
+          <div className="grid gap-20 pt-14 pb-24 border-2 border-red-600">
             <ProductPage />
             <div className="grid gap-7 text-black">
               <h1 className="text-4xl font-bold">Холбоотой бараа</h1>

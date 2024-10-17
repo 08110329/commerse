@@ -52,8 +52,8 @@ export const ContactProduct = () => {
   const router = useRouter();
 
   return (
-    <div className="flex bg-[#F4F4F5] justify-center ">
-      <div className="container flex  justify-center ">
+    <div className="flex bg-[#F4F4F5] justify-center">
+      <div className="container flex justify-center ">
         <div
           className="grid grid-cols-4 grid-rows-2 gap-8"
           // onClick={() => router.push(`/${id}`)}

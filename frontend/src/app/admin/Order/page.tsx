@@ -8,10 +8,8 @@ import { OrderTab } from "../components/OrderTab";
 
 export default function Home() {
   return (
-    <div className="h-screen bg-gray-50 w-full">
-      <div className="w-full h-screen container flex ">
-        <div className="flex flex-col w-full gap-8">
-          <div className="flex hover:text-black text-[#3F4145] h-fit border-b-2 w-screen">
+        <div className="container flex flex-col gap-8 bg-gray-50 h-screen">
+          <div className="flex hover:text-black text-[#3F4145] h-fit border-b-2 w-full">
             {Lists.map((List) => {
               return (
                 <button
@@ -44,7 +42,5 @@ export default function Home() {
           </div>
           <OrderTab />
         </div>
-      </div>
-    </div>
   );
 }

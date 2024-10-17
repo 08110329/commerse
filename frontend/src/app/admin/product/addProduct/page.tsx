@@ -102,16 +102,14 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full h-screen bg-gray-50">
-      <div className="w-full h-fit container flex ">
-        <div className="flex flex-col w-full gap-8 ">
-          <div className="w-screen border flex h-fit bg-white text-black px-4 py-2 items-center gap-4">
+        <div className="flex flex-col gap-8 container bg-gray-50 border-2 border-red-700">
+          <div className="border flex bg-white text-black px-4 py-2 items-center gap-4">
             <IoIosArrowBack />
             <p className="py-3 text-base font-normal">Бүтээгдэхүүн нэмэх</p>
           </div>
           <div className="flex gap-5 px-6">
             <div className="flex flex-col flex-1 gap-6">
-              <div className="flex flex-col h-full bg-white px-6 py-6 rounded-3xl gap-4 text-black">
+              <div className="flex flex-col bg-white px-6 py-6 rounded-3xl gap-4 text-black">
                 <div className="grid gap-2">
                   <label>Бүтээгдэхүүний нэр</label>
                   <input
@@ -140,7 +138,7 @@ export default function Home() {
                   ></input>
                 </div>
               </div>
-              <div className="flex flex-col flex-1 h-full bg-white px-6 py-6 rounded-3xl gap-4 text-black">
+              <div className="flex flex-col flex-1 bg-white px-6 py-6 rounded-3xl gap-4 text-black">
                 <h1>Бүтээгдэхүүний зураг</h1>
                 <div className="grid grid-cols-4 grid-rows-1 w-full h-[125px] gap-2">
                   <div className="border border-dashed rounded-xl">
@@ -169,7 +167,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-1 h-full bg-white px-6 py-6 rounded-3xl gap-4 text-black">
+              <div className="flex flex-1 bg-white px-6 py-6 rounded-3xl gap-4 text-black">
                 <div className="flex-1 grid gap-2">
                   <h1>Үндсэн үнэ</h1>
                   <input
@@ -197,8 +195,8 @@ export default function Home() {
               </div>
             </div>
             <div className="flex-1 grid gap-5">
-              <div className="flex flex-col w-full h-fit bg-white gap-5 text-black rounded-3xl border px-6 py-6">
-                <div className="w-full h-fit flex flex-col gap-3">
+              <div className=" bg-white gap-5 text-black rounded-3xl border px-6 py-6">
+                <div className="flex flex-col gap-3">
                   <p>Ерөнхий ангилал</p>
                   <input
                     className="border w-full px-2 py-2"
@@ -237,7 +235,7 @@ export default function Home() {
                   </Select>
                 </div>
               </div>
-              <div className="flex flex-col w-full h-fit bg-white gap-5 text-black rounded-3xl border px-6 py-6">
+              <div className="flex flex-col bg-white gap-5 text-black rounded-3xl border px-6 py-6">
                 <h1>Төрөл</h1>
                 <div className="grid gap-2">
                   <div className="flex gap-2 items-center">
@@ -269,7 +267,7 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-              <div className="flex flex-col w-full h-fit bg-white gap-2 text-black rounded-3xl border px-6 py-6">
+              <div className="flex flex-col bg-white gap-2 text-black rounded-3xl border px-6 py-6">
                 <label>Таг</label>
                 <input
                   placeholder="Таг нэмэх..."
@@ -282,18 +280,16 @@ export default function Home() {
             </div>
           </div>
           <div className="flex justify-end gap-4 px-6">
-            <button className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white">
+            <button className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white text-black">
               Ноорог
             </button>
             <button
-              className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white"
+              className="border hover:bg-black hover:text-white rounded-lg px-5 py-4 bg-white text-black"
               onClick={() => createProduct()}
             >
               Нийтлэх
             </button>
           </div>
         </div>
-      </div>
-    </div>
   );
 }

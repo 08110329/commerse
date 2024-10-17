@@ -41,7 +41,7 @@ export const HynaltinSambar = () => {
     },
   ];
   return (
-    <div className="w-[422px] h-screen bg-white border">
+    <div className="w-[422px] container bg-white border">
       <div className="flex flex-col pt-6 gap-4 text-black">
         {paths.map((path, i) => {
           const IconComponent = path.icon;

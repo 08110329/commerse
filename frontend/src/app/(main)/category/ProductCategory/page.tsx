@@ -52,12 +52,10 @@ export default function Home() {
 
   const showProduct = products.filter((product) => product.torolId === torolId); // productiig idgaar ylgah
   return (
-    <div className="flex py-24 w-full px-96 bg-[#F4F4F5] justify-center ">
-      <div className="container w-full">
-        <div className="h-fit">
-          <div className=" flex gap-5">
-            <div className="grid w-[245px] h-fit gap-12 ">
-              <div className="flex flex-col gap-4">
+      <div className="container h-full bg-[#F4F4F5]">
+          <div className="flex gap-5 justify-center py-10 border-2 border-red-600">
+            <div className="w-60 gap-12">
+              <div className="flex flex-col gap-4 text-black">
                 <h1 className="text-lg font-bold">Ангилал</h1>
                 <div className="flex flex-col gap-2">
                   {torols?.map((torol) => {
@@ -73,7 +71,7 @@ export default function Home() {
                   })}
                 </div>
               </div>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 text-black">
                 <h1 className="text-lg font-bold">Хэмжээ</h1>
                 <div className="flex flex-col gap-2">
                   {numberss.map((numbers) => {
@@ -90,7 +88,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className=" grid grid-cols-3 grid-rows-5 gap-12 w-full">
+            <div className=" grid grid-cols-3 grid-rows-5 gap-12 text-black h-fit">
               {showProduct.map((item) => (
                 <div className=" w-[330px] flex flex-col gap-3" key={item._id}>
                   <div className="relative w-full h-[450px]">
@@ -111,7 +109,5 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 }
