@@ -7,11 +7,7 @@ export const createReview: RequestHandler = async (req, res) => {
   try {
     const { userId, productId, comment, rating } = req.body;
 
-    if (!userId || !productId || !comment || !rating) {
-      return res.status(400).json({
-        message: "bugdiig shaardana",
-      });
-    }
+    console.log(req.body);
 
     const newReview = await reviewModel.create({
       userId,
@@ -19,6 +15,12 @@ export const createReview: RequestHandler = async (req, res) => {
       comment,
       rating,
     });
+
+    // if (!userId || !productId || !comment || !rating) {
+    //   return res.status(400).json({
+    //     message: "bugdiig shaardana",
+    //   });
+    // }
 
     return res.status(200).json({
       newReview,

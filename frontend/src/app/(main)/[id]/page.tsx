@@ -24,7 +24,7 @@ export default function Home() {
 
   const getOneProduct = async () => {
     try {
-      const { data } = await backend.get(`/getProduct/${id}`);
+      const { data } = await backend.get(`/Product/getProduct/${id}`);
 
       setProducts(data.products);
       console.log(data.products);

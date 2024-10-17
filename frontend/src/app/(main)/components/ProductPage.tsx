@@ -1,35 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
 import { numberss, product, productsImage } from "./mockdata";
 import { Common } from "./Common";
 import { useParams } from "next/navigation";
-import { backend } from "@/axios";
 
+// interface Products {
+//   _id: string;
+//   title: string;
+//   price: string;
+//   image: string;
+//   description: string;
+//   size: string;
+//   color: string;
+//   productCode: string;
+//   torolId: string;
+//   quantity: number;
+// }
+// interface sizes {
+//   _id: string;
+//   size: string[];
+// }
 export const ProductPage = () => {
-  const [selectImage, setSelectImage] = useState(productsImage[0]); // jijig zurgn dree dathad tom bolgohiin tuld set ashiglaaad
+  const [selectImage, setSelectImage] = useState(productsImage[0]); // jijig zurgn dree darhad tom bolgohiin tuld set ashiglaaad
   const [click, setClick] = useState(false);
-  const [products, setProducts] = useState();
   const { id } = useParams();
-  // console.log(id);
 
-  const getOneProduct = async () => {
-    try {
-      const response = await backend.get(`/getProduct/getProduct/${id}`);
-      console.log(response.data.message);
-      setProducts(response.data.products);
-      console.log(response.data.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getOneProduct();
-  }, []);
   const handleClick = (image: product) => {
     setSelectImage(image);
   }; /// handleclick deer image n productiinh gd setselecteeeparamtr dr n image shuu gj ogood

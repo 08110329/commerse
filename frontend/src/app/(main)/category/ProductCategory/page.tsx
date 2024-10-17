@@ -31,7 +31,7 @@ export default function Home() {
 
   useEffect(() => {
     const getCategory = async () => {
-      const res = await backend.get("/category");
+      const res = await backend.get("/getCategory");
       console.log(res.data.torols);
       setTorols(res.data.torols);
     };
@@ -40,7 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await backend.get("/getProduct/getProduct");
+      const { data } = await backend.get("/getProducts");
       console.log(data.products);
 
       setProducts(data.products);

@@ -8,8 +8,8 @@ import {
 
 const productRouter = Router();
 productRouter
-  .post("/createProduct", createProduct)
-  .get("/getProduct", getProducts)
+  .post("/product", createProduct)
+  .get("/getProducts", getProducts)
   .delete("/deleteProduct/:id", deleteProduct)
   .get("/getProduct/:id", getProduct);
 

@@ -59,7 +59,7 @@ export default function Home() {
   };
   const createProduct = async () => {
     try {
-      const res = await backend.post("/createProduct", {
+      const res = await backend.post("/product", {
         title: productName,
         description: productDesc,
         productCode: productCode,
@@ -73,12 +73,21 @@ export default function Home() {
       setProductDesc("");
       setProductCode("");
       setZurag("");
-
       console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const getCategory = async () => {
+      const res = await backend.get("/getCategory");
+      console.log(res.data.torols);
+      setTorols(res.data.torols);
+    };
+    getCategory();
+  }, []);
+  console.log(category);
 
   const createCategory = async () => {
     try {
@@ -91,16 +100,6 @@ export default function Home() {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    const getCategory = async () => {
-      const res = await backend.get("/category");
-      console.log(res.data.torols);
-      setTorols(res.data.torols);
-    };
-    getCategory();
-  }, []);
-  console.log(category);
 
   return (
     <div className="w-full h-screen bg-gray-50">

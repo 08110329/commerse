@@ -17,21 +17,21 @@ export const Common = ({ productId }: { productId: string }) => {
   const { user } = useUser();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const [reviews, setReviews] = useState<reviews[]>([]);
-
-  // const [productId, setproductId] = useState("");
-
   const [start, setStart] = useState(false);
   const [userData, setUserData] = useState({ _id: "", username: "" });
+  const [reviews, setReviews] = useState<reviews[]>([]);
 
   useEffect(() => {
-    const getReview = async () => {
-      const res = await backend.get("/review/getReview");
-      console.log(res.data.reviews);
-      setReviews(res.data.reviews);
-    };
     getReview();
   }, []);
+  const getReview = async () => {
+    const res = await backend.get("/getReview");
+    console.log(res.data.reviews);
+    setReviews(res.data.reviews);
+  };
+  const render = () => {
+    getReview();
+  };
   // username duudah function
   useEffect(() => {
     const getUsername = async () => {
@@ -44,19 +44,19 @@ export const Common = ({ productId }: { productId: string }) => {
 
   const createReview = async () => {
     try {
-      const res = await backend.post("/review/createReview", {
+      const res = await backend.post("/createReview", {
         comment: comment,
         userId: userData?._id,
         productId: productId,
         rating: rating,
       });
-      setComment("");
-      console.log(res.data);
+      console.log(res.data.comment);
     } catch (error) {
       console.log(error);
     }
+    render();
+    setComment("");
   };
-  console.log(reviews.length + "ben");
   return (
     <div className={`grid gap-4 ${start ? "hidden" : "visible"}`}>
       <div className="h-fit grid gap-6 w-full pt-1 border">
@@ -97,8 +97,8 @@ export const Common = ({ productId }: { productId: string }) => {
         </div>
         <div className="text-lg font-medium">
           <p>Сэтгэгдэл үлдээх:</p>
-          <input
-            className="border w-full h-[94px] rounded-lg"
+          <textarea
+            className="p-2 border w-full h-[94px] rounded-lg"
             placeholder="Энд бичнэ үү"
             value={comment}
             onChange={(event) => setComment(event.target.value)}

@@ -21,7 +21,7 @@ export const FacePage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await backend.get("/getProduct/getProduct");
+      const { data } = await backend.get("/getProducts");
       console.log(data.products);
 
       setProducts(data.products);

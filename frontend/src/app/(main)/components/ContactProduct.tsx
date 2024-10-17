@@ -25,7 +25,7 @@ export const ContactProduct = () => {
 
   const getOneProduct = async () => {
     try {
-      const response = await backend.get(`/getProduct/getProduct/${id}`);
+      const response = await backend.get(`getProduct/${id}`);
       console.log(response.data.message);
       setProduct(response.data.product);
       console.log(response.data.product);
@@ -40,7 +40,7 @@ export const ContactProduct = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await backend.get("/getProduct/getProduct");
+      const { data } = await backend.get("/getProducts");
       console.log(data.products);
 
       setProducts(data.products);

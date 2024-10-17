@@ -7,19 +7,6 @@ import { IoAdd } from "react-icons/io5";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { TbCategory } from "react-icons/tb";
 import Link from "next/link";
-
-import { Table } from "lucide-react";
-import {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/app/(main)/components/ui/table";
-import { productLists } from "../../../mockData";
-import Image from "next/image";
-import { HiOutlineTrash } from "react-icons/hi";
-import { LuPencilLine } from "react-icons/lu";
 import { ProductCategory } from "../components/ProductCategory";
 
 export default function Home() {
