@@ -1,6 +1,7 @@
 "use client";
 import { backend } from "@/axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
@@ -22,13 +23,14 @@ export const ContactProduct = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [product, setProduct] = useState();
   const { id } = useParams();
+  const [torolId, setTorolId] = useState<string>("");
 
   const getOneProduct = async () => {
     try {
       const response = await backend.get(`getProduct/${id}`);
-      console.log(response.data.message);
+      
       setProduct(response.data.product);
-      console.log(response.data.product);
+      setTorolId(response.data.product.torolId)
     } catch (error) {
       console.log(error);
     }
@@ -50,6 +52,7 @@ export const ContactProduct = () => {
   }, []);
 
   const router = useRouter();
+  const showProduct = products.filter((product) => product.torolId === torolId); 
 
   return (
     <div className="flex bg-[#F4F4F5] justify-center">
@@ -58,9 +61,10 @@ export const ContactProduct = () => {
           className="grid grid-cols-4 grid-rows-2 gap-8"
           // onClick={() => router.push(`/${id}`)}
         >
-          {products?.map((product) => {
+          {showProduct?.map((product) => {
             return (
               <div className=" w-[330px] flex flex-col gap-3" key={product._id}>
+                <Link href={`${product._id}`}>
                 <div className="relative w-full h-[450px]">
                   <Image
                     src={
@@ -79,6 +83,7 @@ export const ContactProduct = () => {
                   <p className="text-2xl font-normal">{product.title}</p>
                   <p className="flex gap-4 items-center">{product.price}</p>
                 </div>
+                </Link>
               </div>
             );
           })}

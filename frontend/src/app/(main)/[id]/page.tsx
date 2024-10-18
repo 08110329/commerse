@@ -1,41 +1,9 @@
 "use client";
 import { ContactProduct } from "@/app/(main)/components/ContactProduct";
 import { ProductPage } from "@/app/(main)/components/ProductPage";
-import { backend } from "@/axios";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-interface Products {
-  _id: string;
-  title: string;
-  price: string;
-  image: string[];
-  description: string;
-  size: string;
-  color: string;
-  productCode: string;
-  torolId: string;
-  quantity: number;
-}
+
 
 export default function Home() {
-  const [products, setProducts] = useState<Products[]>([]);
-  const { id } = useParams();
-
-  const getOneProduct = async () => {
-    try {
-      const { data } = await backend.get(`/Product/getProduct/${id}`);
-
-      setProducts(data.products);
-      console.log(data.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getOneProduct();
-  }, []);
-
   return (
     <div className="flex bg-[#F4F4F5] justify-center border-2 border-red-600 ">
       <div className="container flex  justify-center  ">
