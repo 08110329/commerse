@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
+import { useUser } from "./providers/AuthProvider";
+import { useParams } from "next/navigation";
 interface Products {
   _id: string;
   title: string;
@@ -19,6 +21,10 @@ interface Products {
 export const FacePage = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [users, setUsers] = useState("");
+  const [userData, setUserData] = useState({ _id: "", username: "" });
+  const [productData, setProductData] = useState({ _id: "", torolId: "" });
+  const { user } = useUser();
+  const { id } = useParams(); 
 
   useEffect(() => {
     const getData = async () => {
@@ -30,13 +36,33 @@ export const FacePage = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    const getUsername = async () => {
+      const res = await backend.get(`/user/getUser/${user?.user?.id}`);
+      setUserData(res.data.user);
+      // console.log(res.data.user);
+    };
+    getUsername();
+  }, []);
+
+  useEffect(()=>{
+    const getProductId = async ()=> {
+      const res =await backend.get(`/getProduct/${products?.id}`)
+      setProductData(res.data.product)
+      console.log(res.data);
+      
+    };
+    getProductId()
+  }, [])
+
   const createSave = async (userId: string, productId: string) => {
     try {
       const res = await backend.post("/createSave", {
-        users: userId,
-        products: productId,
+        userId: userData?._id,
+        productId:productData?._id
       });
-      setUsers("")
+      setUsers("");
+      
       console.log("Saved successfully:", res.data);
     } catch (error) {
       console.error("Error saving data:", error);

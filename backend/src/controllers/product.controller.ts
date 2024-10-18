@@ -56,7 +56,7 @@ export const getProducts: RequestHandler = async (req, res) => {
 
 export const getProduct: RequestHandler = async (req, res) => {
   const { id } = req.params;
-  console.log(req.params.id);
+  // console.log(req.params.id);
   try {
     const product = await productModel.findById(id);
 
