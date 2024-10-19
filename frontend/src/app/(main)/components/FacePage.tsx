@@ -18,13 +18,16 @@ interface Products {
   torolId: string;
   quantity: number;
 }
-export const FacePage = () => {
+interface Save {
+  _id: string;
+  userId: string;
+  productId: string;// Үндсэн бүтээгдэхүүн
+}
+export const FacePage = ({ productId }: { productId: string }) => {
   const [products, setProducts] = useState<Products[]>([]);
   const [users, setUsers] = useState("");
   const [userData, setUserData] = useState({ _id: "", username: "" });
-  const [productData, setProductData] = useState({ _id: "", torolId: "" });
   const { user } = useUser();
-  const { id } = useParams(); 
 
   useEffect(() => {
     const getData = async () => {
@@ -45,21 +48,11 @@ export const FacePage = () => {
     getUsername();
   }, []);
 
-  useEffect(()=>{
-    const getProductId = async ()=> {
-      const res =await backend.get(`/getProduct/${products?.id}`)
-      setProductData(res.data.product)
-      console.log(res.data);
-      
-    };
-    getProductId()
-  }, [])
-
-  const createSave = async (userId: string, productId: string) => {
+  const createSave = async () => {
     try {
       const res = await backend.post("/createSave", {
         userId: userData?._id,
-        productId:productData?._id
+       
       });
       setUsers("");
       

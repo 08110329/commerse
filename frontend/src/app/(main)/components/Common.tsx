@@ -24,6 +24,7 @@ export const Common = ({ productId }: { productId: string }) => {
   useEffect(() => {
     getReview();
   }, []);
+  
   const getReview = async () => {
     const res = await backend.get("/getReview");
     console.log(res.data.reviews);
