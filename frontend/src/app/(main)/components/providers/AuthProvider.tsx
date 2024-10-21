@@ -76,7 +76,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     try {
       const response = await backend.get("/getProducts");
       setProducts(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }

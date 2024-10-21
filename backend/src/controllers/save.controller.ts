@@ -3,11 +3,11 @@ import { saveModel } from "../models/save.schema";
 
 export const createSave: RequestHandler = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    const { users, products } = req.body;
 
     const newSave = new saveModel({
-      userId,
-      productId,
+      users,
+      products,
     });
     const save = await newSave.save();
     return res.status(200).json({

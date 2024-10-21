@@ -24,10 +24,10 @@ export const Common = ({ productId }: { productId: string }) => {
   useEffect(() => {
     getReview();
   }, []);
-  
+
   const getReview = async () => {
     const res = await backend.get("/getReview");
-    console.log(res.data.reviews);
+    // console.log(res.data.reviews);
     setReviews(res.data.reviews);
   };
   const render = () => {
@@ -38,7 +38,7 @@ export const Common = ({ productId }: { productId: string }) => {
     const getUsername = async () => {
       const res = await backend.get(`/user/getUser/${user?.user?.id}`);
       setUserData(res.data.user);
-      console.log(res.data.user);
+      // console.log(res.data.user);
     };
     getUsername();
   }, []);

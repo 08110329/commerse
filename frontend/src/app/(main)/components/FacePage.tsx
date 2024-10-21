@@ -1,11 +1,11 @@
 "use client"
+
 import { backend } from "@/axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
-import { useUser } from "./providers/AuthProvider";
-import { useParams } from "next/navigation";
+
 interface Products {
   _id: string;
   title: string;
@@ -18,49 +18,19 @@ interface Products {
   torolId: string;
   quantity: number;
 }
-interface Save {
-  _id: string;
-  userId: string;
-  productId: string;// Үндсэн бүтээгдэхүүн
-}
-export const FacePage = ({ productId }: { productId: string }) => {
+
+export const FacePage = () => {
   const [products, setProducts] = useState<Products[]>([]);
-  const [users, setUsers] = useState("");
-  const [userData, setUserData] = useState({ _id: "", username: "" });
-  const { user } = useUser();
 
   useEffect(() => {
     const getData = async () => {
       const { data } = await backend.get("/getProducts");
-      console.log(data.products);
+      // console.log(data.products);
       setProducts(data.products);
     };
 
     getData();
   }, []);
-
-  useEffect(() => {
-    const getUsername = async () => {
-      const res = await backend.get(`/user/getUser/${user?.user?.id}`);
-      setUserData(res.data.user);
-      // console.log(res.data.user);
-    };
-    getUsername();
-  }, []);
-
-  const createSave = async () => {
-    try {
-      const res = await backend.post("/createSave", {
-        userId: userData?._id,
-       
-      });
-      setUsers("");
-      
-      console.log("Saved successfully:", res.data);
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
-  };
 
   return (
     <div className="flex justify-center h-fit py-12 border-4">
@@ -97,7 +67,7 @@ export const FacePage = ({ productId }: { productId: string }) => {
                       style={{ objectFit: "cover" }}
                       sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
                     />
-                    <CiHeart className="absolute right-4 top-4 w-10 h-10" onClick={() => createSave(users, product._id)} />
+                    <CiHeart className="absolute right-4 top-4 w-10 h-10"  />
                   </Link>
                   <div className="text-3xl font-bold grid gap-1">
                     <p className="text-2xl font-normal">{product.title}</p>

@@ -1,12 +1,12 @@
 import { model, Schema, Types } from "mongoose";
 
 const saveSchema = new Schema({
-  userId: {
+  users: {
     type: [Schema.Types.ObjectId],
     ref: "user",
     required: false,
   },
-  productId: {
+  products: {
     type: [Schema.Types.ObjectId],
     ref: "product",
     required: false,

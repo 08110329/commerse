@@ -43,8 +43,7 @@ export const ContactProduct = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await backend.get("/getProducts");
-      console.log(data.products);
-
+      // console.log(data.products);
       setProducts(data.products);
     };
 
