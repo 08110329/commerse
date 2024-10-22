@@ -52,62 +52,62 @@ export default function Home() {
 
   const showProduct = products.filter((product) => product.torolId === torolId); // productiig idgaar ylgah
   return (
-      <div className="container h-full bg-[#F4F4F5]">
-          <div className="flex gap-5 justify-center py-10 border-2 border-red-600">
-            <div className="w-60 gap-12">
-              <div className="flex flex-col gap-4 text-black">
-                <h1 className="text-lg font-bold">Ангилал</h1>
-                <div className="flex flex-col gap-2">
-                  {torols?.map((torol) => {
-                    return (
-                      <p
-                        onClick={() => setTorolId(torol._id)}
-                        className="text-md font-medium hover:font-bold"
-                        key={torol._id}
-                      >
-                        {torol.torol}
-                      </p>
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="flex flex-col gap-4 text-black">
-                <h1 className="text-lg font-bold">Хэмжээ</h1>
-                <div className="flex flex-col gap-2">
-                  {numberss.map((numbers) => {
-                    return (
-                      <p
-                        className="text-md font-medium hover:font-bold"
-                        key={numbers.id}
-                      >
-                        {numbers.size}
-                      </p>
-                    );
-                  })}
-                </div>
-              </div>
+    <div className="container h-full bg-[#F4F4F5] m-auto">
+      <div className="flex gap-5 justify-center py-10">
+        <div className="w-60 flex flex-col gap-12">
+          <div className="flex flex-col gap-4 text-black">
+            <h1 className="text-lg font-bold">Ангилал</h1>
+            <div className="flex flex-col gap-2">
+              {torols?.map((torol) => {
+                return (
+                  <p
+                    onClick={() => setTorolId(torol._id)}
+                    className="text-md font-medium hover:font-bold"
+                    key={torol._id}
+                  >
+                    {torol.torol}
+                  </p>
+                );
+              })}
             </div>
-
-            <div className=" grid grid-cols-3 grid-rows-5 gap-12 text-black h-fit">
-              {showProduct.map((item) => (
-                <div className=" w-[330px] flex flex-col gap-3" key={item._id}>
-                  <div className="relative w-full h-[450px]">
-                    <Image
-                      src={item.image[0]}
-                      fill
-                      alt="zurag"
-                      className="rounded-2xl"
-                    />
-                    <CiHeart className="absolute right-4 top-4 w-10 h-10" />
-                  </div>
-                  <div className="text-3xl font-bold grid gap-2">
-                    <p className="text-2xl font-normal">{item.title}</p>
-                    <p className="flex gap-4 items-center">{item.price}</p>
-                  </div>
-                </div>
-              ))}
+          </div>
+          <div className="flex flex-col gap-4 text-black">
+            <h1 className="text-lg font-bold">Хэмжээ</h1>
+            <div className="flex flex-col gap-2">
+              {numberss.map((numbers) => {
+                return (
+                  <p
+                    className="text-md font-medium hover:font-bold"
+                    key={numbers.id}
+                  >
+                    {numbers.size}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
+
+        <div className=" grid grid-cols-3 grid-rows-5 gap-12 text-black h-fit">
+          {showProduct.map((item) => (
+            <div className=" w-[330px] flex flex-col gap-3" key={item._id}>
+              <div className="relative w-full h-[450px]">
+                <Image
+                  src={item.image[0]}
+                  fill
+                  alt="zurag"
+                  className="rounded-2xl"
+                />
+                <CiHeart className="absolute right-4 top-4 w-10 h-10" />
+              </div>
+              <div className="text-3xl font-bold grid gap-2">
+                <p className="text-2xl font-normal">{item.title}</p>
+                <p className="flex gap-4 items-center">{item.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

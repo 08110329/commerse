@@ -3,10 +3,10 @@ import { saveModel } from "../models/save.schema";
 
 export const createSave: RequestHandler = async (req, res) => {
   try {
-    const { users, products } = req.body;
+    const { user, products } = req.body;
 
     const newSave = new saveModel({
-      users,
+      user,
       products,
     });
     const save = await newSave.save();
@@ -21,9 +21,14 @@ export const createSave: RequestHandler = async (req, res) => {
   }
 };
 
-export const getSave: RequestHandler = async (_, res) => {
+export const getSave: RequestHandler = async (req, res) => {
   try {
-    const save = await saveModel.find();
+    const save = await saveModel
+      .find({
+        user: req.query.user,
+      })
+      .populate("products");
+
     return res.status(200).json({
       save,
       message: "amjilttai uuslee",

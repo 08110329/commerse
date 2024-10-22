@@ -22,12 +22,13 @@ interface Products {
   quantity: number;
 }
 
-
 export const ProductPage = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const [products, setProducts] = useState<Products[]>([]);
   const [selectImage, setSelectImage] = useState<string | null>(null); // Manage selected image state
   const [click, setClick] = useState(false);
+  const { id } = useParams();
+  const [products, setProducts] = useState({ _id: "", image: "" });
 
   useEffect(() => {
     const getData = async () => {
@@ -48,6 +49,21 @@ export const ProductPage = () => {
   const handleClick = (image: string) => {
     setSelectImage(image); // Update selected image
   };
+
+  const getOneProduct = async () => {
+    try {
+      const response = await backend.get(`getProduct/${id}`);
+      console.log(response.data.message);
+      setProducts(response.data.product);
+      console.log(response.data.product);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getOneProduct();
+  }, []);
 
   return (
     <div className="flex bg-[#F4F4F5] justify-center">
