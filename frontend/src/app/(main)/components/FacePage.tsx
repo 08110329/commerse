@@ -1,10 +1,12 @@
-"use client"
+"use client";
 
 import { backend } from "@/axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
+import { useUser } from "./providers/AuthProvider";
+import { create } from "domain";
 
 interface Products {
   _id: string;
@@ -21,7 +23,7 @@ interface Products {
 
 export const FacePage = () => {
   const [products, setProducts] = useState<Products[]>([]);
-
+  const { user } = useUser();
   useEffect(() => {
     const getData = async () => {
       const { data } = await backend.get("/getProducts");
@@ -31,6 +33,18 @@ export const FacePage = () => {
 
     getData();
   }, []);
+
+  const createSave = async (productId: string) => {
+    try {
+      await backend.post("/createSave", {
+        user: user.user?.id,
+        products: productId,
+      });
+      console.log("Saved successfully:");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };
 
   return (
     <div className="flex justify-center h-fit py-12 border-4">
@@ -43,6 +57,7 @@ export const FacePage = () => {
               alt="cover"
               style={{ objectFit: "cover" }}
               sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
+              className="rounded-2xl"
             />
           </div>
           <div className="w-full h-full grid grid-cols-4 grid-rows-6 [&>div:nth-child(7)]:col-span-2 [&>div:nth-child(7)]:row-span-2 [&>div:nth-child(8)]:col-span-2 [&>div:nth-child(8)]:row-span-2 gap-6 ">
@@ -54,7 +69,10 @@ export const FacePage = () => {
                   ? "h-[1020px] w-full"
                   : "h-[450px] w-full";
               return (
-                <div className="w-full h-full grid gap-6 rounded-2xl" key={product._id}>
+                <div
+                  className="w-full h-full grid gap-6 rounded-2xl"
+                  key={product._id}
+                >
                   <Link
                     href={`${product._id}`}
                     className={`relative w-[244px] ${customHeight} overflow-hidden hover:border rounded-2xl`}
@@ -67,7 +85,10 @@ export const FacePage = () => {
                       style={{ objectFit: "cover" }}
                       sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
                     />
-                    <CiHeart className="absolute right-4 top-4 w-10 h-10"  />
+                    <CiHeart
+                      onClick={() => createSave(product._id)}
+                      className="absolute right-4 top-4 w-10 h-10"
+                    />
                   </Link>
                   <div className="text-3xl font-bold grid gap-1">
                     <p className="text-2xl font-normal">{product.title}</p>

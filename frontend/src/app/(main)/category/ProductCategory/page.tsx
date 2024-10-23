@@ -2,10 +2,10 @@
 
 import { backend } from "@/axios";
 import { numberss } from "@/mockData";
-import { get } from "http";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
+import { useUser } from "../../components/providers/AuthProvider";
 interface torols {
   _id: string;
   torol: string;
@@ -28,6 +28,7 @@ export default function Home() {
   const [torols, setTorols] = useState<torols[]>([]);
   const [torolId, setTorolId] = useState<string>("");
   const [products, setProducts] = useState<Products[]>([]);
+  const { user } = useUser();
 
   useEffect(() => {
     const getCategory = async () => {
@@ -44,13 +45,24 @@ export default function Home() {
       console.log(data.products);
 
       setProducts(data.products);
-      // console.log(data.products);
     };
 
     getData();
   }, []);
 
   const showProduct = products.filter((product) => product.torolId === torolId); // productiig idgaar ylgah
+
+  const createSave = async (productId: string) => {
+    try {
+      await backend.post("/createSave", {
+        user: user.user?.id,
+        products: productId,
+      });
+      console.log("Saved successfully:");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };
   return (
     <div className="container h-full bg-[#F4F4F5] m-auto">
       <div className="flex gap-5 justify-center py-10">
@@ -98,7 +110,10 @@ export default function Home() {
                   alt="zurag"
                   className="rounded-2xl"
                 />
-                <CiHeart className="absolute right-4 top-4 w-10 h-10" />
+                <CiHeart
+                  className="absolute right-4 top-4 w-10 h-10"
+                  onClick={() => createSave(item._id)}
+                />
               </div>
               <div className="text-3xl font-bold grid gap-2">
                 <p className="text-2xl font-normal">{item.title}</p>

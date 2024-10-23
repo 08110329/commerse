@@ -125,7 +125,7 @@ export const Header = () => {
                   <HiOutlineShoppingCart className="w-6 h-6" />
                 </Link>
               )}
-              {user && (
+              {user?.isAuthenticated && (
                 <button
                   className="w-[101px] h-9 text-white border border-[#2563EB] hover:bg-[#2563EB] text-sm font-medium rounded-md"
                   onClick={logout}

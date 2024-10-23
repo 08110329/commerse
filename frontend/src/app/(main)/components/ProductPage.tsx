@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
-import { numberss } from "./mockdata";
 import { Common } from "./Common";
 import { useParams } from "next/navigation";
 import { backend } from "@/axios";
@@ -23,19 +22,17 @@ interface Products {
 }
 
 export const ProductPage = () => {
-  const { id } = useParams(); // Get the product ID from the URL
-  const [products, setProducts] = useState<Products[]>([]);
-  const [selectImage, setSelectImage] = useState<string | null>(null); // Manage selected image state
-  const [click, setClick] = useState(false);
   const { id } = useParams();
-  const [products, setProducts] = useState({ _id: "", image: "" });
+  const [products, setProducts] = useState<Products[]>([]);
+  const [selectImage, setSelectImage] = useState<string | null>(null);
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await backend.get(`/getProduct/${id}`); // Fetch product using the dynamic id
-        setProducts([data.product]); // Assuming data.product is an object, wrap it in an array
-        setSelectImage(data.product.image[0]); // Set default image from the product
+        const { data } = await backend.get(`/getProduct/${id}`);
+        setProducts([data.product]);
+        setSelectImage(data.product.image[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,27 +44,12 @@ export const ProductPage = () => {
   }, [id]);
 
   const handleClick = (image: string) => {
-    setSelectImage(image); // Update selected image
+    setSelectImage(image);
   };
-
-  const getOneProduct = async () => {
-    try {
-      const response = await backend.get(`getProduct/${id}`);
-      console.log(response.data.message);
-      setProducts(response.data.product);
-      console.log(response.data.product);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getOneProduct();
-  }, []);
 
   return (
     <div className="flex bg-[#F4F4F5] justify-center">
-      <div className="container flex">
+      <div className="container flex ">
         <div className="flex gap-12">
           {/* Small Images */}
           <div className="flex gap-6 sticky top-0 h-fit items-center">
@@ -75,14 +57,14 @@ export const ProductPage = () => {
               {products.map((product) => (
                 <div
                   className="w-[100px] cursor-pointer"
-                  key={product._id}
-                  onClick={() => handleClick(product.image[0])} // Handle image click
+                  key={product?._id}
+                  onClick={() => handleClick(product.image[0])}
                 >
                   <div className="relative w-[100px] h-[100px]">
                     <Image
-                      src={product.image[0]}
+                      src={product?.image[0]}
                       fill
-                      alt={`Product ${product._id}`}
+                      alt={`Product ${product?._id}`}
                       className="rounded-md"
                     />
                   </div>
