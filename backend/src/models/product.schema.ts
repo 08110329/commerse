@@ -44,4 +44,5 @@ const productSchema = new Schema({
     default: Date.now,
   },
 });
+
 export const productModel = model("product", productSchema);
