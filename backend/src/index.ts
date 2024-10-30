@@ -11,6 +11,8 @@ import { v2 as cloudinary } from "cloudinary";
 import Multer, { memoryStorage } from "multer";
 import { authMiddleware } from "./middlewares/auth.middleware";
 import orderRouter from "./routes/order.route";
+import { deleteProduct } from "./controllers";
+import packageRouter from "./routes/package.route";
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ app.use(productRouter);
 app.use(reviewRouter);
 app.use(saveRouter);
 app.use(orderRouter);
+app.use(packageRouter)
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

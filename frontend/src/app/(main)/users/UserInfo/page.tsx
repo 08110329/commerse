@@ -25,8 +25,8 @@ export default function Home() {
   return (
     <div className="flex py-24 px-96 bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center">
-        <div className=" h-screen">
-          <div className="w-full h-fit flex gap-5 pb-24 pt-28 justify-center">
+        <div className=" h-screen ">
+          <div className="w-full h-fit flex gap-5 pb-24 pt-28 justify-center text-black">
             <div className="flex flex-col gap-1 ">
               {paths.map((path, index) => (
                 <Link key={index} href={path.path}>

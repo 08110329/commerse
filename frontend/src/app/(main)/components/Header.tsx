@@ -125,6 +125,12 @@ export const Header = () => {
                   <HiOutlineShoppingCart className="w-6 h-6" />
                 </Link>
               )}
+{user.isAuthenticated && (
+                <Link href={`/users/UserInfo`}>
+                  <IoPersonOutline className="w-6 h-6" />
+                </Link>
+              )}
+
               {user?.isAuthenticated && (
                 <button
                   className="w-[101px] h-9 text-white border border-[#2563EB] hover:bg-[#2563EB] text-sm font-medium rounded-md"
@@ -154,11 +160,7 @@ export const Header = () => {
                   })}
                 </div>
               )}
-              {user.isAuthenticated && (
-                <Link href={`/users/UserInfo`}>
-                  <IoPersonOutline className="w-6 h-6" />
-                </Link>
-              )}
+              
             </div>
           </div>
         </div>

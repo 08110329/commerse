@@ -27,7 +27,7 @@ export const Common = ({ productId }: { productId: string }) => {
 
   const getReview = async () => {
     const res = await backend.get("/getReview");
-    // console.log(res.data.reviews);
+    console.log(res.data.reviews);
     setReviews(res.data.reviews);
   };
   const render = () => {
@@ -51,6 +51,7 @@ export const Common = ({ productId }: { productId: string }) => {
         productId: productId,
         rating: rating,
       });
+     
       console.log(res.data.comment);
     } catch (error) {
       console.log(error);

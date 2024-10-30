@@ -28,7 +28,7 @@ export default function Home() {
   const [productCode, setProductCode] = useState<string>("");
   const [pprice, setPprice] = useState<number>();
   const [tshirheg, setTshirheg] = useState<number>();
-  const [zurag, setZurag] = useState<string>("");
+  const [zurag, setZurag] = useState<string>("");// zurag upload hiihd 
   const [hemjee, setHemjee] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);

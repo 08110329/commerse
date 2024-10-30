@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { useUser } from "./providers/AuthProvider";
 import { create } from "domain";
+import { FaHeart } from "react-icons/fa";
 
 interface Products {
   _id: string;
@@ -21,9 +22,13 @@ interface Products {
   quantity: number;
 }
 
+
+
 export const FacePage = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const { user } = useUser();
+  const [savedProducts, setSavedProducts] = useState<string[]>([]); // Хадгалсан бүтээгдэхүүний ID-уудыг хадгалах
+
   useEffect(() => {
     const getData = async () => {
       const { data } = await backend.get("/getProducts");
@@ -41,13 +46,14 @@ export const FacePage = () => {
         products: productId,
       });
       console.log("Saved successfully:");
+      setSavedProducts((prev) => [...prev, productId]); // Бүтээгдэхүүний ID-г хадгалах
     } catch (error) {
       console.error("Error saving data:", error);
     }
   };
 
   return (
-    <div className="flex justify-center h-fit py-12 border-4">
+    <div className="flex justify-center h-fit py-12">
       <div className="container flex justify-center">
         <div className="w-full grid gap-12">
           <div className="relative w-full h-[600px]">
@@ -62,6 +68,7 @@ export const FacePage = () => {
           </div>
           <div className="w-full h-full grid grid-cols-4 grid-rows-6 [&>div:nth-child(7)]:col-span-2 [&>div:nth-child(7)]:row-span-2 [&>div:nth-child(8)]:col-span-2 [&>div:nth-child(8)]:row-span-2 gap-6 ">
             {products?.map((product, index) => {
+              const isSaved = savedProducts.includes(product._id);
               const customHeight =
                 index === 6
                   ? "h-[1000px] w-full"
@@ -85,10 +92,17 @@ export const FacePage = () => {
                       style={{ objectFit: "cover" }}
                       sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
                     />
-                    <CiHeart
-                      onClick={() => createSave(product._id)}
-                      className="absolute right-4 top-4 w-10 h-10"
-                    />
+                      {isSaved ? (
+                      <FaHeart
+                        onClick={() => createSave(product._id)}
+                        className="absolute right-4 top-4 w-10 h-10 text-black hover:text-black" // Hover үед хар өнгөтэй
+                      />
+                    ) : (
+                      <CiHeart
+                        onClick={() => createSave(product._id)}
+                        className="absolute right-4 top-4 w-10 h-10 text-white hover:text-black" // Hover үед хар өнгөтэй
+                      />
+                    )}
                   </Link>
                   <div className="text-3xl font-bold grid gap-1">
                     <p className="text-2xl font-normal">{product.title}</p>
