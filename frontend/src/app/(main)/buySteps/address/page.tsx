@@ -20,8 +20,8 @@ export default function Home() {
     },
   ];
   return (
-    <div className="container flex bg-[#F4F4F5] justify-center ">
-      <div className="w-full h-[684] grid gap-16 justify-center">
+    <div className="container bg-[#F4F4F5] h-screen m-auto">
+      <div className="h-[684] grid gap-16 justify-center py-8">
         <div className="flex items-center mt-28 justify-center">
           <div className="border rounded-full w-8 h-8 flex justify-center items-center border-black  hover:bg-[#2563EB] hover:text-white hover:border-none">
             <p>1</p>

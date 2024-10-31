@@ -109,85 +109,77 @@ export default function Home() {
   };
 
   return (
-    <div className="flex bg-[#F4F4F5] justify-center ">
-      <div className="container flex justify-center ">
-        <div className="flex flex-col items-center text-black">
-          <div className="w-[686px] h-fit grid gap-16">
-            <div className="bg-white rounded-xl">
-              <div className="px-6 py-8 grid gap-6">
-                <div className="grid rounded-2xl gap-6">
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-2 items-center font-bold text-xl text-black">
-                      <p className="text-base font-bold">1.</p>
-                      <p className="text-base font-bold">Сагс</p>
-                      <p className="text-base font-bold text-[#71717A]">
-                        {rooms.length}
-                      </p>
-                    </div>
+    <div className="container bg-[#F4F4F5] m-auto ">
+      <div className="flex text-black h-screen justify-center items-center">
+        <div className="w-[686px] h-fit grid gap-16 border">
+          <div className="bg-white rounded-xl">
+            <div className="px-6 py-8 grid gap-6">
+              <div className="grid rounded-2xl gap-6">
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-2 items-center font-bold text-xl text-black">
+                    <p className="text-base font-bold">1.</p>
+                    <p className="text-base font-bold">Сагс</p>
+                    <p className="text-base font-bold text-[#71717A]">
+                      {rooms.length}
+                    </p>
                   </div>
-                  <div className="grid gap-6">
-                    {rooms?.map((room) => (
-                      <div
-                        className="flex gap-6 border rounded-2xl px-4 py-4"
-                        key={room._id}
-                      >
-                        <div className="w-24 h-24 border overflow-hidden rounded-xl">
-                          <div className="relative w-32 h-40">
-                            <Image
-                              src={room?.image_link}
-                              fill
-                              alt={room.title}
-                            />
-                          </div>
+                </div>
+                <div className="grid gap-6">
+                  {rooms?.map((room) => (
+                    <div
+                      className="flex gap-6 border rounded-2xl px-4 py-4"
+                      key={room._id}
+                    >
+                      <div className="w-24 h-24 border overflow-hidden rounded-xl">
+                        <div className="relative w-32 h-40">
+                          <Image src={room?.image_link} fill alt={room.title} />
                         </div>
+                      </div>
 
-                        <div className="flex flex-col gap-2 text-black">
-                          <div className="w-[414px]">
-                            <p className="font-normal text-base">
-                              {room.title}
-                            </p>
-                            <div className="flex gap-3 items-center">
-                              <div
-                                className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
-                                onClick={() => decreaseQuantity(room._id)}
-                              >
-                                <p>-</p>
-                              </div>
-                              <p>{room.quantity}</p>
-                              <div
-                                className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
-                                onClick={() => increaseQuantity(room._id)}
-                              >
-                                <p>+</p>
-                              </div>
+                      <div className="flex flex-col gap-2 text-black">
+                        <div className="w-[414px]">
+                          <p className="font-normal text-base">{room.title}</p>
+                          <div className="flex gap-3 items-center">
+                            <div
+                              className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
+                              onClick={() => decreaseQuantity(room._id)}
+                            >
+                              <p>-</p>
+                            </div>
+                            <p>{room.quantity}</p>
+                            <div
+                              className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
+                              onClick={() => increaseQuantity(room._id)}
+                            >
+                              <p>+</p>
                             </div>
                           </div>
-                          <p className="text-base font-bold">{room.price}₮</p>
                         </div>
-                        <button className="flex justify-start">
-                          <GoTrash
-                            className="w-5 h-5"
-                            onClick={() => deleteProductFromPackage(room._id)}
-                          />
-                        </button>
+                        <p className="text-base font-bold">{room.price}₮</p>
                       </div>
-                    ))}
-                  </div>
-
-                  <div className="flex justify-between pb-6 text-black">
-                    <p className="text-base font-normal">Нийт төлөх дүн:</p>
-                    <span className="text-lg font-bold">{totalPrice}₮</span>
-                  </div>
-                </div>
-                <div className="flex justify-end">
-                  {paths.map((path, index) => (
-                    <Link key={index} href={path.path}>
-                      <button className="bg-[#2563EB] px-9 py-2 rounded-3xl text-white text-base font-semibold">
-                        {path.name}
+                      <button className="flex justify-start">
+                        <GoTrash
+                          className="w-5 h-5"
+                          onClick={() => deleteProductFromPackage(room._id)}
+                        />
                       </button>
-                    </Link>
+                    </div>
                   ))}
                 </div>
+
+                <div className="flex justify-between pb-6 text-black">
+                  <p className="text-base font-normal">Нийт төлөх дүн:</p>
+                  <span className="text-lg font-bold">{totalPrice}₮</span>
+                </div>
+              </div>
+              <div className="flex justify-end">
+                {paths.map((path, index) => (
+                  <Link key={index} href={path.path}>
+                    <button className="bg-[#2563EB] px-9 py-2 rounded-3xl text-white text-base font-semibold">
+                      {path.name}
+                    </button>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
