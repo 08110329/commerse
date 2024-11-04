@@ -5,7 +5,6 @@ import { GoTrash } from "react-icons/go";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { backend } from "@/axios";
-import { useUser } from "../../components/providers/AuthProvider";
 
 interface Products {
   _id: string;
@@ -33,7 +32,6 @@ interface Package {
 export default function Home() {
   const [rooms, setRooms] = useState<Package[]>([]);
   const [deleted, setDeleted] = useState<boolean>(false);
-  const { user } = useUser();
 
   interface Path {
     name: string;
@@ -110,7 +108,7 @@ export default function Home() {
 
   return (
     <div className="container bg-[#F4F4F5] m-auto ">
-      <div className="flex text-black h-screen justify-center items-center">
+      <div className="flex text-black justify-center items-center">
         <div className="w-[686px] h-fit grid gap-16 border">
           <div className="bg-white rounded-xl">
             <div className="px-6 py-8 grid gap-6">

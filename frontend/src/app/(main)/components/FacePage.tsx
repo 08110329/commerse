@@ -22,8 +22,6 @@ interface Products {
   quantity: number;
 }
 
-
-
 export const FacePage = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const { user } = useUser();
@@ -92,17 +90,19 @@ export const FacePage = () => {
                       style={{ objectFit: "cover" }}
                       sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
                     />
+                    <Link href={"/save"}>
                       {isSaved ? (
-                      <FaHeart
-                        onClick={() => createSave(product._id)}
-                        className="absolute right-4 top-4 w-10 h-10 text-black hover:text-black" // Hover үед хар өнгөтэй
-                      />
-                    ) : (
-                      <CiHeart
-                        onClick={() => createSave(product._id)}
-                        className="absolute right-4 top-4 w-10 h-10 text-white hover:text-black" // Hover үед хар өнгөтэй
-                      />
-                    )}
+                        <FaHeart
+                          onClick={() => createSave(product._id)}
+                          className="absolute right-4 top-4 w-10 h-10 text-black hover:text-black" // Hover үед хар өнгөтэй
+                        />
+                      ) : (
+                        <CiHeart
+                          onClick={() => createSave(product._id)}
+                          className="absolute right-4 top-4 w-10 h-10 text-white hover:text-black" // Hover үед хар өнгөтэй
+                        />
+                      )}
+                    </Link>
                   </Link>
                   <div className="text-3xl font-bold grid gap-1">
                     <p className="text-2xl font-normal">{product.title}</p>

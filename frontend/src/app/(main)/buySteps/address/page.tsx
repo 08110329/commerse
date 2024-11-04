@@ -3,8 +3,36 @@
 import Image from "next/image";
 import { pLists, registerss } from "@/mockData";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { backend } from "@/axios";
+
+interface Products {
+  _id: string;
+  title: string;
+  price: string;
+  image: string[];
+  description: string;
+  size: string;
+  color: string;
+  productCode: string;
+  torolId: string;
+  quantity: number;
+}
+
+interface Package {
+  _id: string;
+  user: string;
+  products: Products;
+  image_link: string;
+  title: string;
+  price: string;
+  quantity: number;
+  amount: number;
+}
 
 export default function Home() {
+  const [rooms, setRooms] = useState<Package[]>([]);
+
   interface Path {
     name: string;
     path: string;
@@ -19,9 +47,29 @@ export default function Home() {
       path: "/buySteps/pay",
     },
   ];
+
+  useEffect(() => {
+    const getPackage = async () => {
+      try {
+        const res = await backend.get("/getPackage", {
+          headers: {
+            Authorization: `Bearer ${"token"}`,
+          },
+        });
+        const updatedPackages = res.data.packagies.map((pkg: Package) => ({
+          ...pkg,
+          quantity: 1, // Set default quantity
+        }));
+        setRooms(updatedPackages);
+      } catch (error) {
+        console.error("Мэдээлэл татахад алдаа гарлаа:", error);
+      }
+    };
+    getPackage();
+  }, []);
   return (
-    <div className="container bg-[#F4F4F5] h-screen m-auto">
-      <div className="h-[684] grid gap-16 justify-center py-8">
+    <div className="container bg-[#F4F4F5] m-auto">
+      <div className="h-fit grid gap-16 justify-center py-8">
         <div className="flex items-center mt-28 justify-center">
           <div className="border rounded-full w-8 h-8 flex justify-center items-center border-black  hover:bg-[#2563EB] hover:text-white hover:border-none">
             <p>1</p>
@@ -35,7 +83,7 @@ export default function Home() {
             <p>3</p>
           </div>
         </div>
-        <div className="flex gap-5">
+        <div className="flex gap-5 h-screen">
           <div className=" bg-white rounded-xl w-[333px] h-[448px]">
             <div className="grid gap-6 px-6 pt-8">
               <div className="grid rounded-2xl gap-6">
@@ -47,20 +95,18 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="border-b-2 border-dashed grid gap-6 pb-6">
-                  {pLists.map((pList) => {
+                  {rooms.map((room) => {
                     return (
-                      <div className="flex gap-6" key={pList.id}>
+                      <div className="flex gap-6" key={room._id}>
                         <div className="w-20 h-20  overflow-hidden rounded-md">
                           <div className="relative w-[120px] h-[160px]">
-                            <Image src={pList.image} fill alt="t-shirt" />
+                            <Image src={room.image_link} fill alt="t-shirt" />
                           </div>
                         </div>
                         <div className="flex flex-col text-black">
-                          <p className="font-normal text-base">{pList.title}</p>
-                          <p className="font-normal text-base">
-                            {pList.amount}
-                          </p>
-                          <p className="text-base font-bold">{pList.price}</p>
+                          <p className="font-normal text-base">{room.title}</p>
+                          <p className="font-normal text-base">{room.amount}</p>
+                          <p className="text-base font-bold">{room.price}</p>
                         </div>
                       </div>
                     );
