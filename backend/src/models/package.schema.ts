@@ -29,6 +29,10 @@ const packageSchema = new Schema({
     type: String,
     default: 0,
   },
+  amount: {
+    type: String,
+    default: 0,
+  },
 
   image_link: {
     type: String,

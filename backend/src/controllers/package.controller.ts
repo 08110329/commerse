@@ -3,7 +3,7 @@ import { packageModel } from "../models/package.schema";
 
 export const createPackage: RequestHandler = async (req, res) => {
   try {
-    const { user, products, image_link, title, price } = req.body;
+    const { user, products, image_link, title, price, amount } = req.body;
 
     const newPackage = await packageModel.create({
       user,
@@ -11,6 +11,7 @@ export const createPackage: RequestHandler = async (req, res) => {
       image_link,
       title,
       price,
+      amount,
     });
 
     return res.status(200).json({
