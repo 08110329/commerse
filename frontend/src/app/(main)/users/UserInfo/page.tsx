@@ -1,13 +1,41 @@
 "use client";
+import { backend } from "@/axios";
+import { registerss } from "@/mockData";
+
 import Link from "next/link";
+import { useState } from "react";
+interface Customer {
+  _id: string;
+  lastName: string;
+  FirstName: string;
+  Phone: number;
+  email: string;
+  address: string;
+}
 
 export default function Home() {
-  const registerss = [
-    { id: 1, title: "Овог:" },
-    { id: 2, title: "Нэр:" },
-    { id: 3, title: "Утасны дугаар:" },
-    { id: 4, title: "Имэйл хаяг:" },
-  ];
+  const [lastName, setLastName] = useState("");
+  const [FirstName, setFirstName] = useState("");
+  const [Phone, setPhone] = useState<number>();
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+
+  const createCustomer = async () => {
+    try {
+      const res = await backend.post("/createCustomer", {
+        lastName: lastName,
+        FirstName: FirstName,
+        Phone: Phone,
+        email: email,
+        address: address,
+      });
+       setAddress(""); setEmail(""); setFirstName(""); setLastName("");
+      console.log(res.data.lastName);
+    } catch (error) {
+      console.log(error);
+    }
+   
+  };
   interface Path {
     name: string;
     path: string;
@@ -41,24 +69,31 @@ export default function Home() {
                 Хэрэглэгчийн хэсэг
               </h4>
               <div className="grid gap-8">
-                {registerss.map((registers) => {
-                  return (
-                    <div className="grid gap-2" key={registers.id}>
-                      <p>{registers.title}</p>
-                      <input className="border w-[820px] h-7 rounded-2xl"></input>
-                    </div>
-                  );
-                })}
+                <div className="grid gap-2">
+                  <p>Овог:</p>
+                  <input className="border w-[820px] h-7 rounded-2xl" type="text" value={lastName} onChange={(event => setLastName(event.target.value))}></input>
+                </div>
+                <div className="grid gap-2">
+                  <p>Нэр:</p>
+                  <input className="border w-[820px] h-7 rounded-2xl" type="text" value={FirstName} onChange={(event => setFirstName(event.target.value))}></input>
+                </div>
+                <div className="grid gap-2">
+                  <p>Утасны дугаар:</p>
+                  <input className="border w-[820px] h-7 rounded-2xl" value={Phone} onChange={(event => setPhone(parseFloat(event.target.value)))}></input>
+                </div>
+                <div className="grid gap-2">
+                  <p>Имейл хаяг:</p>
+                  <input className="border w-[820px] h-7 rounded-2xl" value={email} onChange={(event => setEmail(event.target.value))}></input>
+                </div>
                 <div>
                   <p>Хаяг:</p>
-                  <input
-                    placeholder=""
-                    className="border w-[820px] h-20 rounded-2xl"
-                  ></input>
+                  <textarea
+                    className="border w-[820px] h-20 rounded-2xl" value={address} onChange={(event => setAddress(event.target.value))}
+                  ></textarea>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="bg-[#2563EB] text-white hover:bg-black w-[172px] h-[36px] rounded-2xl ">
+                <button className="bg-[#2563EB] text-white hover:bg-black w-[172px] h-[36px] rounded-2xl "  onClick={() => createCustomer()}>
                   Мэдээлэл шинэчлэх
                 </button>
               </div>
