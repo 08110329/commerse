@@ -23,7 +23,7 @@ export default function Home() {
   ];
   return (
     <div className="flex py-24 px-96 bg-[#F4F4F5] justify-center ">
-      <div className="container flex  justify-center ">
+      <div className="container flex  justify-center text-black">
         <div className="h-screen">
           <div className="w-full grid gap-10 pt-28 justify-center ">
             <div className="grid gap-6 ">

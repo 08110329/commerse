@@ -8,7 +8,7 @@ import { OrderTab } from "../components/OrderTab";
 
 export default function Home() {
   return (
-        <div className="container flex flex-col gap-8 bg-gray-50 h-screen">
+        <div className="container flex flex-col gap-8 bg-gray-50 h-screen m-auto">
           <div className="flex hover:text-black text-[#3F4145] h-fit border-b-2 w-full">
             {Lists.map((List) => {
               return (

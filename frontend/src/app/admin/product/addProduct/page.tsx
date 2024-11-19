@@ -114,7 +114,7 @@ export default function Home() {
     );
   };
   return (
-    <div className="flex flex-col gap-8 container bg-gray-50 h-fit">
+    <div className="flex flex-col gap-8 container bg-gray-50 h-fit m-auto">
       <div className="w-full border flex h-fit bg-white text-black px-4 py-2 items-center gap-4">
         <IoIosArrowBack />
         <p className="py-3 text-base font-normal">Бүтээгдэхүүн нэмэх</p>

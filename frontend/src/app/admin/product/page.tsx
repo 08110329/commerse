@@ -11,7 +11,7 @@ import { ProductCategory } from "../components/ProductCategory";
 
 export default function Home() {
   return (
-      <div className=" h-screen container bg-gray-50">
+      <div className=" h-screen container bg-gray-50 m-auto">
         <div className="flex flex-col gap-8">
           <div className="flex hover:text-black text-[#3F4145] h-fit border-b-2 gap-3 w-screen">
             <button className=" px-4 py-6 hover:border-b-2 hover:border-black text-black">

@@ -6,7 +6,7 @@ export default function Home() {
       <div className="container flex  justify-center ">
         <div className=" h-screen">
           <div className="w-full grid gap-10 pt-28 justify-center ">
-            <div className="grid gap-6">
+            <div className="grid gap-6 text-black">
               <h1 className="font-semibold text-2xl flex justify-center">
                 Нууц үг сэргээх
               </h1>

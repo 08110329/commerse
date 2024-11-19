@@ -25,7 +25,7 @@ export default function Home() {
       <div className="container flex justify-center">
         <div className="h-screen">
           <div className="w-full h-fit flex gap-5 pb-24 pt-28 justify-center">
-            <div className="flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 text-black">
               {paths.map((path, index) => (
                 <Link key={index} href={path.path}>
                   <button className="w-[244px] h-9 hover:bg-white rounded-2xl grid justify-start items-center pl-4">
@@ -34,7 +34,7 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-            <div className=" w-[820px] flex flex-col gap-6 justify-end">
+            <div className=" w-[820px] flex flex-col gap-6 justify-end text-black">
               <h4 className="border-b-2 pb-6 text-xl font-medium">
                 Захиалгын түүх
               </h4>

@@ -8,9 +8,7 @@ import { TodayOrder } from "../components/TodayOrder";
 
 export default function Home() {
   return (
-    <div className="h-screen w-full bg-gray-50 flex justify-center">
-      <div className="w-full h-screen container flex ">
-        <div className="flex flex-col w-full gap-8 mt-5">
+        <div className="flex flex-col w-full h-screen bg-gray-50 gap-8 mt-5 container m-auto">
           <div className="bg-white mx-6 grid gap-6 rounded-2xl border">
             <div className="flex justify-between px-6 pt-5">
               <h1 className="text-xl font-bold">Орлого</h1>
@@ -41,7 +39,5 @@ export default function Home() {
           </div>
           <TodayOrder />
         </div>
-      </div>
-    </div>
   );
 }

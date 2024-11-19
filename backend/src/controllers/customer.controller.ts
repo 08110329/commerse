@@ -5,7 +5,6 @@ export const createCustomer: RequestHandler = async (req, res) => {
   try {
     const { lastName, FirstName, Phone, email, address } = req.body;
     console.log(req.body);
-    
 
     const customer = await customerModel.create({
       lastName,

@@ -1,12 +1,16 @@
 import { Router } from "express";
-import { createCustomer, deleteCustomer, getCustomers } from "../controllers";
+import {
+  createCustomer,
+  deleteCustomer,
+  getCustomer,
+  getCustomers,
+} from "../controllers";
 
 const customerRouter = Router();
 
 customerRouter
-  .post("createCustomer", createCustomer)
-  .get("getCustomer", getCustomers)
-  .get("getCustomers", getCustomers)
-  .delete("deleteCustomer", deleteCustomer);
-
+  .post("/createCustomer", createCustomer)
+  .get("/getCustomers", getCustomers)
+  .delete("/deleteCustomer", deleteCustomer)
+  .get("/getCustomer/:id", getCustomer);
 export default customerRouter;

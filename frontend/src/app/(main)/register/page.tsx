@@ -67,7 +67,7 @@ export default function Home() {
         <div className="w-screen h-screen">
           <div className="w-full h-fit grid gap-12 pb-24 pt-28 justify-center ">
             <div className="grid gap-6">
-              <h1 className="font-semibold text-2xl flex justify-center">
+              <h1 className="font-semibold text-2xl flex justify-center text-black">
                 Бүртгүүлэх
               </h1>
               <div className="grid gap-5">

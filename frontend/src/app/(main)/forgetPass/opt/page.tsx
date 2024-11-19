@@ -4,7 +4,7 @@ export default function Home() {
     <div className="flex bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center ">
         <div className="w-screen h-screen">
-          <div className="w-full h-fit grid gap-10 pb-24 pt-28 justify-center ">
+          <div className="w-full h-fit grid gap-10 pb-24 pt-28 justify-center text-black">
             <div className="grid gap-6">
               <h1 className="font-semibold text-2xl flex justify-center">
                 Нууц үг сэргээх

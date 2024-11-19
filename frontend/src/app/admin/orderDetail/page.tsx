@@ -7,7 +7,7 @@ import { HurgeltiinNews } from "../components/HurgeltiinNews";
 
 export default function Home() {
   return (
-        <div className="flex  container bg-gray-50 flex-col gap-8 ">
+        <div className="flex m-auto container bg-gray-50 flex-col gap-8 ">
           <div className="flex h-fit bg-white text-black px-4 py-2 items-center gap-4">
             <IoIosArrowBack />
             <p className="py-3 text-base font-normal">Захиалгын дэлгэрэнгүй</p>
