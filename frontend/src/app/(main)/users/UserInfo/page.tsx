@@ -1,25 +1,10 @@
 'use client';
-import { backend } from "@/axios";
-import { registerss } from "@/mockData";
 
 import Link from "next/link";
-import { useState } from "react";
 
-interface Customer {
-  _id: string;
-  lastName: string;
-  FirstName: string;
-  Phone: string; 
-  email: string;
-  address: string;
-}
 
 export default function Home() {
-  const [lastName, setLastName] = useState("");
-  const [FirstName, setFirstName] = useState("");
-  const [Phone, setPhone] = useState<string | undefined>("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+
 
   interface Path {
     name: string;
@@ -36,25 +21,7 @@ export default function Home() {
     },
   ];
 
-  const createCustomer = async () => {
-    try {
-      const res = await backend.post("/createCustomer", {
-        lastName: lastName,
-        FirstName: FirstName,
-        Phone: Phone,
-        email: email,
-        address: address,
-      });
-      setAddress("");
-      setEmail("");
-      setFirstName("");
-      setLastName("");
-      setPhone(""); 
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   return (
     <div className="flex py-24 px-96 bg-[#F4F4F5] justify-center ">
@@ -80,8 +47,6 @@ export default function Home() {
                   <input
                     className="border w-[820px] h-7 rounded-xl pl-4"
                     type=" text"
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
                   ></input>
                 </div>
                 <div className="grid gap-2">
@@ -89,8 +54,6 @@ export default function Home() {
                   <input
                     className="border w-[820px] h-7 rounded-xl pl-4"
                     type=" text"
-                    value={FirstName}
-                    onChange={(event) => setFirstName(event.target.value)}
                   ></input>
                 </div>
                 <div className="grid gap-2">
@@ -98,8 +61,6 @@ export default function Home() {
                   <input
                     className="border w-[820px] h-7 rounded-xl pl-4"
                     type=" text" 
-                    value={Phone}
-                    onChange={(event) => setPhone(event.target.value)} 
                   ></input>
                 </div>
                 <div className="grid gap-2">
@@ -107,23 +68,18 @@ export default function Home() {
                   <input
                     className="border w-[820px] h-7 rounded-xl pl-4"
                     type=" text" 
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
                   ></input>
                 </div>
                 <div>
                   <p>Хаяг:</p>
                   <textarea
                     className="border w-[820px] h-20 rounded-xl pl-4 pt-2"
-                    value={address}
-                    onChange={(event) => setAddress(event.target.value)}
                   ></textarea>
                 </div>
               </div>
               <div className="flex justify-end">
                 <button
                   className="bg-[#2563EB] text-white hover:bg-black w-[172px] h-[36px] rounded-2xl "
-                  onClick={() => createCustomer()}
                 >
                   Мэдээлэл шинэчлэх
                 </button>

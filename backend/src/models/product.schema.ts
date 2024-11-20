@@ -29,10 +29,6 @@ const productSchema = new Schema({
     type: String,
     ref: "Category",
   },
-  genre: {
-    type: Schema.Types.ObjectId,
-    ref: "Genre",
-  },
   createdAt: {
     type: Date,
 
