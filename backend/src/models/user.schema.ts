@@ -1,6 +1,10 @@
 import { model, Schema } from "mongoose";
 
 const userSchema = new Schema({
+  lastName:{
+    type:String,
+    required:true,
+  },
   username: {
     type: String,
     required: true,
@@ -17,6 +21,23 @@ const userSchema = new Schema({
     type: String,
     emun: ["user", "admin"],
     default: "user",
+  },
+  phone:{
+    type:Number,
+    required:true
+  },
+  desc:{
+    type:String,
+    required:true,
+  },
+  address:{
+    type:String,
+    required:true,
+  },
+  save: {
+    type: [Schema.Types.ObjectId],
+    ref: "Product",
+    required: false,
   },
   createdAt: {
     type: Date,

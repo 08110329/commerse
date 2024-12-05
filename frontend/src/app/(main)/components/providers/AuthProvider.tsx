@@ -16,10 +16,14 @@ import { toast } from "react-toastify";
 
 interface User {
   id?: string;
+  lastName:string;
   username?: string;
   email: string;
   password: string;
   role?: string;
+  address:string;
+  desc:string;
+  phone:string;
 }
 
 interface AuthUser {

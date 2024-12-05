@@ -33,10 +33,13 @@ export const createUserController: RequestHandler = async (req, res) => {
 
     // Шинэ хэрэглэгчийг үүсгэх
     const newUser = await userModel.create({
-      username,
-      email,
-      password: hashedPassword,
-      role: "user",
+      // username,
+      // email,
+      // password: hashedPassword,
+      // role: "user",
+      ...req.body,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     // JWT токен үүсгэх (Шинэ хэрэглэгчийг нэвтрүүлэх)
@@ -68,23 +71,6 @@ export const createUserController: RequestHandler = async (req, res) => {
     });
   }
 };
-
-// export const getByUserId: RequestHandler = async (req, res) => {
-//   const { userId } = req.params; // Get userId from the request parameters
-
-//   try {
-//     const user = await userModel.findById(userId); // Find the user by ID
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" }); // Handle case where user is not found
-//     }
-
-//     return res.status(200).json(user); // Return the user data
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ message: "Error retrieving user" }); // Handle server errors
-//   }
-// };
 
 // Хэрэглэгчийн Контроллер авах
 export const getUserController: RequestHandler = async (req, res) => {

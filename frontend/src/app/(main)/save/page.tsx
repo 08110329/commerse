@@ -28,6 +28,8 @@ interface Save {
 export default function Home() {
   const [saves, setSaves] = useState<Save[]>([]);
   const { user } = useUser();
+  
+  
 
   useEffect(() => {
     const getSave = async () => {
@@ -62,7 +64,7 @@ export default function Home() {
 
   const createPackage = async (
     productId: string,
-    image_link: string,
+    image: string,
     title: string,
     price: string
   ) => {
@@ -72,7 +74,7 @@ export default function Home() {
         {
           user: user.user?.id,
           products: productId,
-          image_link: image_link,
+          image: image,
           title: title,
           price: price,
         },
@@ -101,7 +103,7 @@ export default function Home() {
               className="flex gap-6 h-32 bg-white p-6 rounded-2xl"
               key={save._id}
             >
-              <Link href={`${save.products._id}`} className="relative w-32">
+              <Link href={`/${save.products._id}`} className="relative w-32">
                 <Image
                   src={save.products.image[0]}
                   fill

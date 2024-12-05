@@ -33,7 +33,6 @@ const packageSchema = new Schema({
     type: String,
     default: 0,
   },
-
   image_link: {
     type: String,
     default:

@@ -83,10 +83,14 @@ export default function Home() {
     );
   };
 
+
+
   const totalPrice = rooms.reduce((sum, room) => {
     const price = parseFloat(room.price);
     return sum + (isNaN(price) ? 0 : price * room.quantity); // Corrected: multiply price by quantity
   }, 0);
+
+
 
   const deleteProductFromPackage = async (id: string) => {
     try {
@@ -153,7 +157,7 @@ export default function Home() {
                             </div>
                           </div>
                         </div>
-                        <p className="text-base font-bold">{room.price}₮</p>
+                        <p className="text-base font-bold">{(parseFloat(room.price) * room.quantity).toLocaleString()}</p>
                       </div>
                       <button className="flex justify-start">
                         <GoTrash
@@ -172,7 +176,7 @@ export default function Home() {
               </div>
               <div className="flex justify-end">
                 {paths.map((path, index) => (
-                  <Link key={index} href={path.path}>
+                  <Link key={index} href={path.path} >
                     <button className="bg-[#2563EB] px-9 py-2 rounded-3xl text-white text-base font-semibold">
                       {path.name}
                     </button>

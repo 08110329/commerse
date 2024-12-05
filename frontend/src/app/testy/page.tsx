@@ -2,7 +2,7 @@ const page = () => {
   return (
     <div className="flex justify-center">
       <div className="container flex justify-center">
-        <div className="h-[800px] bg-black w-full"></div>
+        <div className="h-[800px] bg-black w-full">kkkk</div>
       </div>
     </div>
   );

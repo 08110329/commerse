@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { useUser } from "./providers/AuthProvider";
-import { create } from "domain";
 import { FaHeart } from "react-icons/fa";
 
 interface Products {
