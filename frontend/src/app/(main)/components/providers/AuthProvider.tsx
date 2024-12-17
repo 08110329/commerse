@@ -1,7 +1,6 @@
 "use client";
 
 import { backend } from "@/axios";
-import axios from "axios";
 import { useParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import {
@@ -16,10 +15,13 @@ import { toast } from "react-toastify";
 
 interface User {
   id?: string;
-  lastName:string;
+  lastName?: string;
   username?: string;
   email: string;
   password: string;
+  phone?: number;
+  address?: string;
+  desc?: string;
   role?: string;
   address:string;
   desc:string;
@@ -37,6 +39,7 @@ interface UserContextType {
   register: (user: User) => void;
   login: (email: string, password: string) => void; // Fixed typo here
   logout: () => void;
+  products: Products[];
 }
 
 interface Products {
@@ -80,7 +83,6 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     try {
       const response = await backend.get("/getProducts");
       setProducts(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -93,21 +95,22 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     try {
       const response = await backend.post("/user/register", newUser);
       const { token, user } = response.data;
+      console.log(token, user);
 
       setUser({
         user,
         isAuthenticated: true,
         role: user.role,
       });
-      const roleZam = user.role === "admin" ? "/admin" : "/";
-      console.log(roleZam);
 
+      const roleZam = user.role === "admin" ? "/admin" : "/";
       router.push(roleZam);
-      toast.success("Бүртгэл амжилттай!"); // Adjusted for consistency
+
+      toast.success("Бүртгэл амжилттай!");
 
       localStorage.setItem("token", token);
     } catch (error) {
-      toast.error("Бүртгэлтэй холбоотой алдаа гарлаа!"); // Adjusted for consistency
+      toast.error("Бүртгэлтэй холбоотой алдаа гарлаа!");
       console.log("Бүртгэлийн алдаа:", error);
     }
   };
@@ -190,7 +193,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   // console.log(user.user.id);
 
   return (
-    <UserContext.Provider value={{ user, register, login, logout }}>
+    <UserContext.Provider value={{ user, register, login, logout, products }}>
       {children}
     </UserContext.Provider>
   );

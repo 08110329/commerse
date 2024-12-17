@@ -48,11 +48,10 @@ export const ProductPage = () => {
   };
 
   return (
-    <div className="flex bg-[#F4F4F5] justify-center">
-      <div className="container flex ">
+      <div className="container flex bg-[#F4F4F5] justify-center">
         <div className="flex gap-12">
           {/* Small Images */}
-          <div className="flex gap-6 sticky top-0 h-fit items-center">
+          <div className="flex gap-6 sticky top-0 h-fit items-center text-black">
             <div className="flex flex-col gap-2">
               {products.map((product) => (
                 <div
@@ -171,6 +170,5 @@ export const ProductPage = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };

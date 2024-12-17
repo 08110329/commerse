@@ -1,21 +1,28 @@
 import { model, Schema } from "mongoose";
 
-const orderSchema = new Schema({
-  productCode: {
-    type: String,
+const orderProductSchema = new Schema({
+  productId: {
+    type: Schema.Types.ObjectId,
+    ref: "product",
+    required: false,
   },
+  quantity: {
+    type: Number,
+    required: true,
+    min: 1,
+  },
+  size: { type: String, required: false },
+});
+
+const orderSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
     required: true,
   },
   product: {
-    type: Schema.Types.ObjectId,
-    ref: "Product",
+    type: [orderProductSchema],
     required: true,
-  },
-  payment: {
-    type: String,
   },
   status: {
     type: String,
@@ -28,46 +35,27 @@ const orderSchema = new Schema({
     ],
     default: "Шинэ захиалага",
   },
+  lastName: {
+    type: String,
+    required: false,
+  },
+  userName: {
+    type: String,
+    required: false,
+  },
+  email: {
+    type: String,
+    required: false,
+  },
   phone: {
     type: String,
-  },
-  desc: {
-    type: String,
+    required: false,
   },
   address: {
     type: String,
+    required: false,
   },
-  orderTime: {
-    type: Date,
-    default: () => new Date(),
-  },
-  orderDetails: [
-    {
-      product: {
-        type: Schema.Types.ObjectId,
-        ref: "Product", 
-        required: true,
-      },
-      quantity: {
-        type: Number,
-        required: true,
-        min: 1, // Minimum quantity is 1
-      },
-      price: {
-        type: Number,
-        required: true, // Price of the product
-      },
-      total: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
   createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
     type: Date,
     default: Date.now,
   },

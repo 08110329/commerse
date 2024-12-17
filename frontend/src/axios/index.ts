@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const backend = axios.create({
-  baseURL: "https://commerse-cmbv.onrender.com",
+  baseURL: "http://localhost:3001/",
   headers: {
     "Content-Type": "application/json",
   },

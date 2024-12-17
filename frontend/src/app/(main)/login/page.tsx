@@ -9,7 +9,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Формын анхдагч үйлдлийг таслах
+    e.preventDefault(); 
     login(email, password);
   };
   return (

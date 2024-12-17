@@ -3,11 +3,12 @@ import { userModel } from "../models/user.schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { log } from "console";
 
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
-const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || "10", 10); 
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || "10", 10);
 
 // Хэрэглэгчийн Контроллер үүсгэх
 export const createUserController: RequestHandler = async (req, res) => {
@@ -75,7 +76,10 @@ export const createUserController: RequestHandler = async (req, res) => {
 // Хэрэглэгчийн Контроллер авах
 export const getUserController: RequestHandler = async (req, res) => {
   try {
+    console.log("hi");
+
     const { email, password } = req.body;
+    console.log(email, password, "pass");
 
     // Имэйл, нууц үг оруулсан эсэхийг шалгах
     if (!email || !password) {
@@ -86,6 +90,7 @@ export const getUserController: RequestHandler = async (req, res) => {
 
     // Имэйлээр хэрэглэгчийг хайх
     const user = await userModel.findOne({ email });
+    console.log(user, "user");
     if (!user) {
       return res.status(401).json({
         message: "Мэдээлэл буруу байна.",
@@ -100,6 +105,7 @@ export const getUserController: RequestHandler = async (req, res) => {
     }
     // Нууц үг тохирч байгаа эсэхийг шалгах
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log(isMatch, "match");
     if (!isMatch) {
       return res
         .status(401)
@@ -148,7 +154,7 @@ export const getUser: RequestHandler = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const user = await userModel.findById(userId).select("-password"); // Avoid returning password
+    const user = await userModel.findById(userId).select("-password");
     if (!user) {
       return res.status(404).json({ message: "Хэрэглэгч олдсонгүй." });
     }
@@ -157,5 +163,30 @@ export const getUser: RequestHandler = async (req, res) => {
   } catch (error) {
     console.error("Хэрэглэгчийн мэдээлэл авахад алдаа гарлаа:", error);
     return res.status(500).json({ message: "Серверт алдаа гарлаа." });
+  }
+};
+export const updateUserController: RequestHandler = async (req, res) => {
+  const { _id, lastName, username, email, phone, address } = req.body;
+  try {
+    const result = await userModel.findByIdAndUpdate(
+      _id,
+      {
+        lastName: lastName,
+        username: username,
+        email: email,
+        phone: phone,
+        address: address,
+      },
+      { new: true }
+    );
+    if (!result) {
+      return res.status(404).json({ message: "user олдсонгүй" });
+    }
+    res
+      .status(200)
+      .json({ message: "Мэдээллийг амжилттай шинэчиллээ", result });
+  } catch (error) {
+    console.error("error updating user:", error);
+    res.status(500).json({ message: "user-г шинэчлэхэд алдаа гарлаа" });
   }
 };

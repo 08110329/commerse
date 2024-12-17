@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose";
 
 const userSchema = new Schema({
-  lastName:{
-    type:String,
-    required:true,
+  lastName: {
+    type: [String],
+    required: false,
   },
   username: {
     type: String,
@@ -16,6 +16,23 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  phone: {
+    type: String,
+    required: false,
+  },
+  address: {
+    type: String,
+    required: false,
+  },
+  desc: {
+    type: String,
+    required: false,
+  },
+  saveProduct: {
+    type: [Schema.Types.ObjectId],
+    ref: "save",
+    required: false,
   },
   role: {
     type: String,

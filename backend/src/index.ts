@@ -12,7 +12,6 @@ import Multer, { memoryStorage } from "multer";
 import orderRouter from "./routes/order.route";
 import packageRouter from "./routes/package.route";
 
-
 dotenv.config();
 
 connectToDatabase();
@@ -31,8 +30,7 @@ app.use(productRouter);
 app.use(reviewRouter);
 app.use(saveRouter);
 app.use(orderRouter);
-app.use(packageRouter);
-
+app.use("/package", packageRouter);
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

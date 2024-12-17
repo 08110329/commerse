@@ -5,28 +5,17 @@ import { GoTrash } from "react-icons/go";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { backend } from "@/axios";
-
-interface Products {
-  _id: string;
-  title: string;
-  price: string;
-  image: string[];
-  description: string;
-  size: string;
-  color: string;
-  productCode: string;
-  torolId: string;
-  quantity: number;
-}
+import { toast } from "react-toastify";
 
 interface Package {
   _id: string;
-  user: string;
-  products: Products;
-  image_link: string;
-  title: string;
-  price: string;
-  quantity: number; // Add quantity property
+  products: {
+    _id: string;
+    price: number;
+    title: string;
+    image: string[];
+  };
+  quantity: number;
 }
 
 export default function Home() {
@@ -48,53 +37,82 @@ export default function Home() {
   useEffect(() => {
     const getPackage = async () => {
       try {
-        const res = await backend.get("/getPackage", {
+        const res = await backend.get("/package/getPackage", {
           headers: {
             Authorization: `Bearer ${"token"}`,
           },
         });
         const updatedPackages = res.data.packagies.map((pkg: Package) => ({
           ...pkg,
-          quantity: 1, // Set default quantity
+          quantity: pkg.quantity || 1,
         }));
         setRooms(updatedPackages);
       } catch (error) {
-        console.error("Мэдээлэл татахад алдаа гарлаа:", error);
+        console.error("Failed to fetch packages:", error);
+        toast.error("Error fetching package data");
       }
     };
+
     getPackage();
   }, [deleted]);
 
-  const increaseQuantity = (id: string) => {
-    setRooms((prevRooms) =>
-      prevRooms.map((room) =>
-        room._id === id ? { ...room, quantity: room.quantity + 1 } : room
-      )
-    );
+  const updatedPackages = async (packageId: string, quantity: number) => {
+    try {
+      await backend.put(
+        "/package/updatePackage",
+        { packageId, quantity },
+        {
+          headers: {
+            Authorization: `Bearer ${"token"}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("", error);
+    }
   };
 
-  const decreaseQuantity = (id: string) => {
-    setRooms((prevRooms) =>
-      prevRooms.map((room) =>
-        room._id === id && room.quantity > 1
-          ? { ...room, quantity: room.quantity - 1 }
-          : room
-      )
-    );
+  const increaseQuantity = async (packageId: string, currentQty: number) => {
+    const newQty = currentQty + 1;
+    try {
+      await updatedPackages(packageId, newQty);
+      setRooms((prevRooms) =>
+        prevRooms.map((room) =>
+          room._id === packageId ? { ...room, quantity: newQty } : room
+        )
+      );
+    } catch (error) {
+      console.error("Failed to increase quantity:", error);
+      toast.error("Error updating quantity");
+    }
   };
 
+  const decreaseQuantity = async (packageId: string, currentQty: number) => {
+    if (currentQty <= 1) return;
+    const newQty = currentQty - 1;
+    try {
+      await updatedPackages(packageId, newQty);
+      setRooms((prevRooms) =>
+        prevRooms.map((room) =>
+          room._id === packageId ? { ...room, quantity: newQty } : room
+        )
+      );
+    } catch (error) {
+      console.error("Failed to decrease quantity:", error);
+      toast.error("Error updating quantity");
+    }
+  };
 
-
-  const totalPrice = rooms.reduce((sum, room) => {
-    const price = parseFloat(room.price);
-    return sum + (isNaN(price) ? 0 : price * room.quantity); // Corrected: multiply price by quantity
-  }, 0);
+  const totalPrice = rooms.reduce(
+    (sum, room) => sum + room.products.price * room.quantity,
+    0
+  );
 
 
 
   const deleteProductFromPackage = async (id: string) => {
     try {
-      const res = await backend.delete("/deleteFromPackage", {
+      const res = await backend.delete("/package/deleteFromPackage", {
         headers: {
           Authorization: `Bearer ${"token"}`,
         },
@@ -134,30 +152,42 @@ export default function Home() {
                     >
                       <div className="w-24 h-24 border overflow-hidden rounded-xl">
                         <div className="relative w-32 h-40">
-                          <Image src={room?.image_link} fill alt={room.title} />
+                          <Image
+                            src={room?.products.image[0]}
+                            fill
+                            alt={room.products.title}
+                          />
                         </div>
                       </div>
 
                       <div className="flex flex-col gap-2 text-black">
                         <div className="w-[414px]">
-                          <p className="font-normal text-base">{room.title}</p>
+                          <p className="font-normal text-base">
+                            {room.products.title}
+                          </p>
                           <div className="flex gap-3 items-center">
                             <div
                               className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
-                              onClick={() => decreaseQuantity(room._id)}
+                              onClick={() =>
+                                decreaseQuantity(room._id, room.quantity)
+                              }
                             >
                               <p>-</p>
                             </div>
                             <p>{room.quantity}</p>
                             <div
                               className="border rounded-full w-8 h-8 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
-                              onClick={() => increaseQuantity(room._id)}
+                              onClick={() =>
+                                increaseQuantity(room._id, room.quantity)
+                              }
                             >
                               <p>+</p>
                             </div>
                           </div>
                         </div>
-                        <p className="text-base font-bold">{(parseFloat(room.price) * room.quantity).toLocaleString()}</p>
+                        <p className="text-base font-bold">
+                          {room.products.price * room.quantity}₮
+                        </p>
                       </div>
                       <button className="flex justify-start">
                         <GoTrash

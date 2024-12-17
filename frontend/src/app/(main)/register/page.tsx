@@ -2,9 +2,11 @@
 
 import { useFormik } from "formik";
 import Link from "next/link";
-
+import { LuEye } from "react-icons/lu";
+import { PiEyeClosedDuotone } from "react-icons/pi";
 import * as yup from "yup";
 import { useUser } from "../components/providers/AuthProvider";
+import { useState } from "react";
 interface MyFormValues {
   нэр: string;
   имэйлХаяг: string;
@@ -59,8 +61,9 @@ export default function Home() {
   const isValidLowerCase = /[a-z]/.test(formik.values.нууцҮг);
   const isValidNumber = /0-9/.test(formik.values.нууцҮг);
   const isValidSpecialChar = /^\w/.test(formik.values.нууцҮг);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isEye, setIsEye] = useState(false);
 
-  console.log("first", formik.errors);
   return (
     <div className="flex py-24 px-96 bg-[#F4F4F5] justify-center ">
       <div className="container flex  justify-center ">
@@ -71,7 +74,10 @@ export default function Home() {
                 Бүртгүүлэх
               </h1>
               <div className="grid gap-5">
-                <form onSubmit={formik.handleSubmit} className="grid gap-5">
+                <form
+                  onSubmit={formik.handleSubmit}
+                  className="grid gap-5 text-black"
+                >
                   <input
                     placeholder=" Нэр"
                     name="нэр"
@@ -94,28 +100,55 @@ export default function Home() {
                   {formik.errors.имэйлХаяг ? (
                     <p className="text-red-300">{formik.errors.имэйлХаяг}</p>
                   ) : null}
-                  <input
-                    placeholder=" Нууц үг"
-                    name="нууцҮг"
-                    type="password"
-                    className="w-96 h-9 border rounded-2xl pl-2"
-                    value={formik.values.нууцҮг}
-                    onChange={formik.handleChange}
-                  ></input>
-                  {formik.errors.нууцҮг ? (
-                    <p className="text-red-300">{formik.errors.нууцҮг}</p>
-                  ) : null}
-                  <input
-                    placeholder=" Нууц үг давтах "
-                    name="нууцҮгДавтах"
-                    type="password"
-                    className="w-96 h-9 border rounded-2xl pl-2"
-                    value={formik.values.нууцҮгДавтах}
-                    onChange={formik.handleChange}
-                  ></input>
-                  {formik.errors.нууцҮгДавтах ? (
-                    <p className="text-red-300">{formik.errors.нууцҮгДавтах}</p>
-                  ) : null}
+                  <div className="relative">
+                    <input
+                      placeholder=" Нууц үг"
+                      name="нууцҮг"
+                      type={isEyeOpen ? "text" : "password"}
+                      className="w-96 h-9 border rounded-2xl pl-2"
+                      value={formik.values.нууцҮг}
+                      onChange={formik.handleChange}
+                    ></input>
+                    <button
+                      className="absolute right-3 top-2"
+                      onClick={() => setIsEyeOpen(!isEyeOpen)}
+                    >
+                      {isEyeOpen ? (
+                        <LuEye size={20} />
+                      ) : (
+                        <PiEyeClosedDuotone size={20} />
+                      )}
+                    </button>
+                    {formik.errors.нууцҮг ? (
+                      <p className="text-red-300">{formik.errors.нууцҮг}</p>
+                    ) : null}
+                  </div>
+                  <div className="relative">
+                    <input
+                      placeholder=" Нууц үг давтах "
+                      name="нууцҮгДавтах"
+                      type={isEye ? "text" : "password"}
+                      className="w-96 h-9 border rounded-2xl pl-2"
+                      value={formik.values.нууцҮгДавтах}
+                      onChange={formik.handleChange}
+                    ></input>
+                    <button
+                      className="absolute right-3 top-2"
+                      onClick={() => setIsEye(!isEye)}
+                    >
+                      {isEye ? (
+                        <LuEye size={20} />
+                      ) : (
+                        <PiEyeClosedDuotone size={20} />
+                      )}
+                    </button>
+                    {formik.errors.нууцҮгДавтах ? (
+                      <p className="text-red-300">
+                        {formik.errors.нууцҮгДавтах}
+                      </p>
+                    ) : null}
+                  </div>
+
                   <div className="text-xs font-medium grid gap-1 pl-2">
                     <li
                       className={`${

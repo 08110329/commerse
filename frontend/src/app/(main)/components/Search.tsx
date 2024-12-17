@@ -1,7 +1,9 @@
 "use client";
 
+import { backend } from "@/axios";
 import { pLists } from "@/mockData";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export const Search = () => {
   return (
@@ -10,7 +12,7 @@ export const Search = () => {
         <div className="pb-6 grid gap-6 w-fit">
           {pLists.map((pList) => {
             return (
-              <div className="flex gap-6" key={pList.id}>
+              <div className="flex gap-6 text-black" key={pList.id}>
                 <div className=" w-[90px] h-[80px] overflow-hidden rounded-2xl">
                   <div className="relative w-32 h-40">
                     <Image src={pList.image} fill alt="t-shirt" />

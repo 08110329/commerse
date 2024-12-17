@@ -3,15 +3,12 @@ import { packageModel } from "../models/package.schema";
 
 export const createPackage: RequestHandler = async (req, res) => {
   try {
-    const { user, products, image_link, title, price, amount } = req.body;
+    const { user, products,quantity} = req.body;
 
     const newPackage = await packageModel.create({
       user,
       products,
-      image_link,
-      title,
-      price,
-      amount,
+      quantity,
     });
 
     return res.status(200).json({
@@ -27,8 +24,7 @@ export const createPackage: RequestHandler = async (req, res) => {
 
 export const getPackage: RequestHandler = async (req, res) => {
   try {
-    const packagies = await packageModel.find();
-
+    const packagies = await packageModel.find().populate("products");
     return res.status(200).json({
       packagies,
       message: "amjilttai duudlaa",
@@ -45,8 +41,8 @@ export const addToPackage: RequestHandler = async (req, res) => {
     const { user, productId } = req.body;
 
     const addPackagies = await packageModel.updateOne(
-      { user }, // Хэрэглэгчийн ID-ээр хайж байна
-      { $addToSet: { products: productId } } // Сагсанд бүтээгдэхүүн нэмэх
+      { user },
+      { $addToSet: { products: productId } }
     );
 
     return res.status(200).json({
@@ -59,8 +55,30 @@ export const addToPackage: RequestHandler = async (req, res) => {
   }
 };
 
+export const updatePackage: RequestHandler = async (req, res) => {
+  try {
+    const { packageId, quantity } = req.body;
+    const packages = await packageModel.findByIdAndUpdate(
+      packageId,
+      { 
+        quantity: quantity,
+      },
+      { new: true }
+    );
+    console.log(packageId);
+    if (!packages) {
+      return res.status(404).json({ message: "package олдсонгүй" });
+    }
+    res
+      .status(200)
+      .json({ message: "Мэдээллийг амжилттай шинэчиллээ", packages });
+  } catch (error) {
+    console.error("Бүтээгдэхүүн амжилттай сагслагдлаа", error);
+  }
+};
+
 export const deleteFromPackage: RequestHandler = async (req, res) => {
-  const { id } = req.params; // URL-ээс ID-г авна
+  const { id } = req.params;
 
   try {
     const deletedPackage = await packageModel.findOneAndDelete({

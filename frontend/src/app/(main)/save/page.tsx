@@ -36,7 +36,7 @@ export default function Home() {
       try {
         const res = await backend.get("/getSave", {
           headers: {
-            Authorization: `Bearer ${"token"}`, // Энд таны токен оруулах ёстой
+            Authorization: `Bearer ${"token"}`,
           },
           params: { user: user.user?.id },
         });
@@ -56,27 +56,25 @@ export default function Home() {
         },
       });
       setSaves((prev) => prev.filter((save) => save._id !== id));
-      console.log(response.data.message); // Амжилттай устгасны тухай мэдээллийг лог хийх
+      console.log(response.data.message);
     } catch (error) {
       console.error("Устгахад алдаа гарлаа:", error);
     }
   };
 
-  const createPackage = async (
-    productId: string,
-    image: string,
-    title: string,
-    price: string
-  ) => {
+  const createPackage = async (Products: {
+    _id: string;
+    image: string;
+    title: string;
+    price: string;
+  }) => {
     try {
       const response = await backend.post(
-        "/createPackage",
+        "/package/createPackage",
         {
           user: user.user?.id,
-          products: productId,
-          image: image,
-          title: title,
-          price: price,
+          products: Products._id,
+          quantity: 1,
         },
         {
           headers: {
@@ -119,13 +117,13 @@ export default function Home() {
                     <button
                       className="border w-fit px-3 rounded-xl hover:bg-[#2563EB] hover:text-white border-[#2563EB] text-[#2563EB]"
                       onClick={() =>
-                        createPackage(
-                          save.products._id,
-                          save.products.image[0],
-                          save.products.title,
-                          save.products.price
-                        )
-                      } // Сагсанд нэмэх функц
+                        createPackage({
+                          _id: save.products._id,
+                          image: save.products.image[0],
+                          title: save.products.title,
+                          price: save.products.price,
+                        })
+                      }
                     >
                       Сагслах
                     </button>
@@ -133,7 +131,7 @@ export default function Home() {
 
                   <button
                     className="border w-fit px-3 rounded-xl hover:bg-[#2563EB] hover:text-white border-[#2563EB] text-[#2563EB]"
-                    onClick={() => deleteSave(save._id)} // Устгах функц
+                    onClick={() => deleteSave(save._id)}
                   >
                     Устгах
                   </button>

@@ -1,34 +1,21 @@
 import { RequestHandler } from "express";
 import { orderModel } from "../models/order.schema";
 
+type Products = {
+productId:string,
+quantity:number,
+size:string
+}
+
 export const createOrder: RequestHandler = async (req, res) => {
   try {
-    const {
-      productCode,
-      user,
-      product,
-      payment,
-      status,
-      phone,
-      desc,
-      address,
-      orderTime,
-      orderDetails,
-    } = req.body;
+  
     const newOrders = orderModel.create({
-      productCode,
-      user,
-      product,
-      payment,
-      status,
-      phone,
-      desc,
-      address,
-      orderTime,
-      orderDetails,
+      ...req.body
     });
+    
     return res.status(201).json({
-      message: "product uuslee",
+      message: "order uuslee",
       newOrders,
     });
   } catch (error) {
