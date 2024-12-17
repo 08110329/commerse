@@ -39,18 +39,6 @@ const userSchema = new Schema({
     emun: ["user", "admin"],
     default: "user",
   },
-  phone:{
-    type:Number,
-    required:true
-  },
-  desc:{
-    type:String,
-    required:true,
-  },
-  address:{
-    type:String,
-    required:true,
-  },
   save: {
     type: [Schema.Types.ObjectId],
     ref: "Product",

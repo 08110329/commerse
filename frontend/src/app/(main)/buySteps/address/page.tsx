@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { backend } from "@/axios";
 import { useUser } from "../../components/providers/AuthProvider";
-import { products } from "../../components/mockdata";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 interface Package {
   _id: string;
@@ -27,13 +27,13 @@ export default function Home() {
   const [phone, setPhone] = useState<string>("");
   const [address, setAddress] = useState<string>("");
 
-  // Fetch packages from backend
+ 
   useEffect(() => {
     const getPackage = async () => {
       try {
         const res = await backend.get("/package/getPackage", {
           headers: {
-            Authorization: `Bearer ${"token"}`, // Replace with actual token management
+            Authorization: `Bearer ${"token"}`, 
           },
         });
         const updatedPackages = res.data.packagies.map((pkg: Package) => ({
@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <div className="container bg-[#F4F4F5] m-auto">
       <div className="h-fit grid gap-16 justify-center py-8">
-        {/* Progress Bar */}
+        
         <div className="flex items-center mt-28 justify-center text-black">
           {Array(3)
             .fill(0)
@@ -101,9 +101,9 @@ export default function Home() {
             ))}
         </div>
 
-        {/* Content Section */}
+      
         <div className="flex gap-5 h-screen">
-          {/* Cart Summary */}
+         
           <div className="bg-white rounded-xl w-[333px] h-[448px]">
             <div className="grid gap-6 px-6 pt-8">
               <div className="grid rounded-2xl gap-6">
@@ -119,41 +119,34 @@ export default function Home() {
                 <div className="border-b-2 border-dashed grid gap-6 pb-6">
                   {rooms.map((room) => {
                     return (
-                      <div className="flex gap-6" key={room._id}>
-                        <div className="w-20 h-20  overflow-hidden rounded-md">
-                          <div className="relative w-[120px] h-[160px]">
-                            <Image
-                              src={room.products.image[0]}
-                              fill
-                              alt="t-shirt"
-                            />
+                      <>
+                        <div className="flex gap-6" key={room._id}>
+                          <div className="w-20 h-20  overflow-hidden rounded-md">
+                            <div className="relative w-[120px] h-[160px]">
+                              <Image
+                                src={room.products.image[0]}
+                                fill
+                                alt="t-shirt"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex flex-col text-black">
+                            <p className="font-normal text-base">
+                              {room.products.title}
+                            </p>
+                            <p className="font-normal text-base">
+                              {room.quantity}*{room.products.price}
+                            </p>
+                            <p className="text-base font-bold">
+                              {room.products.price * room.quantity}₮
+                            </p>
                           </div>
                         </div>
-                        <div className="flex flex-col text-black">
-                          <p className="font-normal text-base">
-                            {room.products.title}
-                          </p>
-                          <p className="font-normal text-base">
-                            {room.quantity}*{room.products.price}
-                          </p>
-                          <p className="text-base font-bold">
-                            {room.products.price * room.quantity}₮
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col text-black">
-                        <p className="font-normal text-base">{room.title}</p>
-                        <p className="font-normal text-base">
-                          Тоо ширхэг: {room.quantity}
-                        </p>
-                        <p className="text-base font-bold">
-                          {(parseFloat(room.price) * room.quantity).toLocaleString()}₮
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                       
+                      </>
+                    );
+                  })}
                 </div>
-                {/* Total Price */}
                 <div className="flex justify-between text-black">
                   <p className="text-base font-normal">Нийт төлөх дүн:</p>
                   <span className="text-lg font-bold">{totalPrice}₮</span>
