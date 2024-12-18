@@ -28,8 +28,6 @@ interface Save {
 export default function Home() {
   const [saves, setSaves] = useState<Save[]>([]);
   const { user } = useUser();
-  
-  
 
   useEffect(() => {
     const getSave = async () => {

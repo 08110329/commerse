@@ -13,5 +13,5 @@ packageRouter
   .get("/getPackage", getPackage)
   .post("/addToPackage", addToPackage)
   .put("/updatePackage", updatePackage)
-  .delete("/deleteFromPackage", deleteFromPackage);
+  .delete("/deleteFromPackage/:id", deleteFromPackage);
 export default packageRouter;

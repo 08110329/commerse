@@ -3,7 +3,7 @@ import { packageModel } from "../models/package.schema";
 
 export const createPackage: RequestHandler = async (req, res) => {
   try {
-    const { user, products,quantity} = req.body;
+    const { user, products, quantity } = req.body;
 
     const newPackage = await packageModel.create({
       user,
@@ -60,7 +60,7 @@ export const updatePackage: RequestHandler = async (req, res) => {
     const { packageId, quantity } = req.body;
     const packages = await packageModel.findByIdAndUpdate(
       packageId,
-      { 
+      {
         quantity: quantity,
       },
       { new: true }
@@ -79,10 +79,9 @@ export const updatePackage: RequestHandler = async (req, res) => {
 
 export const deleteFromPackage: RequestHandler = async (req, res) => {
   const { id } = req.params;
-
   try {
     const deletedPackage = await packageModel.findOneAndDelete({
-      productId: id,
+      _id: id,
     });
 
     if (!deletedPackage) {

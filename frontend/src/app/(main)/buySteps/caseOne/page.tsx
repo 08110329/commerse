@@ -54,7 +54,7 @@ export default function Home() {
     };
 
     getPackage();
-  }, [deleted]);
+  }, []);
 
   const updatedPackages = async (packageId: string, quantity: number) => {
     try {
@@ -108,20 +108,15 @@ export default function Home() {
     0
   );
 
-
-
   const deleteProductFromPackage = async (id: string) => {
     try {
-      const res = await backend.delete("/package/deleteFromPackage", {
+      const res = await backend.delete(`/package/deleteFromPackage/${id}`, {
         headers: {
           Authorization: `Bearer ${"token"}`,
         },
-        params: {
-          id: id,
-        },
       });
       if (res) {
-        setDeleted(!deleted);
+        setRooms(rooms.filter((room) => room._id !== id));
       }
     } catch (error) {
       console.error("Мэдээлэл татахад алдаа гарлаа:", error);
@@ -129,11 +124,11 @@ export default function Home() {
   };
 
   return (
-    <div className="container bg-[#F4F4F5] m-auto ">
+    <div className="container bg-[#F4F4F5] m-auto py-8">
       <div className="flex text-black justify-center items-center">
-        <div className="w-[686px] h-fit grid gap-16 border">
+        <div className="w-[686px] h-fit grid gap-16">
           <div className="bg-white rounded-xl">
-            <div className="px-6 py-8 grid gap-6">
+            <div className="px-6 py-8 grid gap-6 h-fit">
               <div className="grid rounded-2xl gap-6">
                 <div className="flex justify-between items-center">
                   <div className="flex gap-2 items-center font-bold text-xl text-black">
@@ -206,7 +201,7 @@ export default function Home() {
               </div>
               <div className="flex justify-end">
                 {paths.map((path, index) => (
-                  <Link key={index} href={path.path} >
+                  <Link key={index} href={path.path}>
                     <button className="bg-[#2563EB] px-9 py-2 rounded-3xl text-white text-base font-semibold">
                       {path.name}
                     </button>

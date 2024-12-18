@@ -23,9 +23,6 @@ interface User {
   address?: string;
   desc?: string;
   role?: string;
-  address:string;
-  desc:string;
-  phone:string;
 }
 
 interface AuthUser {
