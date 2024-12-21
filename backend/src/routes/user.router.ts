@@ -14,7 +14,7 @@ userRouter
   .post("/register", createUserController)
   .post("/login", getUserController)
   .post("/logout", logout)
-  .post("/updateUserController",updateUserController)
+  .put("/updateUserController",updateUserController)
   .get("/me", authMiddleware, getMe)
   .get("/getUser/:userId", getUser);
 export { userRouter };

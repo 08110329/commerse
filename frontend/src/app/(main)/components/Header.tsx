@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { LuHeart, LuSearch } from "react-icons/lu";
 import { Search } from "./Search";
@@ -10,12 +10,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import { useUser } from "./providers/AuthProvider";
-
+import { backend } from "@/axios";
+interface Products {
+  _id: string;
+  title: string;
+  price: string;
+  image: string[];
+  description: string;
+  size: string;
+  color: string;
+  productCode: string;
+  torolId: string;
+  quantity: number;
+}
 export const Header = () => {
   const [side, setSide] = useState(false);
   const { user } = useUser();
   const { logout } = useUser();
-  const [garah, setGarah] = useState(false);
+  const [products, setProducts] = useState<Products[]>([]);
+  const [searchName,setSearchName]=useState("")
 
   const pathname: string = usePathname();
   interface Path {
@@ -53,6 +66,20 @@ export const Header = () => {
       toast.info("Sagsalsan baraagaa harhiin tuld nevterne uu!");
     }
   };
+ 
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await backend.get("/getProducts");
+      setProducts(data.products);
+    };
+
+    getData();
+  }, []);
+  
+  const filteredProducts = products.filter(product =>
+    product["title"].toLowerCase().includes(searchName.toLowerCase())
+  );
+
   return (
     <div className=" bg-black px-6 py-4">
       <div className="w-full justify-between">
@@ -96,11 +123,13 @@ export const Header = () => {
                     side ? "visible" : "hidden" // side bol hargdd bish bol nuuna
                   }`}
                 >
-                  <Search />
+                  <Search products={filteredProducts}/>
                 </div>
                 <input
                   className="w-60 h-6 bg-gray-800 outline-none"
                   placeholder="Бүтээгдэхүүн хайх"
+                  value={searchName}
+                  onChange={(e) => setSearchName(e.target.value)}
                 ></input>
               </div>
             </div>

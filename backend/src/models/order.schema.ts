@@ -35,6 +35,10 @@ const orderSchema = new Schema({
     ],
     default: "Шинэ захиалага",
   },
+  payment:{
+    type:String,
+    required:false,
+  },
   lastName: {
     type: String,
     required: false,

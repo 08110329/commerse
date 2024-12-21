@@ -127,7 +127,7 @@ export default function Home() {
     <div className="container bg-[#F4F4F5] m-auto py-8">
       <div className="flex text-black justify-center items-center">
         <div className="w-[686px] h-fit grid gap-16">
-          <div className="bg-white rounded-xl">
+          <div className="bg-white rounded-xl h-fit">
             <div className="px-6 py-8 grid gap-6 h-fit">
               <div className="grid rounded-2xl gap-6">
                 <div className="flex justify-between items-center">

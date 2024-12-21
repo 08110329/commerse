@@ -34,10 +34,7 @@ export const createUserController: RequestHandler = async (req, res) => {
 
     // Шинэ хэрэглэгчийг үүсгэх
     const newUser = await userModel.create({
-      // username,
-      // email,
-      // password: hashedPassword,
-      // role: "user",
+    
       ...req.body,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -166,10 +163,10 @@ export const getUser: RequestHandler = async (req, res) => {
   }
 };
 export const updateUserController: RequestHandler = async (req, res) => {
-  const { _id, lastName, username, email, phone, address } = req.body;
+  const { userId, lastName, username, email, phone, address } = req.body;
   try {
     const result = await userModel.findByIdAndUpdate(
-      _id,
+      {_id:userId},
       {
         lastName: lastName,
         username: username,
@@ -178,7 +175,7 @@ export const updateUserController: RequestHandler = async (req, res) => {
         address: address,
       },
       { new: true }
-    );
+    )
     if (!result) {
       return res.status(404).json({ message: "user олдсонгүй" });
     }

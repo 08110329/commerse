@@ -9,7 +9,7 @@ export default function Home() {
   return (
         <div className="flex flex-col w-full gap-8 mt-5 bg-gray-50 container m-auto">
           <div className="bg-white mx-6 grid gap-6 rounded-2xl border">
-            <div className="flex justify-between px-6 pt-5">
+            <div className="flex justify-between px-6 pt-5 text-black">
               <h1 className="text-xl font-bold">Орлого</h1>
               <button className="flex text-sm font-semibold bg-gray-100 p-3 rounded-xl gap-2">
                 <HiOutlineArrowDownTray className="w-5 h-5" />
