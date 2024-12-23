@@ -20,7 +20,7 @@ export const Search = ({ products }: ProductCardProps) => {
       <div className="h-fit px-8 py-8 rounded-xl bg-white ">
         <div className="pb-6 grid gap-6 w-fit">
           {products.length === 0 ? (
-            <p>Таны хайлттай бүтээгдэхүүн олдсонгүй.</p>
+            <p className="text-black">Таны хайлттай бүтээгдэхүүн олдсонгүй.</p>
           ) : (
             products.map((product) => (
               <div className="flex gap-6 text-black" key={product._id}>

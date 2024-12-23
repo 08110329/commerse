@@ -28,5 +28,31 @@ export const createOrder: RequestHandler = async (req, res) => {
 
 export const getOrder: RequestHandler = async (req, res) => {
   try {
-  } catch (error) {}
+    const orders= await orderModel.find().populate("user", "productId")
+    return res.status(200).json({
+      orders,
+      message:"amjilttai zahialga uuslee"
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message:"server error"
+    })
+  }
 };
+
+export const updateOrder: RequestHandler = async (req, res)=> {
+  try {
+    const {orderId, status} = req.body
+    const order = await orderModel.findByIdAndUpdate(
+      orderId,
+      {
+        status:status,
+      },
+      { new:true }
+    )
+    console.log(orderId);
+    
+  } catch (error) {
+    
+  }
+}

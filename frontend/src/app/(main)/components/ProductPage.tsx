@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { CiHeart } from "react-icons/ci";
 import { StarIcon } from "./StarIcon";
 import { Common } from "./Common";
 import { useParams } from "next/navigation";
@@ -50,7 +49,6 @@ export const ProductPage = () => {
   return (
       <div className="container flex bg-[#F4F4F5] justify-center">
         <div className="flex gap-12">
-          {/* Small Images */}
           <div className="flex gap-6 sticky top-0 h-fit items-center text-black">
             <div className="flex flex-col gap-2">
               {products.map((product) => (
@@ -70,12 +68,10 @@ export const ProductPage = () => {
                 </div>
               ))}
             </div>
-
-            {/* Main Image */}
             <div className="relative w-[550px] h-[700px]">
               {selectImage ? (
                 <Image
-                  src={selectImage} // Display the selected image
+                  src={selectImage} 
                   fill
                   alt="Selected Product"
                   className="rounded-2xl"
@@ -86,7 +82,7 @@ export const ProductPage = () => {
             </div>
           </div>
 
-          {/* Product Details */}
+          
           <div className="pt-28 flex flex-col gap-20 relative justify-between">
             <div className="pr-20 grid gap-6">
               <div className="grid gap-6">
@@ -96,14 +92,11 @@ export const ProductPage = () => {
                   </div>
                   <div className="text-4xl font-bold flex items-center gap-4">
                     <p>{products[0]?.title || "Loading..."}</p>
-                    <CiHeart className="w-8 h-8" />
                   </div>
                   <p className="font-normal text-xl text-black">
                     {products[0]?.description || "Loading description..."}
                   </p>
                 </div>
-
-                {/* Size Selection */}
                 <div className="font-normal text-lg grid gap-2 text-black">
                   <p>Хэмжээний заавар</p>
                   <div className="flex gap-2">
@@ -117,8 +110,6 @@ export const ProductPage = () => {
                     ))}
                   </div>
                 </div>
-
-                {/* Quantity Selection */}
                 <div className="flex gap-3 items-center text-black">
                   <div className="border rounded-full w-9 h-9 flex justify-center items-center border-black hover:bg-gray-200 hover:border-gray-400">
                     <p>-</p>
@@ -129,8 +120,6 @@ export const ProductPage = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Price and Add to Cart */}
               <div className="flex flex-col gap-3 w-48 text-black">
                 <p className="text-2xl font-bold">
                   {products[0]?.price || "0"}₮
@@ -140,8 +129,6 @@ export const ProductPage = () => {
                 </button>
               </div>
             </div>
-
-            {/* Reviews */}
             <div className="grid gap-3">
               <div>
                 <div className="flex gap-4 text-xl font-normal text-black">

@@ -72,7 +72,6 @@ export const Header = () => {
       const { data } = await backend.get("/getProducts");
       setProducts(data.products);
     };
-
     getData();
   }, []);
   
@@ -93,7 +92,7 @@ export const Header = () => {
                     fill
                     alt="Pinecone Studio Logo"
                     style={{ objectFit: "contain" }}
-                    sizes="(max-width: 32px) 32px, 40px" // Adjust sizes as needed
+                    sizes="(max-width: 32px) 32px, 40px" 
                   />
                 </Link>
               </div>
@@ -113,24 +112,23 @@ export const Header = () => {
               <div className=" w-[300px] h-10 flex justify-center items-center bg-gray-800 gap-2 rounded-md">
                 <button
                   className=" flex justify-center items-center text-white"
-                  onClick={() => setSide(!side)} // darah ued side mon bol setside ogood utgiig n oorchilmoor bn
+                  onClick={() => setSide(!side)} 
                 >
                   <LuSearch className="w-6 h-6 " />
                 </button>
-
-                <div
-                  className={`absolute top-14 z-10 ${
-                    side ? "visible" : "hidden" // side bol hargdd bish bol nuuna
-                  }`}
-                >
-                  <Search products={filteredProducts}/>
-                </div>
                 <input
                   className="w-60 h-6 bg-gray-800 outline-none"
                   placeholder="Бүтээгдэхүүн хайх"
                   value={searchName}
                   onChange={(e) => setSearchName(e.target.value)}
                 ></input>
+                 <div
+                  className={`absolute top-14 z-10 ${
+                    side ? "visible" : "hidden" 
+                  }`}
+                >
+                  <Search products={filteredProducts}/>
+                </div>
               </div>
             </div>
           </div>

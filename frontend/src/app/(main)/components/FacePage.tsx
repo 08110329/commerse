@@ -42,7 +42,7 @@ export const FacePage = () => {
         products: productId,
       });
       console.log("Saved successfully:");
-      setSavedProducts((prev) => [...prev, productId]); // Бүтээгдэхүүний ID-г хадгалах
+      setSavedProducts((prev) => [...prev, productId]); 
     } catch (error) {
       console.error("Error saving data:", error);
     }
@@ -92,12 +92,12 @@ export const FacePage = () => {
                       {isSaved ? (
                         <FaHeart
                           onClick={() => createSave(product._id)}
-                          className="absolute right-4 top-4 w-10 h-10 text-black hover:text-black" // Hover үед хар өнгөтэй
+                          className="absolute right-4 top-4 w-10 h-10 text-black hover:text-black" 
                         />
                       ) : (
                         <CiHeart
                           onClick={() => createSave(product._id)}
-                          className="absolute right-4 top-4 w-10 h-10 text-white hover:text-black" // Hover үед хар өнгөтэй
+                          className="absolute right-4 top-4 w-10 h-10 text-white hover:text-black" 
                         />
                       )}
                     </Link>

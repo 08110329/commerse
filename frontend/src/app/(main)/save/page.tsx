@@ -135,9 +135,6 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-              <button className="w-6 h-6">
-                <FaRegHeart />
-              </button>
             </div>
           ))}
         </div>
