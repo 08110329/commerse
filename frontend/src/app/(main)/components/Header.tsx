@@ -28,7 +28,7 @@ export const Header = () => {
   const { user } = useUser();
   const { logout } = useUser();
   const [products, setProducts] = useState<Products[]>([]);
-  const [searchName,setSearchName]=useState("")
+  const [searchName, setSearchName] = useState("");
 
   const pathname: string = usePathname();
   interface Path {
@@ -66,7 +66,7 @@ export const Header = () => {
       toast.info("Sagsalsan baraagaa harhiin tuld nevterne uu!");
     }
   };
- 
+
   useEffect(() => {
     const getData = async () => {
       const { data } = await backend.get("/getProducts");
@@ -75,8 +75,8 @@ export const Header = () => {
 
     getData();
   }, []);
-  
-  const filteredProducts = products.filter(product =>
+
+  const filteredProducts = products.filter((product) =>
     product["title"].toLowerCase().includes(searchName.toLowerCase())
   );
 
@@ -113,17 +113,17 @@ export const Header = () => {
               <div className=" w-[300px] h-10 flex justify-center items-center bg-gray-800 gap-2 rounded-md">
                 <button
                   className=" flex justify-center items-center text-white"
-                  onClick={() => setSide(!side)} // darah ued side mon bol setside ogood utgiig n oorchilmoor bn
+                  onClick={() => setSide(!side)} 
                 >
                   <LuSearch className="w-6 h-6 " />
                 </button>
 
                 <div
                   className={`absolute top-14 z-10 ${
-                    side ? "visible" : "hidden" // side bol hargdd bish bol nuuna
+                    side ? "visible" : "hidden"
                   }`}
                 >
-                  <Search products={filteredProducts}/>
+                  <Search products={filteredProducts} />
                 </div>
                 <input
                   className="w-60 h-6 bg-gray-800 outline-none"
@@ -154,7 +154,7 @@ export const Header = () => {
                   <HiOutlineShoppingCart className="w-6 h-6" />
                 </Link>
               )}
-{user.isAuthenticated && (
+              {user.isAuthenticated && (
                 <Link href={`/users/UserInfo`}>
                   <IoPersonOutline className="w-6 h-6" />
                 </Link>
@@ -189,7 +189,6 @@ export const Header = () => {
                   })}
                 </div>
               )}
-              
             </div>
           </div>
         </div>
