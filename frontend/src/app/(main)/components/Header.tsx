@@ -72,7 +72,6 @@ export const Header = () => {
       const { data } = await backend.get("/getProducts");
       setProducts(data.products);
     };
-
     getData();
   }, []);
 
@@ -93,7 +92,7 @@ export const Header = () => {
                     fill
                     alt="Pinecone Studio Logo"
                     style={{ objectFit: "contain" }}
-                    sizes="(max-width: 32px) 32px, 40px" // Adjust sizes as needed
+                    sizes="(max-width: 32px) 32px, 40px" 
                   />
                 </Link>
               </div>
@@ -117,20 +116,19 @@ export const Header = () => {
                 >
                   <LuSearch className="w-6 h-6 " />
                 </button>
-
-                <div
-                  className={`absolute top-14 z-10 ${
-                    side ? "visible" : "hidden"
-                  }`}
-                >
-                  <Search products={filteredProducts} />
-                </div>
                 <input
                   className="w-60 h-6 bg-gray-800 outline-none"
                   placeholder="Бүтээгдэхүүн хайх"
                   value={searchName}
                   onChange={(e) => setSearchName(e.target.value)}
                 ></input>
+                 <div
+                  className={`absolute top-14 z-10 ${
+                    side ? "visible" : "hidden" 
+                  }`}
+                >
+                  <Search products={filteredProducts}/>
+                </div>
               </div>
             </div>
           </div>

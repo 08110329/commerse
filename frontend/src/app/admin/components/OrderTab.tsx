@@ -8,9 +8,34 @@ import {
 } from "@/app/(main)/components/ui/table";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { Orders } from "@/mockData";
+import { useEffect, useState } from "react";
+import { backend } from "@/axios";
 
+interface Order {
+  _id: string;
+  userName: string;
+  email: string;
+  productId: {
+    _id: string;
+    image: string;
+    title: string;
+    price: string;
+  };
+  createdAt: string;
+  payment: string;
+  status: string[];
+}
 export const OrderTab = () => {
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
+    const getOrder = async () => {
+      const { data } = await backend.get("/getOrder");
+      setOrders(data.orders);
+    };
+    getOrder();
+  }, []);
+
   return (
     <div className="mx-6 border rounded-xl">
       <Table className="bg-white rounded-xl ">
@@ -22,32 +47,30 @@ export const OrderTab = () => {
             <TableHead>Захиалгын ID дугаар</TableHead>
             <TableHead>Үйлчлүүлэгч</TableHead>
             <TableHead>Огноо</TableHead>
-            <TableHead>Цаг</TableHead>
             <TableHead>Төлбөр</TableHead>
             <TableHead>Статус</TableHead>
             <TableHead>Дэлгэрэнгүй</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Orders.map((Order) => {
+          {orders.map((order) => {
             return (
-              <TableRow className="text-black" key={Order.id}>
-                <TableCell className="font-medium">
-                  {Order.ЗахиалгынIDдугаар}
-                </TableCell>
+              <TableRow className="text-black" key={order._id}>
+                <TableCell className="font-medium">{order._id}</TableCell>
                 <TableCell className="">
-                  <p className="text-sm font-semibold">Zoloo soko</p>
+                  <p className="text-sm font-semibold">{order.userName}</p>
                   <p className="text-sm font-normal text-[#3F4145]">
-                    {Order.Үйлчлүүлэгч}
+                    {order.email}
                   </p>
                 </TableCell>
-                <TableCell>{Order.Огноо}</TableCell>
-                <TableCell>{Order.Цаг}</TableCell>
-                <TableCell>{Order.Төлбөр}</TableCell>
-                <TableCell className="">
+                <TableCell>
+                  {new Date(order.createdAt).toLocaleString()}
+                </TableCell>
+                <TableCell>{order.payment}</TableCell>
+                <TableCell>
                   <button className="flex items-center gap-2 border px-4 py-2 rounded-3xl">
-                    {Order.Статус}
-                    {Order.Статус !== "Хүргэгдсэн" ? <IoIosArrowDown /> : ""}
+                    {order.status}
+                    {order.status[0] !== "Хүргэгдсэн" ? <IoIosArrowDown /> : ""}
                   </button>
                 </TableCell>
                 <TableCell className="text-center">

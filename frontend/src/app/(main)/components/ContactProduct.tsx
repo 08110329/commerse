@@ -2,10 +2,11 @@
 import { backend } from "@/axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { useUser } from "./providers/AuthProvider";
+import { FaHeart } from "react-icons/fa";
 
 export const ContactProduct = () => {
   interface Products {
@@ -26,6 +27,7 @@ export const ContactProduct = () => {
   const { id } = useParams();
   const [torolId, setTorolId] = useState<string>("");
   const { user } = useUser();
+  const [savedProducts, setSavedProducts] = useState<string[]>([]);
 
   const getOneProduct = async () => {
     try {
@@ -52,7 +54,7 @@ export const ContactProduct = () => {
     getData();
   }, []);
 
-  const router = useRouter();
+ 
   const showProduct = products.filter((product) => product.torolId === torolId);
 
   const createSave = async (productId: string) => {
@@ -62,6 +64,7 @@ export const ContactProduct = () => {
         products: productId,
       });
       console.log("Saved successfully:");
+      setSavedProducts((prev) => [...prev, productId]);
     } catch (error) {
       console.error("Error saving data:", error);
     }
@@ -75,6 +78,7 @@ export const ContactProduct = () => {
           // onClick={() => router.push(`/${id}`)}
         >
           {showProduct?.map((product) => {
+            const isSaved = savedProducts.includes(product._id);
             return (
               <div className=" w-[330px] flex flex-col gap-3" key={product._id}>
                 <Link href={`${product._id}`}>
@@ -90,10 +94,19 @@ export const ContactProduct = () => {
                       style={{ objectFit: "cover" }}
                       sizes="(max-width: 640px) 100vw, (min-width: 641px) 640px"
                     />
-                    <CiHeart
-                      className="absolute right-4 top-4 w-10 h-10 text-black"
-                      onClick={() => createSave(product._id)}
-                    />
+                    <Link href={"/save"}>
+                      {isSaved ? (
+                        <FaHeart
+                          onClick={() => createSave(product._id)}
+                          className="absolute right-4 top-4 w-10 h-10 text-black hover:text-black" // Hover үед хар өнгөтэй
+                        />
+                      ) : (
+                        <CiHeart
+                          onClick={() => createSave(product._id)}
+                          className="absolute right-4 top-4 w-10 h-10 text-white hover:text-black" // Hover үед хар өнгөтэй
+                        />
+                      )}
+                    </Link>
                   </div>
                   <div className="text-3xl font-bold grid gap-2">
                     <p className="text-2xl font-normal">{product.title}</p>
