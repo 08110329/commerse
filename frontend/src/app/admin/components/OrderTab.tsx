@@ -7,9 +7,18 @@ import {
   TableRow,
 } from "@/app/(main)/components/ui/table";
 import Link from "next/link";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { backend } from "@/axios";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Order {
   _id: string;
@@ -25,6 +34,13 @@ interface Order {
   payment: string;
   status: string[];
 }
+const statusBar = [
+  "Шинэ захиалага",
+  "Бэлтгэгдэж байна",
+  "Хүргэлтэнд гарсан",
+  "Хүргэгдсэн",
+  "Цуцлагдсан",
+];
 export const OrderTab = () => {
   const [orders, setOrders] = useState<Order[]>([]);
 
@@ -47,7 +63,6 @@ export const OrderTab = () => {
             <TableHead>Захиалгын ID дугаар</TableHead>
             <TableHead>Үйлчлүүлэгч</TableHead>
             <TableHead>Огноо</TableHead>
-            <TableHead>Төлбөр</TableHead>
             <TableHead>Статус</TableHead>
             <TableHead>Дэлгэрэнгүй</TableHead>
           </TableRow>
@@ -66,12 +81,19 @@ export const OrderTab = () => {
                 <TableCell>
                   {new Date(order.createdAt).toLocaleString()}
                 </TableCell>
-                <TableCell>{order.payment}</TableCell>
                 <TableCell>
-                  <button className="flex items-center gap-2 border px-4 py-2 rounded-3xl">
-                    {order.status}
-                    {order.status[0] !== "Хүргэгдсэн" ? <IoIosArrowDown /> : ""}
-                  </button>
+                  <Select>
+                    <SelectTrigger className="w-40">
+                      <SelectValue placeholder={`${order.status}`} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {statusBar.map((item, index) => (
+                          <SelectItem value="apple" key={index}>{item}</SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </TableCell>
                 <TableCell className="text-center">
                   <Link href={`/admin/orderDetail`}>

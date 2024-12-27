@@ -1,10 +1,10 @@
 import { model, Schema } from "mongoose";
 
-const orderProductSchema = new Schema({
+const packageProductSchema = new Schema({
   productId: {
     type: Schema.Types.ObjectId,
     ref: "product",
-    required: false,
+    required: true,
   },
   quantity: {
     type: Number,
@@ -14,6 +14,7 @@ const orderProductSchema = new Schema({
   size: { type: String, required: false },
 });
 
+
 const orderSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -21,11 +22,12 @@ const orderSchema = new Schema({
     required: true,
   },
   product: {
-    type: [orderProductSchema],
+    type: [packageProductSchema],
     required: true,
   },
   status: {
     type: String,
+    required: true,
     enum: [
       "Шинэ захиалага",
       "Бэлтгэгдэж байна",

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { useUser } from "./providers/AuthProvider";
 import { FaHeart } from "react-icons/fa";
+import { motion } from "motion/react"
 
 interface Products {
   _id: string;
